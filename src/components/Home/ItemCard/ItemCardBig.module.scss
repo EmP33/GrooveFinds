@@ -1,7 +1,6 @@
 .card {
   width: 20rem;
   height: 25rem;
-
   margin: 1rem;
 
   @media only screen and (max-width: 87.5em) {
@@ -11,6 +10,62 @@
 
   &-container {
     width: 100%;
+    position: relative;
+
+    .cardBackdrop {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.5rem;
+      transition: all 0.2s linear;
+
+      & > button {
+        width: 0;
+        height: 0;
+        font-size: 0;
+        border: none;
+        outline: none;
+        background: rgba(255, 255, 255, 0.7);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+
+    &:hover .cardBackdrop {
+      border-radius: 0.5rem;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: flex-end;
+      padding: 0.5rem;
+
+      & > button {
+        margin: 0.5rem;
+        cursor: pointer;
+        width: 3.25rem;
+        height: 3.25rem;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        outline: none;
+        background: rgba(255, 255, 255, 0.7);
+        -webkit-box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.4);
+        box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.4);
+
+        &:hover,
+        &:active {
+          border: 2px solid var(--color-primary);
+        }
+      }
+    }
 
     .card-image {
       border-radius: 0.5rem;
@@ -23,15 +78,22 @@
 
   .card-content {
     padding: 1rem 0.5rem 0.5rem 0.5rem;
+    cursor: pointer;
 
     & > h3 {
+      display: inline-block;
+
       margin: 0;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       font-weight: lighter;
+      color: var(--color-primary);
     }
     & > span {
-      font-size: 1rem;
-      color: var(--color-grey-dark-2);
+      font-size: 1.2rem;
+      display: block;
+      margin-top: 0.3rem;
+      font-weight: 600;
+      color: var(--color-secondary);
     }
   }
 }
