@@ -1,11 +1,16 @@
 .wrap {
   grid-column: 4/-1;
   grid-row: 1/2;
-  display: grid;
   width: 100%;
   overflow: hidden;
 
+  @media only screen and (max-width: 50em) {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+  }
+
   .bests {
+    margin: 0 auto;
     border-radius: 3px;
 
     .center {
@@ -14,7 +19,6 @@
       position: relative;
       flex-direction: column;
       justify-content: center;
-      width: 100%;
 
       .back {
         position: absolute;
@@ -54,6 +58,16 @@
       grid-gap: 1em;
       overflow: hidden;
       width: 68rem;
+
+      @media only screen and (max-width: 87.5em) {
+        width: 54rem;
+      }
+      @media only screen and (max-width: 75em) {
+        width: 52rem;
+      }
+      @media only screen and (max-width: 37.5em) {
+        width: 35rem;
+      }
       .inner {
         display: flex;
         grid-gap: 1em;

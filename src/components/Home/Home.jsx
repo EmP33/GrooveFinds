@@ -39,7 +39,7 @@ const bestsItems = [
     url: "https://florina.pl/pol_pl_Garnek-emaliowany-Emalia-Polska-Pleszew-gladki-bez-pokrywki-16-cm-2-5-l-czerwony-552_1.jpg",
   },
   {
-    name: "Zegarek2",
+    name: "Zegarek6",
     price: "1229.95",
     id: "p6",
     url: "https://ustyle.pl/wp-content/uploads/2019/01/1113.jpg",
@@ -64,59 +64,110 @@ const bestsItems = [
   },
 ];
 
+const defaultStyles = {
+  display: "grid",
+  gridTemplateColumns: "repeat(9, 1fr)",
+  gridGap: "1em",
+  transition: "all 1s ease-in-out",
+};
+
 const Home = () => {
   const [divStyle, setDivStyle] = useState({
-    display: "flex",
-    gridGap: "1em",
-    transition: "all 1s ease-in-out",
+    ...defaultStyles,
     transform: "translateX(-0%)",
   });
   const skipSlide = (id) => {
-    if (id === 1) {
-      if (divStyle.transform === "translateX(-66.6666667%)") {
-        setDivStyle({
-          display: "flex",
-          gridGap: "1em",
-          transition: "all 1s ease-in-out",
-          transform: "translateX(-33.333333%)",
-        });
-      } else if (divStyle.transform === "translateX(-33.333333%)") {
-        setDivStyle({
-          display: "flex",
-          gridGap: "1em",
-          transition: "all 1s ease-in-out",
-          transform: "translateX(-0%)",
-        });
-      } else if (divStyle.transform === "translateX(-0%)") {
-        setDivStyle({
-          display: "flex",
-          gridGap: "1em",
-          transition: "all 1s ease-in-out",
-          transform: "translateX(-66.6666667%)",
-        });
+    if (window.innerWidth < 600) {
+      if (id === 1) {
+        if (divStyle.transform === "translateX(-44.5%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-22.255555%)",
+          });
+        } else if (divStyle.transform === "translateX(-22.255555%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-0%)",
+          });
+        } else if (divStyle.transform === "translateX(-0%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-89%)",
+          });
+        } else if (divStyle.transform === "translateX(-66.75%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-44.5%)",
+          });
+        } else if (divStyle.transform === "translateX(-89%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-66.75%)",
+          });
+        }
+      } else if (id === 2) {
+        if (divStyle.transform === "translateX(-44.5%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-66.75%)",
+          });
+        } else if (divStyle.transform === "translateX(-22.255555%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-44.5%)",
+          });
+        } else if (divStyle.transform === "translateX(-0%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-22.255555%)",
+          });
+        } else if (divStyle.transform === "translateX(-66.75%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-89%)",
+          });
+        } else if (divStyle.transform === "translateX(-89%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-0%)",
+          });
+        }
       }
-    } else if (id === 2) {
-      if (divStyle.transform === "translateX(-66.6666667%)") {
-        setDivStyle({
-          display: "flex",
-          gridGap: "1em",
-          transition: "all 1s ease-in-out",
-          transform: "translateX(-0%)",
-        });
-      } else if (divStyle.transform === "translateX(-33.333333%)") {
-        setDivStyle({
-          display: "flex",
-          gridGap: "1em",
-          transition: "all 1s ease-in-out",
-          transform: "translateX(-66.6666667%)",
-        });
-      } else if (divStyle.transform === "translateX(-0%)") {
-        setDivStyle({
-          display: "flex",
-          gridGap: "1em",
-          transition: "all 1s ease-in-out",
-          transform: "translateX(-33.333333%)",
-        });
+    } else {
+      if (id === 1) {
+        if (divStyle.transform === "translateX(-66.6666667%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-33.333333%)",
+          });
+        } else if (divStyle.transform === "translateX(-33.333333%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-0%)",
+          });
+        } else if (divStyle.transform === "translateX(-0%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-66.6666667%)",
+          });
+        }
+      } else if (id === 2) {
+        if (divStyle.transform === "translateX(-66.6666667%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-0%)",
+          });
+        } else if (divStyle.transform === "translateX(-33.333333%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-66.6666667%)",
+          });
+        } else if (divStyle.transform === "translateX(-0%)") {
+          setDivStyle({
+            ...defaultStyles,
+            transform: "translateX(-33.333333%)",
+          });
+        }
       }
     }
   };
@@ -150,16 +201,6 @@ const Home = () => {
         </section>
         <section className={classes.deals}>
           <h3 className={classes.dealsHeader}>Mega Okazje</h3>
-          <div className={classes.itemList}>
-            <IoChevronBackOutline className={classes.skipIcon} />
-            <ItemCardBig number={Math.floor(Math.random() * 10)} />
-            <ItemCardBig number={Math.floor(Math.random() * 10)} />
-            <ItemCardBig number={Math.floor(Math.random() * 10)} />
-            <ItemCardBig number={Math.floor(Math.random() * 10)} />
-            <ItemCardBig number={Math.floor(Math.random() * 10)} />
-            <ItemCardBig number={Math.floor(Math.random() * 10)} />
-            <IoChevronForward className={classes.skipIcon} />
-          </div>
         </section>
       </div>
       <section className={classes["categories-blocks"]}>

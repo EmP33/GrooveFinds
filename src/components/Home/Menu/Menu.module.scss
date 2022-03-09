@@ -7,6 +7,10 @@
   -moz-box-shadow: 2px 2px 5px 0px var(--color-primary);
   box-shadow: 2px 2px 5px 0px var(--color-primary);
 
+  @media only screen and (max-width: 50em) {
+    display: none;
+  }
+
   .menuHeader {
     font-size: 1.8rem;
     display: flex;

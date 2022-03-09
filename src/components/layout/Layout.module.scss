@@ -7,4 +7,15 @@
   grid-template-rows: 100vh 30rem 20rem 30rem 30rem;
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
+
+  @media only screen and (max-width: 50em) {
+    margin: 1rem auto;
+    width: 90%;
+    max-width: 100rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: max-content 100vh 30rem 20rem 30rem;
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+  }
 }

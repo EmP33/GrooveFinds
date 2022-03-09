@@ -1,14 +1,19 @@
 .card {
   width: 20rem;
   height: 25rem;
-  border-radius: 5px;
+
   margin: 1rem;
 
-  &-container {
-    width: 20rem;
+  @media only screen and (max-width: 87.5em) {
+    width: 15rem;
     height: 20rem;
+  }
+
+  &-container {
+    width: 100%;
 
     .card-image {
+      border-radius: 0.5rem;
       width: 100%;
       -webkit-box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.7);
       -moz-box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.7);
