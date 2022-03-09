@@ -35,6 +35,7 @@ body {
   margin: 0;
   font-weight: 300;
   font-size: 62.5%; // 1rem - 10px
+  background-color: var(--color-grey-light-3);
   @media only screen and (min-width: 75em) {
     font-size: 90%;
   }

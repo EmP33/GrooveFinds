@@ -1,15 +1,44 @@
 import React from "react";
 
 import Menu from "./Menu/Menu";
+import ItemCardBig from "./ItemCard/ItemCardBig";
 
 import classes from "./Home.module.scss";
 
+import { IoChevronBackOutline, IoChevronForward } from "react-icons/io5";
+
 const Home = () => {
   return (
-    <React.Fragment>
+    <>
       <Menu />
-      <section className={classes.bests}></section>
-      <section className={classes.deals}></section>
+      <div className={classes.wrap}>
+        <section className={classes.bests}>
+          <h3 className={classes.bestsHeader}>Zobacz nasze Bestsellery</h3>
+          <div className={classes.itemList}>
+            <IoChevronBackOutline className={classes.skipIcon} />
+            <ItemCardBig number={Math.floor(Math.random() * 10)} />
+            <ItemCardBig number={Math.floor(Math.random() * 10)} />
+            <ItemCardBig number={Math.floor(Math.random() * 10)} />
+            {/* <ItemCardBig number={Math.floor(Math.random() * 10)} />
+            <ItemCardBig number={Math.floor(Math.random() * 10)} />
+            <ItemCardBig number={Math.floor(Math.random() * 10)} /> */}
+            <IoChevronForward className={classes.skipIcon} />
+          </div>
+        </section>
+        <section className={classes.deals}>
+          <h3 className={classes.dealsHeader}>Mega Okazje</h3>
+          <div className={classes.itemList}>
+            <IoChevronBackOutline className={classes.skipIcon} />
+            <ItemCardBig number={Math.floor(Math.random() * 10)} />
+            <ItemCardBig number={Math.floor(Math.random() * 10)} />
+            <ItemCardBig number={Math.floor(Math.random() * 10)} />
+            {/* <ItemCardBig number={Math.floor(Math.random() * 10)} />
+            <ItemCardBig number={Math.floor(Math.random() * 10)} />
+            <ItemCardBig number={Math.floor(Math.random() * 10)} /> */}
+            <IoChevronForward className={classes.skipIcon} />
+          </div>
+        </section>
+      </div>
       <section className={classes["categories-blocks"]}>
         <div className={classes["categories-blocks__element"]}>
           <h4>Zabawki</h4>
@@ -35,9 +64,9 @@ const Home = () => {
           <h4>Elektronika</h4>
         </div>
       </section>
-      <footer>
-        <button>Powrót na górę strony</button>
-        <div>
+      <footer className={classes.footer}>
+        <button className={classes.footerButton}>Powrót na górę strony</button>
+        <div className={classes.footerSection}>
           <section className={classes.follow}>
             <h5>Obserwuj nas</h5>
             <ul>
@@ -67,8 +96,15 @@ const Home = () => {
         <div>
           <img src="../../assets/logo.png" alt="Logo" />
         </div>
+        <section className={classes.footerCopy}>
+          <div>
+            <button>Warunki użytkowania i sprzedaży</button>
+            <button>Informacje o prywatności</button>
+          </div>
+          <p>&copy; 2022 GrooveFinds.com</p>
+        </section>
       </footer>
-    </React.Fragment>
+    </>
   );
 };
 

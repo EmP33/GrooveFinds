@@ -1,0 +1,73 @@
+@mixin item-list {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+@mixin skip-icon {
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.wrap {
+  grid-column: 4/-1;
+  grid-row: 1/2;
+  display: grid;
+
+  .bests {
+    border-radius: 3px;
+    -webkit-box-shadow: 2px 2px 5px 0px var(--color-primary);
+    -moz-box-shadow: 2px 2px 5px 0px var(--color-primary);
+    box-shadow: 2px 2px 5px 0px var(--color-primary);
+
+    .bestsHeader {
+      font-size: 2rem;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    .itemList {
+      @include item-list;
+
+      .skipIcon {
+        @include skip-icon;
+      }
+    }
+  }
+  .deals {
+    border-radius: 3px;
+    -webkit-box-shadow: 2px 2px 5px 0px var(--color-primary);
+    -moz-box-shadow: 2px 2px 5px 0px var(--color-primary);
+    box-shadow: 2px 2px 5px 0px var(--color-primary);
+
+    .dealsHeader {
+      font-size: 2rem;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    .itemList {
+      @include item-list;
+
+      .skipIcon {
+        @include skip-icon;
+      }
+    }
+  }
+}
+
+.categories-blocks {
+  border: 3px solid red;
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.categories {
+  grid-column: 1/-1;
+}
+
+.footer {
+  grid-column: 1/-1;
+}
