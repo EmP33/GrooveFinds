@@ -4,6 +4,7 @@ import Menu from "./Menu/Menu";
 import Carousel from "../ShopItems/Carousel/Carousel";
 import SecondCarousel from "../ShopItems/SecondCarousel/SecondCarousel";
 import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
+import logo from "../../assets/logo.png";
 
 import classes from "./Home.module.scss";
 
@@ -63,11 +64,11 @@ const Home = () => {
             </ul>
           </section>
         </div>
-        <div>
-          <img src="../../assets/logo.png" alt="Logo" />
+        <div className={classes.logoSection}>
+          <img src={logo} alt="Logo" />
         </div>
         <section className={classes.footerCopy}>
-          <div>
+          <div className={classes.footerActions}>
             <button>Warunki użytkowania i sprzedaży</button>
             <button>Informacje o prywatności</button>
           </div>
