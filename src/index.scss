@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
+
+:root {
+  --color-primary: #1b262c;
+  --color-secondary: #0f4c75;
+  --color-thertiary: #3282b8;
+
+  --color-light-blue-1: #bbe1fa;
+
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-4: #ccc;
+
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+
+  --font-primary: "Open Sans", sans-serif;
+
+  // RESPONSIVE BREAKPOINTS
+  --bp-largest: 75em; // 1200px
+  --bp-large: 62.5em; // 1000px
+  --bp-medium: 50em; // 800px
+  --bp-small: 37.5em; // 600px
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: var(--font-primary);
+  margin: 0;
+  font-weight: 300;
+  font-size: 62.5%; // 1rem - 10px
+  @media only screen and (min-width: 75em) {
+    font-size: 90%;
+  }
+}
