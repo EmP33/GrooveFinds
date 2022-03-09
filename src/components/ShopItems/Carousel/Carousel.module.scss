@@ -4,6 +4,11 @@
   position: relative;
   flex-direction: column;
   justify-content: center;
+  padding: 3rem;
+
+  @media only screen and (max-width: 37.5em) {
+    padding: 0;
+  }
 
   .back {
     position: absolute;
@@ -51,7 +56,7 @@
     width: 52rem;
   }
   @media only screen and (max-width: 37.5em) {
-    width: 35rem;
+    width: 34rem;
   }
   .inner {
     display: flex;
