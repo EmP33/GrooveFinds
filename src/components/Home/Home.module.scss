@@ -63,6 +63,7 @@
   grid-column: 1/-1;
   display: grid;
   grid-column-gap: 8rem;
+  grid-row-gap: 3rem;
   grid-template-columns: repeat(3, 1fr);
 
   @media only screen and (max-width: 62.5em) {
@@ -81,6 +82,12 @@
 
 .categories {
   grid-column: 1/-1;
+
+  & > h4 {
+    font-size: 2rem;
+    margin: 0;
+    padding: 1rem;
+  }
 }
 
 .footer {

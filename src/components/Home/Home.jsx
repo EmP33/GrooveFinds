@@ -2,6 +2,7 @@ import React from "react";
 
 import Menu from "./Menu/Menu";
 import Carousel from "../ShopItems/Carousel/Carousel";
+import SecondCarousel from "../ShopItems/SecondCarousel/SecondCarousel";
 import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
 
 import classes from "./Home.module.scss";
@@ -25,19 +26,13 @@ const Home = () => {
         <ShopBlock />
       </section>
       <section className={classes["categories"]}>
-        <h4>Elektronika</h4>
-        <Carousel />
+        <h4>Okazje</h4>
+        <SecondCarousel />
       </section>
       <section className={classes["categories-blocks"]}>
-        <div className={classes["categories-blocks__element"]}>
-          <h4>Zabawki</h4>
-        </div>
-        <div className={classes["categories-blocks__element"]}>
-          <h4>Dom</h4>
-        </div>
-        <div className={classes["categories-blocks__element"]}>
-          <h4>Elektronika</h4>
-        </div>
+        <ShopBlock />
+        <ShopBlock />
+        <ShopBlock />
       </section>
       <footer className={classes.footer}>
         <button className={classes.footerButton}>Powrót na górę strony</button>
