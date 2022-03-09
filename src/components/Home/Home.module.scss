@@ -1,40 +1,73 @@
-@mixin item-list {
-  display: flex;
-  justify-items: center;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-@mixin skip-icon {
-  font-size: 3rem;
-  cursor: pointer;
-}
-
 .wrap {
   grid-column: 4/-1;
   grid-row: 1/2;
   display: grid;
+  width: 100%;
+  overflow: hidden;
 
   .bests {
     border-radius: 3px;
-    -webkit-box-shadow: 2px 2px 5px 0px var(--color-primary);
-    -moz-box-shadow: 2px 2px 5px 0px var(--color-primary);
-    box-shadow: 2px 2px 5px 0px var(--color-primary);
+
+    .center {
+      align-items: center;
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+
+      .back {
+        position: absolute;
+        left: 0;
+        z-index: 10;
+        width: 3rem;
+        height: 3rem;
+        font-size: 2rem;
+        background: none;
+        outline: none;
+        background-color: var(--color-primary);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .next {
+        position: absolute;
+        right: 0;
+        z-index: 10;
+        width: 3rem;
+        height: 3rem;
+        font-size: 2rem;
+        background: none;
+        outline: none;
+        background-color: var(--color-primary);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .wrapper {
+      display: flex;
+      grid-gap: 1em;
+      overflow: hidden;
+      width: 68rem;
+      .inner {
+        display: flex;
+        grid-gap: 1em;
+        transition: all 1s ease-in-out;
+      }
+    }
 
     .bestsHeader {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin: 0;
       padding: 1rem;
     }
-
-    .itemList {
-      @include item-list;
-
-      .skipIcon {
-        @include skip-icon;
-      }
-    }
   }
+
   .deals {
     border-radius: 3px;
     -webkit-box-shadow: 2px 2px 5px 0px var(--color-primary);
@@ -45,14 +78,6 @@
       font-size: 2rem;
       margin: 0;
       padding: 1rem;
-    }
-
-    .itemList {
-      @include item-list;
-
-      .skipIcon {
-        @include skip-icon;
-      }
     }
   }
 }
