@@ -3,7 +3,7 @@
   margin-top: 2rem;
   height: 80%;
   position: relative;
-  background: #fff;
+  background: var(--color-white);
   border-radius: 2.5rem;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -21,7 +21,7 @@
 
   .order {
     padding: 1rem 2rem 2rem 2rem;
-    background-color: #fff;
+    background-color: var(--color-white);
     border-radius: 2.5rem 0 0 2.5rem;
 
     @media only screen and (max-width: 62.5em) {
@@ -34,23 +34,23 @@
       align-items: center;
 
       & > img {
-        border: 1px solid #fff;
+        border: 1px solid var(--color-white);
         &:hover {
-          border: 1px solid #575757;
+          border: 1px solid var(--color-grey-2);
         }
       }
 
       & > h2 {
         font-size: 2rem;
         margin: 0;
-        color: #6b6b6b;
+        color: var(--color-grey-2);
         grid-row: 2/3;
       }
       & > span {
         font-weight: bold;
         justify-self: flex-end;
         font-size: 1.2rem;
-        color: #575757;
+        color: var(--color-grey-2);
         grid-row: 2/3;
       }
     }
@@ -67,10 +67,10 @@
         width: 5px;
       }
       &::-webkit-scrollbar-track {
-        background-color: #8c8c8c;
+        background-color: var(--color-grey-1);
       }
       &::-webkit-scrollbar-thumb {
-        background-color: #575757;
+        background-color: var(--color-grey-2);
       }
     }
 
@@ -84,10 +84,10 @@
         text-decoration: none;
         background: none;
         cursor: pointer;
-        color: #575757;
+        color: var(--color-grey-2);
         font-size: 1.2rem;
         padding: 0.5rem 1rem 0.5rem 1rem;
-        border: 1px solid #fff;
+        border: 1px solid var(--color-white);
         -webkit-touch-callout: none; /* iOS Safari */
         -webkit-user-select: none; /* Safari */
         -khtml-user-select: none; /* Konqueror HTML */
@@ -101,7 +101,7 @@
         }
 
         &:hover {
-          border: 1px solid #575757;
+          border: 1px solid var(--color-grey-2);
         }
       }
     }
@@ -109,8 +109,8 @@
   .payments {
     border-radius: 0 2.5rem 2.5rem 0;
     padding: 2rem;
-    background: #ddd;
-    color: #575757;
+    background: var(--color-grey-3);
+    color: var(--color-grey-2);
     display: grid;
     align-items: flex-start;
 
@@ -172,7 +172,7 @@
         outline: none;
 
         &::placeholder {
-          color: #8c8c8c;
+          color: var(--color-grey-1);
         }
       }
     }
@@ -197,15 +197,15 @@
       &-button {
         grid-column: 1/-1;
         padding: 1rem 2rem 1rem 2rem;
-        background: #3d3d3d;
-        color: #fff;
+        background: rgba(61, 61, 61, 1);
+        color: var(--color-white);
         font-size: 1.4rem;
         font-weight: bold;
         border: none;
         cursor: pointer;
 
         &:hover {
-          background: #4b4b4b;
+          background: rgba(61, 61, 61, 0.9);
         }
       }
     }

@@ -9,6 +9,7 @@ import {
   IoChatbubblesOutline,
   IoHeartOutline,
   IoPersonOutline,
+  IoMenu,
 } from "react-icons/io5";
 import {
   TextField,
@@ -27,23 +28,6 @@ const Navbar = () => {
   };
   return (
     <React.Fragment>
-      <section className={classes.topNav}>
-        <div>
-          <button className={classes.helpButton}>Centrum Pomocy</button>
-          <select className={classes.countrySelect}>
-            <option value="pl">Polski / PLN</option>
-          </select>
-          <button className={classes.wishButton}>
-            <IoHeartOutline className={classes.btnIcon} />
-            Lista życzeń
-          </button>
-          <button className={classes.userButton}>
-            <IoPersonOutline className={classes.btnIcon} />
-            Konto
-          </button>
-        </div>
-      </section>
-
       <header className={classes.header}>
         <nav className={classes.nav}>
           <div className={classes.logo}>
@@ -88,6 +72,28 @@ const Navbar = () => {
           </div>
         </nav>
       </header>
+
+      <section className={classes.topNav}>
+        <div className={classes.leftSide}>
+          <button className={classes.menuBtn}>
+            <IoMenu className={classes.menuIcon} /> Menu
+          </button>
+        </div>
+        <div className={classes.rightSide}>
+          <button className={classes.helpButton}>Centrum Pomocy</button>
+          <select className={classes.countrySelect}>
+            <option value="pl">Polski / PLN</option>
+          </select>
+          <button className={classes.wishButton}>
+            <IoHeartOutline className={classes.btnIcon} />
+            Lista życzeń
+          </button>
+          <button className={classes.userButton}>
+            <IoPersonOutline className={classes.btnIcon} />
+            Konto
+          </button>
+        </div>
+      </section>
     </React.Fragment>
   );
 };

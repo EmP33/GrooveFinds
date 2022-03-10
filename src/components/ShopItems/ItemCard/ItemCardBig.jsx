@@ -26,8 +26,8 @@ const ItemCardBig = ({ name, price, url }) => {
         <img src={url} alt={name} className={classes["card-image"]} />
       </div>
       <div className={classes["card-content"]}>
-        <h3>{name}</h3>
         <span>{price} zł</span>
+        <h3>{name}</h3>
       </div>
     </div>
   );

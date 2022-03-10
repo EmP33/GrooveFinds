@@ -1,7 +1,9 @@
 .card {
-  width: 20rem;
+  width: 15rem;
   height: 25rem;
   margin: 1rem;
+  background: var(--color-white);
+  border: 1px solid var(--color-grey-3);
 
   @media only screen and (max-width: 87.5em) {
     width: 15rem;
@@ -35,7 +37,6 @@
     }
 
     &:hover .cardBackdrop {
-      border-radius: 0.5rem;
       width: 100%;
       height: 100%;
       position: absolute;
@@ -47,13 +48,14 @@
       & > button {
         margin: 0.5rem;
         cursor: pointer;
-        width: 3.25rem;
-        height: 3.25rem;
-        font-size: 2rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 5px;
+        border-radius: 2px;
+        border: 2px solid rgba(255, 255, 255, 0.7);
         outline: none;
         background: rgba(255, 255, 255, 0.7);
         -webkit-box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.4);
@@ -62,17 +64,14 @@
 
         &:hover,
         &:active {
+          font-size: 1.5rem;
           border: 2px solid var(--color-primary);
         }
       }
     }
 
     .card-image {
-      border-radius: 0.5rem;
       width: 100%;
-      -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
-      -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
-      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
     }
   }
 
@@ -82,18 +81,20 @@
 
     & > h3 {
       display: inline-block;
-
-      margin: 0;
-      font-size: 1.6rem;
+      margin-top: 0.5rem;
+      font-size: 1rem;
       font-weight: lighter;
       color: var(--color-primary);
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
     & > span {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       display: block;
-      margin-top: 0.3rem;
       font-weight: 600;
-      color: var(--color-secondary);
+      color: var(--color-grey-2);
     }
   }
 }
