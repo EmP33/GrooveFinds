@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Menu from "./Menu/Menu";
+import DropdownMenu from "./Menu/DropdownMenu";
 import Carousel from "../ShopItems/Carousel/Carousel";
+
 import SecondCarousel from "../ShopItems/SecondCarousel/SecondCarousel";
 import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
 
 import classes from "./Home.module.scss";
+import { IoMenu } from "react-icons/io5";
 
 const Home = () => {
+  const [showModal, setShowModal] = useState(false);
+  const showMenuModalHangler = () => {
+    setShowModal((prevState) => !prevState);
+  };
   return (
     <>
+      <button
+        className={classes.modalMenuButton}
+        onClick={showMenuModalHangler}
+      >
+        <IoMenu />
+      </button>
+      {showModal && <DropdownMenu showModal={showModal} />}
       <Menu />
       <div className={classes.wrap}>
         <section className={classes.bests}>

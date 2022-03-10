@@ -1,40 +1,28 @@
 .menu {
   border-radius: 0.5rem;
-  grid-column: 1/4;
   margin: 0;
+  position: absolute;
+  left: 0rem;
+  transition: all 5s;
+  z-index: 15;
+  background: #fff;
   padding: 0;
+  top: -3rem;
   -webkit-box-shadow: 2px 2px 5px 0px var(--color-primary);
   -moz-box-shadow: 2px 2px 5px 0px var(--color-primary);
   box-shadow: 2px 2px 5px 0px var(--color-primary);
 
-  @media only screen and (max-width: 50em) {
-    display: none;
-  }
-
-  .menuHeader {
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 1rem;
-    background: var(--color-primary);
-    color: #fff;
-    border-radius: 0.5rem 0.5rem 0 0;
-
-    .menuIcon {
-      margin-right: 1rem;
-    }
-  }
   .menuList {
+    margin-top: 3rem;
     list-style: none;
     font-size: 1.2rem;
-    padding: 0 1rem 0 1rem;
+    padding: 0 0.2rem 0 0.2rem;
 
     & li {
       cursor: pointer;
       border-bottom: 2px solid var(--color-grey-dark-2);
-      padding: 0.5rem;
-      margin: 0.5rem;
+      padding: 0.5rem 2rem 0.5rem 2rem;
+      margin: 1rem;
 
       &:hover,
       &:active {
