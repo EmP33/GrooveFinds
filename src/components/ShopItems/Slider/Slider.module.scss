@@ -2,10 +2,22 @@
   margin: 0 auto;
   width: 100%;
   border-radius: 3px;
+  background-color: var(--color-white);
+  border-radius: 1rem;
 
   .swiper {
     width: 100rem;
     height: 30rem;
+
+    @media only screen and (max-width: 62.5em) {
+      max-width: 70rem;
+    }
+    @media only screen and (max-width: 50em) {
+      max-width: 50rem;
+    }
+    @media only screen and (max-width: 37.5em) {
+      width: 30rem;
+    }
   }
 
   .sliderHeader {

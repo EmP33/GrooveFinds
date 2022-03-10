@@ -1,11 +1,10 @@
 .main {
   margin: 2.5rem auto;
-  width: 90%;
   position: relative;
-  max-width: 110rem;
+  width: 95%;
+  max-width: 100%;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 100vh 40rem 30rem 10rem 25rem;
+  grid-template-rows: 30rem 35rem 40rem 35rem 40rem;
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
 
@@ -14,8 +13,7 @@
     width: 95%;
     max-width: 100%;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 100vh 80rem 30rem 50rem 25rem;
+    grid-template-rows: 30rem 35rem 40rem 35rem 40rem;
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
   }
@@ -25,8 +23,7 @@
     width: 98%;
     max-width: 100%;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: max-content 100vh 30rem 50rem 25rem;
+    grid-template-rows: 30rem 35rem 80rem 35rem 80rem;
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
   }
@@ -36,8 +33,7 @@
     width: 90%;
     max-width: 100rem;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: max-content 150vh 30rem 85rem 25rem;
+    grid-template-rows: 30rem 35rem 80rem 35rem 80rem;
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
   }

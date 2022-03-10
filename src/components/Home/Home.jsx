@@ -3,6 +3,7 @@ import React, { useState } from "react";
 // import Menu from "./Menu/Menu";
 import DropdownMenu from "./Menu/DropdownMenu";
 
+import CategoryPlaceholder from "../UI/Placeholders/CategoryPlaceholder";
 import Slider from "../ShopItems/Slider/Slider";
 
 // import Carousel from "../ShopItems/Carousel/Carousel";
@@ -27,27 +28,23 @@ const Home = () => {
         </button>
       )} */}
 
-      <DropdownMenu showModal={showModal} onHideModal={showMenuModalHangler} />
+      {/* <DropdownMenu showModal={showModal} onHideModal={showMenuModalHangler} /> */}
       {/* <Menu /> */}
-      <div className={classes.wrap}>
-        <section className={classes.adverts}>
-          <div className={classes.placeholder}></div>
-        </section>
-        <Slider />
+
+      <div className={classes.placeholder}></div>
+      <div className={classes.firstSlider}>
+        <Slider title={"Zobacz nasze Bestsellery"} />
       </div>
       <section className={classes["categories-blocks"]}>
-        <ShopBlock />
-        <ShopBlock />
-        <ShopBlock />
+        <ShopBlock title={"Zabawki"} />
+        <ShopBlock title={"Zabawki"} />
+        {/* <CategoryPlaceholder /> */}
       </section>
-      <section className={classes["categories"]}>
-        <h4>Okazje</h4>
-        <SecondCarousel />
-      </section>
+      <Slider title={"Okazje"} />
       <section className={classes["categories-blocks"]}>
-        <ShopBlock />
-        <ShopBlock />
-        <ShopBlock />
+        <ShopBlock title={"Zabawki"} />
+        {/* <CategoryPlaceholder /> */}
+        <ShopBlock title={"Zabawki"} />
       </section>
       {/* <WishList /> */}
     </>

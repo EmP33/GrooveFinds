@@ -66,13 +66,23 @@ const bestsItems = [
   },
 ];
 
-const Slider = () => {
+const Slider = ({ title }) => {
+  let slideCount = 6;
+  if (window.outerWidth <= 600) {
+    slideCount = 2;
+  } else if (window.outerWidth <= 800) {
+    slideCount = 3;
+  } else if (window.outerWidth <= 1000) {
+    slideCount = 4;
+  }
+
   return (
     <section className={classes.slider}>
-      <h3 className={classes.sliderHeader}>Zobacz nasze Bestsellery</h3>
+      <h3 className={classes.sliderHeader}>{title}</h3>
       <Swiper
-        slidesPerView={6}
-        spaceBetween={30}
+        slidesPerView={slideCount}
+        spaceBetween={5}
+        loop={true}
         pagination={{
           clickable: true,
         }}
