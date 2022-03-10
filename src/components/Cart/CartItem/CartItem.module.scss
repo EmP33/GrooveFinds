@@ -1,0 +1,93 @@
+.item {
+  width: 100%;
+  height: 12rem;
+  border-bottom: 1px solid #646464;
+  display: flex;
+  position: relative;
+  align-items: center;
+
+  &:first-child {
+    border-top: 1px solid #646464;
+  }
+
+  & > * {
+    height: 100%;
+    margin: 0;
+  }
+
+  & img {
+    width: 11rem;
+    height: 11rem;
+  }
+
+  & .itemName {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 15rem;
+
+    & h5 {
+      font-size: 1.5rem;
+      color: #6b6b6b;
+      margin: 0 0 0.5rem 0;
+    }
+    & p {
+      font-size: 1rem;
+      color: #6b6b6b;
+      margin: 0 0 0.5rem 0;
+    }
+  }
+
+  & .itemCounter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+
+    & > button {
+      border: none;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      outline: none;
+      font-size: 1.4rem;
+    }
+    & > span {
+      border: 1px solid rgb(110, 110, 110);
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .itemPrice {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #6b6b6b;
+    width: 7rem;
+  }
+
+  .itemRemoveDiv {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    .itemRemoveButton {
+      outline: none;
+      cursor: pointer;
+
+      color: #6b6b6b;
+      background: none;
+      border: none;
+      font-size: 3rem;
+    }
+  }
+}

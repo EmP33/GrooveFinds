@@ -1,0 +1,213 @@
+.cart {
+  width: 70%;
+  margin-top: 2rem;
+  height: 80%;
+  position: relative;
+  background: #fff;
+  border-radius: 2.5rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+
+  @media only screen and (max-width: 62.5em) {
+    grid-template-columns: 1fr;
+  }
+
+  @media only screen and (max-width: 37.5em) {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    border-radius: 0;
+  }
+
+  .order {
+    padding: 1rem 2rem 2rem 2rem;
+    background-color: #fff;
+    border-radius: 2.5rem 0 0 2.5rem;
+
+    @media only screen and (max-width: 62.5em) {
+      border-radius: 2.5rem 2.5rem 0 0;
+    }
+    &-header {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      align-items: center;
+
+      & > img {
+        border: 1px solid #fff;
+        &:hover {
+          border: 1px solid #575757;
+        }
+      }
+
+      & > h2 {
+        font-size: 2rem;
+        margin: 0;
+        color: #6b6b6b;
+        grid-row: 2/3;
+      }
+      & > span {
+        font-weight: bold;
+        justify-self: flex-end;
+        font-size: 1.2rem;
+        color: #575757;
+        grid-row: 2/3;
+      }
+    }
+
+    &-list {
+      height: 36rem;
+      overflow: auto;
+
+      @media only screen and (max-width: 62.5em) {
+        height: 24rem;
+      }
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: #8c8c8c;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #575757;
+      }
+    }
+
+    &-footer {
+      margin-top: 1rem;
+
+      & > a {
+        display: inline-block;
+        border: none;
+        outline: none;
+        text-decoration: none;
+        background: none;
+        cursor: pointer;
+        color: #575757;
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        border: 1px solid #fff;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
+        .backIcon {
+          margin-right: 0.5rem;
+        }
+
+        &:hover {
+          border: 1px solid #575757;
+        }
+      }
+    }
+  }
+  .payments {
+    border-radius: 0 2.5rem 2.5rem 0;
+    padding: 2rem;
+    background: #ddd;
+    color: #575757;
+    display: grid;
+    align-items: flex-start;
+
+    @media only screen and (max-width: 87.5em) {
+      padding: 1rem;
+    }
+
+    @media only screen and (max-width: 62.5em) {
+      border-radius: 0 0 2.5rem 2.5rem;
+      padding: 0 2rem 2rem;
+    }
+
+    .result {
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-row-gap: 1.2rem;
+
+      @media only screen and (max-width: 87.5em) {
+        padding: 0rem;
+      }
+
+      &-header {
+        font-size: 2.3rem;
+        font-weight: 400;
+        margin: 0;
+        padding: 1rem;
+        border-bottom: 1px solid #646464;
+        grid-column: 1/-1;
+
+        @media only screen and (max-width: 62.5em) {
+          font-size: 1.5rem;
+          padding: 1rem 0 1rem 0;
+          font-weight: bold;
+        }
+      }
+
+      &-price {
+        justify-self: flex-end;
+      }
+    }
+
+    .gift {
+      @media only screen and (max-width: 62.5em) {
+        margin-bottom: 1rem;
+      }
+      .gift-header {
+        font-size: 1.4rem;
+        margin: 0;
+        padding: 2rem 0 2rem 0;
+      }
+      .gift-input {
+        width: 80%;
+        height: 3rem;
+        padding: 1rem 0 1rem 0.5rem;
+        font-size: 1.1rem;
+        outline: none;
+
+        &::placeholder {
+          color: #8c8c8c;
+        }
+      }
+    }
+
+    .summary {
+      border-top: 1px solid #646464;
+      padding-top: 1rem;
+      display: grid;
+      grid-row-gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+
+      &-header {
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin: 0;
+      }
+      &-price {
+        font-weight: bold;
+        font-size: 1.2rem;
+        justify-self: flex-end;
+      }
+      &-button {
+        grid-column: 1/-1;
+        padding: 1rem 2rem 1rem 2rem;
+        background: #3d3d3d;
+        color: #fff;
+        font-size: 1.4rem;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          background: #4b4b4b;
+        }
+      }
+    }
+  }
+}

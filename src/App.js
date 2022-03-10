@@ -1,21 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useHistory,
+} from "react-router-dom";
 
 import Main from "./pages/Main";
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
-import Layout from "./components/layout/Layout";
+import CartPage from "./pages/CartPage";
 
 const App = () => {
   return (
     <Router>
-      <Navbar />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Main />} />
-        </Routes>
-      </Layout>
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/cart" element={<CartPage />} />
+      </Routes>
     </Router>
   );
 };

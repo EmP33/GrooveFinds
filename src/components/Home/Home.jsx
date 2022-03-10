@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Menu from "./Menu/Menu";
 import DropdownMenu from "./Menu/DropdownMenu";
 import Carousel from "../ShopItems/Carousel/Carousel";
+import WishList from "../Modals/WishList/WishList";
 
 import SecondCarousel from "../ShopItems/SecondCarousel/SecondCarousel";
 import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
@@ -17,13 +18,16 @@ const Home = () => {
   };
   return (
     <>
-      <button
-        className={classes.modalMenuButton}
-        onClick={showMenuModalHangler}
-      >
-        <IoMenu />
-      </button>
-      {showModal && <DropdownMenu showModal={showModal} />}
+      {!showModal && (
+        <button
+          className={classes.modalMenuButton}
+          onClick={showMenuModalHangler}
+        >
+          <IoMenu />
+        </button>
+      )}
+
+      <DropdownMenu showModal={showModal} onHideModal={showMenuModalHangler} />
       <Menu />
       <div className={classes.wrap}>
         <section className={classes.bests}>
@@ -48,6 +52,7 @@ const Home = () => {
         <ShopBlock />
         <ShopBlock />
       </section>
+      {/* <WishList /> */}
     </>
   );
 };

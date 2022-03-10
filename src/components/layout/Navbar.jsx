@@ -3,6 +3,7 @@ import classes from "./Navbar.module.scss";
 
 import logo from "../../assets/logo.png";
 import { ImSearch } from "react-icons/im";
+import { Link } from "react-router-dom";
 import {
   IoCartOutline,
   IoChatbubblesOutline,
@@ -46,7 +47,9 @@ const Navbar = () => {
       <header className={classes.header}>
         <nav className={classes.nav}>
           <div className={classes.logo}>
-            <img src={logo} alt="GrooveFinds" />
+            <Link to="/">
+              <img src={logo} alt="GrooveFinds" />
+            </Link>
           </div>
           <div className={classes.search}>
             <FormControl size="small" className={classes.select}>
@@ -75,7 +78,9 @@ const Navbar = () => {
           </div>
           <div className={classes.cartDiv}>
             <span>4</span>
-            <IoCartOutline className={classes.cartIcon} />
+            <Link to="/cart">
+              <IoCartOutline className={classes.cartIcon} />
+            </Link>
           </div>
           <div className={classes.chatDiv}>
             <span>4</span>
