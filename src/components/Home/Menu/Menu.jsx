@@ -5,6 +5,7 @@ import "./menu.scss";
 
 import { useDispatch } from "react-redux";
 import { modalActions } from "../../../store/modalSlice";
+import Backdrop from "../../UI/Backdrop/Backdrop";
 
 const Menu = ({ showModal }) => {
   const dispatch = useDispatch();
@@ -17,9 +18,7 @@ const Menu = ({ showModal }) => {
     <React.Fragment>
       {ReactDOM.createPortal(
         <React.Fragment>
-          <div
-            className={showModal ? "backdrop backdrop-active" : "backdrop"}
-          ></div>
+          <Backdrop isActive={showModal} />
           <menu className={showModal ? "menu menu-active" : "menu"}>
             <h3>Przeglądaj kategorie</h3>
             <button onClick={hideModalHandler}>&times;</button>

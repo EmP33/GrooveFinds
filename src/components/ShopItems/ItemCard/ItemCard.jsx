@@ -2,38 +2,48 @@ import React from "react";
 
 import classes from "./ItemCard.module.scss";
 
+import { Link } from "react-router-dom";
+
 import {
   IoCartOutline,
   IoHeartOutline,
   IoEllipsisHorizontal,
 } from "react-icons/io5";
 
-const ItemCardBig = ({ name, price, url }) => {
+const ItemCardBig = ({ name, price, url, id }) => {
+  const dynamicLink = `/${id}`;
+
+  const toggleDetailsHandler = () => {};
+
   return (
-    <div className={classes["card"]}>
-      <div className={classes["card-container"]}>
-        <div className={classes["card-backdrop"]}>
-          <button>
-            <IoCartOutline />
-          </button>
-          <button>
-            <IoHeartOutline />
-          </button>
-          <button>
-            <IoEllipsisHorizontal />
-          </button>
+    <React.Fragment>
+      <div className={classes["card"]}>
+        <div className={classes["card-container"]}>
+          <div className={classes["card-backdrop"]}>
+            <button>
+              <IoCartOutline />
+            </button>
+            <button>
+              <IoHeartOutline />
+            </button>
+            <button>
+              <button onClick={toggleDetailsHandler}>
+                <IoEllipsisHorizontal />
+              </button>
+            </button>
+          </div>
+          <img src={url} alt={name} className={classes["card-image"]} />
         </div>
-        <img src={url} alt={name} className={classes["card-image"]} />
+        <div className={classes["card-content"]}>
+          <span className={classes.price}>{price} zł</span>
+          {/* <div className={classes["discount-wrapper"]}>
+        <span className={classes["discount-price"]}>2399,95 zł</span>{" "}
+        <span className={classes["discount-badge"]}>-25%</span>
+      </div> */}
+          <h3>{name}</h3>
+        </div>
       </div>
-      <div className={classes["card-content"]}>
-        <span className={classes.price}>{price} zł</span>
-        {/* <div className={classes["discount-wrapper"]}>
-          <span className={classes["discount-price"]}>2399,95 zł</span>{" "}
-          <span className={classes["discount-badge"]}>-25%</span>
-        </div> */}
-        <h3>{name}</h3>
-      </div>
-    </div>
+    </React.Fragment>
   );
 };
 

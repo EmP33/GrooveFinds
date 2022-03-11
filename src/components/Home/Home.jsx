@@ -9,6 +9,7 @@ import PageWidthPlaceholder from "../UI/Placeholders/PageWidthPlaceholder";
 import Menu from "./Menu/Menu";
 import Slider from "../ShopItems/Slider/Slider";
 import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
+import ProductDetail from "../ProductDetail/ProductDetail";
 
 // import WishList from "../Modals/WishList/WishList";
 
@@ -18,6 +19,7 @@ const Home = () => {
 
   return (
     <>
+      <ProductDetail />
       <Menu showModal={showMenu} />
       <PageWidthPlaceholder />
       <Slider title={"Zobacz nasze Bestsellery"} />

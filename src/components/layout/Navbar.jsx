@@ -72,8 +72,8 @@ const Navbar = () => {
           </button>
         </section>
         <div className={classes["cart-wrapper"]}>
-          <span>4</span>
           <Link to="/cart">
+            <span>4</span>
             <IoCartOutline className={classes.cartIcon} />
           </Link>
         </div>
