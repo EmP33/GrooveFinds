@@ -16,13 +16,13 @@
 
   --color-white: #fff;
 
-  --color-grey-light-1: #faf9f9;
-  --color-grey-light-2: #f4f2f2;
-  --color-grey-light-3: #f0eeee;
+  // --color-grey-light-1: #faf9f9;
+  // --color-grey-light-2: #f4f2f2;
+  // --color-grey-light-3: #f0eeee;
 
-  --color-grey-dark-1: #333;
-  --color-grey-dark-2: #777;
-  --color-grey-dark-3: #999;
+  // --color-grey-dark-1: #333;
+  // --color-grey-dark-2: #777;
+  // --color-grey-dark-3: #999;
 
   --font-primary: "Open Sans", sans-serif;
   --font-secondary: "Poppings", sans-serif;
@@ -44,7 +44,9 @@ body {
   margin: 0;
   font-weight: 300;
   font-size: 62.5%; // 1rem - 10px
-  background-color: var(--color-grey-light-3);
+  background-color: var(--color-grey-3);
+  scroll-behavior: smooth;
+
   @media only screen and (min-width: 75em) {
     font-size: 85%;
   }

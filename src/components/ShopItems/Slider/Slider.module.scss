@@ -5,6 +5,13 @@
   background-color: var(--color-white);
   border-radius: 1rem;
 
+  & > h3 {
+    font-size: 2.5rem;
+    color: var(--color-grey-2);
+    margin: 0;
+    padding: 1rem;
+  }
+
   .swiper {
     width: 100rem;
     height: 30rem;
@@ -18,13 +25,6 @@
     @media only screen and (max-width: 37.5em) {
       width: 30rem;
     }
-  }
-
-  .sliderHeader {
-    font-size: 2.5rem;
-    color: var(--color-grey-2);
-    margin: 0;
-    padding: 1rem;
   }
 }
 

@@ -19,7 +19,7 @@
     border-radius: 0;
   }
 
-  .order {
+  .order-section {
     padding: 1rem 2rem 2rem 2rem;
     background-color: var(--color-white);
     border-radius: 2.5rem 0 0 2.5rem;
@@ -27,7 +27,7 @@
     @media only screen and (max-width: 62.5em) {
       border-radius: 2.5rem 2.5rem 0 0;
     }
-    &-header {
+    &__header {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
@@ -55,7 +55,7 @@
       }
     }
 
-    &-list {
+    &__list {
       height: 36rem;
       overflow: auto;
 
@@ -74,11 +74,15 @@
       }
     }
 
-    &-footer {
+    &__footer {
       margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
 
       & > a {
-        display: inline-block;
+        display: flex;
+        align-items: center;
         border: none;
         outline: none;
         text-decoration: none;
@@ -106,7 +110,7 @@
       }
     }
   }
-  .payments {
+  .payments-section {
     border-radius: 0 2.5rem 2.5rem 0;
     padding: 2rem;
     background: var(--color-grey-3);
@@ -123,7 +127,7 @@
       padding: 0 2rem 2rem;
     }
 
-    .result {
+    &__results {
       padding: 1rem;
       font-weight: bold;
       font-size: 1.2rem;
@@ -135,7 +139,7 @@
         padding: 0rem;
       }
 
-      &-header {
+      .results-header {
         font-size: 2.3rem;
         font-weight: 400;
         margin: 0;
@@ -150,51 +154,78 @@
         }
       }
 
-      &-price {
+      .results-price {
         justify-self: flex-end;
       }
     }
 
-    .gift {
+    &__gift {
+      position: relative;
+      display: flex;
+      flex-direction: column;
       @media only screen and (max-width: 62.5em) {
         margin-bottom: 1rem;
       }
-      .gift-header {
+      h5 {
         font-size: 1.4rem;
         margin: 0;
         padding: 2rem 0 2rem 0;
       }
-      .gift-input {
+      input {
         width: 80%;
         height: 3rem;
         padding: 1rem 0 1rem 0.5rem;
         font-size: 1.1rem;
         outline: none;
+        border: 1px solid var(--color-grey-2);
 
         &::placeholder {
           color: var(--color-grey-1);
         }
       }
+      .gift-button {
+        position: absolute;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        left: 71%;
+        bottom: 0;
+        width: 3rem;
+        height: 3rem;
+        border: none;
+
+        border: 1px solid var(--color-grey-2);
+        background: var(--color-white);
+        font-size: 1.6rem;
+        color: var(--color-grey-2);
+
+        @media only screen and (max-width: 62.5em) {
+          width: 3rem;
+          height: 3rem;
+          left: 75%;
+        }
+      }
     }
 
-    .summary {
+    &__summary {
       border-top: 1px solid #646464;
       padding-top: 1rem;
       display: grid;
       grid-row-gap: 1.5rem;
       grid-template-columns: repeat(2, 1fr);
 
-      &-header {
+      & h6 {
         font-size: 1.2rem;
         font-weight: 400;
         margin: 0;
       }
-      &-price {
+      & span {
         font-weight: bold;
         font-size: 1.2rem;
         justify-self: flex-end;
       }
-      &-button {
+      & button {
         grid-column: 1/-1;
         padding: 1rem 2rem 1rem 2rem;
         background: rgba(61, 61, 61, 1);

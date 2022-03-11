@@ -1,49 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 
-// import Menu from "./Menu/Menu";
-import DropdownMenu from "./Menu/DropdownMenu";
-
-import CategoryPlaceholder from "../UI/Placeholders/CategoryPlaceholder";
-import Slider from "../ShopItems/Slider/Slider";
-
-// import Carousel from "../ShopItems/Carousel/Carousel";
-// import WishList from "../Modals/WishList/WishList";
-
-import SecondCarousel from "../ShopItems/SecondCarousel/SecondCarousel";
-import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
+import { useSelector } from "react-redux";
 
 import classes from "./Home.module.scss";
-// import { IoMenu } from "react-icons/io5";
+
+import CategoryPlaceholder from "../UI/Placeholders/CategoryPlaceholder";
+import PageWidthPlaceholder from "../UI/Placeholders/PageWidthPlaceholder";
+import Menu from "./Menu/Menu";
+import Slider from "../ShopItems/Slider/Slider";
+import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
+
+// import WishList from "../Modals/WishList/WishList";
 
 const Home = () => {
-  const [showModal, setShowModal] = useState(false);
-  const showMenuModalHangler = () => {
-    setShowModal((prevState) => !prevState);
-  };
+  const { outerWidth } = window;
+  const showMenu = useSelector((state) => state.modal.showMenu);
+
   return (
     <>
-      {/* {!showModal && (
-        <button className={classes.modalMenuButton}>
-          <IoMenu />
-        </button>
-      )} */}
-
-      {/* <DropdownMenu showModal={showModal} onHideModal={showMenuModalHangler} /> */}
-      {/* <Menu /> */}
-
-      <div className={classes.placeholder}></div>
-      <div className={classes.firstSlider}>
-        <Slider title={"Zobacz nasze Bestsellery"} />
-      </div>
-      <section className={classes["categories-blocks"]}>
+      <Menu showModal={showMenu} />
+      <PageWidthPlaceholder />
+      <Slider title={"Zobacz nasze Bestsellery"} />
+      <section className={classes["categories-section"]}>
         <ShopBlock title={"Zabawki"} />
         <ShopBlock title={"Zabawki"} />
-        {/* <CategoryPlaceholder /> */}
+        {outerWidth >= 1000 || outerWidth <= 800 ? (
+          <CategoryPlaceholder />
+        ) : null}
       </section>
       <Slider title={"Okazje"} />
-      <section className={classes["categories-blocks"]}>
+      <section className={classes["categories-section"]}>
         <ShopBlock title={"Zabawki"} />
-        {/* <CategoryPlaceholder /> */}
+        {outerWidth >= 1000 || outerWidth <= 800 ? (
+          <CategoryPlaceholder />
+        ) : null}
         <ShopBlock title={"Zabawki"} />
       </section>
       {/* <WishList /> */}

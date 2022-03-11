@@ -1,4 +1,4 @@
-.categories-blocks__element {
+.shop-block {
   background-color: var(--color-white);
   padding: 1rem;
   border-radius: 0.5rem;
@@ -10,10 +10,9 @@
     font-weight: bold;
     padding: 0.5rem;
   }
-}
 
-.itemElements {
   .swiper {
+    border: 1px solid var(--color-white);
     width: 35rem;
     height: 30rem;
   }

@@ -1,7 +1,7 @@
 import React from "react";
 
 import classes from "./ShopBlock.module.scss";
-import ItemCardBig from "../ItemCard/ItemCardBig";
+import ItemCard from "../ItemCard/ItemCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import "swiper/css";
@@ -66,31 +66,29 @@ const bestsItems = [
 
 const ShopBlock = ({ title }) => {
   return (
-    <div className={classes["categories-blocks__element"]}>
+    <div className={classes["shop-block"]}>
       <h4>{title}</h4>
-      <div className={classes.itemElements}>
-        <Swiper
-          slidesPerView={2}
-          spaceBetween={0}
-          loop={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-          className={classes.swiper}
-        >
-          {bestsItems.map((item) => (
-            <SwiperSlide>
-              <ItemCardBig
-                name={item.name}
-                price={item.price}
-                url={item.url}
-                key={item.id}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      <Swiper
+        slidesPerView={2}
+        spaceBetween={0}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        className={classes.swiper}
+      >
+        {bestsItems.map((item) => (
+          <SwiperSlide>
+            <ItemCard
+              name={item.name}
+              price={item.price}
+              url={item.url}
+              key={item.id}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

@@ -6,9 +6,11 @@ import logo from "../../assets/logo.png";
 const Footer = () => {
   return (
     <footer className={classes.footer}>
-      <button className={classes.footerButton}>Powrót na górę strony</button>
-      <div className={classes.footerSection}>
-        <section className={classes.follow}>
+      <a href="#" className={classes["footer__button"]}>
+        Powrót na górę strony
+      </a>
+      <section className={classes["footer-content"]}>
+        <div className={classes["footer-content__follow"]}>
           <h5>Obserwuj nas</h5>
           <ul>
             <li>
@@ -21,8 +23,8 @@ const Footer = () => {
               <a href="#">Instagram</a>
             </li>
           </ul>
-        </section>
-        <section className={classes["payments-methods"]}>
+        </div>
+        <div className={classes["footer-content__payments"]}>
           <h5>Metody płatności</h5>
           <ul>
             <li>
@@ -32,13 +34,13 @@ const Footer = () => {
               <a href="#">Przelewy24</a>
             </li>
           </ul>
-        </section>
-      </div>
-      <div className={classes.logoSection}>
+        </div>
+      </section>
+      <div className={classes["footer-logo"]}>
         <img src={logo} alt="Logo" />
       </div>
-      <section className={classes.footerCopy}>
-        <div className={classes.footerActions}>
+      <section className={classes["footer-copy"]}>
+        <div className={classes["footer-copy__actions"]}>
           <button>Warunki użytkowania i sprzedaży</button>
           <button>Informacje o prywatności</button>
         </div>

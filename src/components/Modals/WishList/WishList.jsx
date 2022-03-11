@@ -29,6 +29,8 @@ const bestsItems = [
 ];
 
 const WishList = () => {
+  console.log("WISH COMPONENT");
+
   return (
     <React.Fragment>
       {ReactDOM.createPortal(

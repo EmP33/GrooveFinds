@@ -4,9 +4,13 @@
   border-top: 1px solid var(--color-grey-light-4);
   background-color: #fff;
 
-  .footerButton {
+  &__button {
     cursor: pointer;
     border: none;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-grey-4);
     background: none;
     font-size: 1.4rem;
     letter-spacing: 1.4px;
@@ -17,11 +21,12 @@
     }
   }
 
-  .footerSection {
+  &-content {
     padding: 0 5rem 0 5rem;
     display: flex;
     justify-content: space-between;
-    .follow {
+
+    &__follow {
       margin: 1rem;
       & > h5 {
         font-size: 1.6rem;
@@ -42,7 +47,8 @@
         }
       }
     }
-    .payments-methods {
+
+    &__payments {
       margin: 1rem;
       & > h5 {
         font-size: 1.6rem;
@@ -65,11 +71,11 @@
     }
   }
 
-  .logoSection {
+  &-logo {
     text-align: center;
   }
-  .footerCopy {
-    background: var(--color-primary);
+  &-copy {
+    background: var(--color-grey-4);
     color: #fff;
     font-size: 1.2rem;
     display: flex;
@@ -77,7 +83,7 @@
     align-items: center;
     padding: 0 2rem 0 2rem;
 
-    .footerActions {
+    &__actions {
       & > button {
         cursor: pointer;
         background: none;

@@ -5,7 +5,7 @@ import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import ItemCardBig from "../ItemCard/ItemCardBig";
+import ItemCard from "../ItemCard/ItemCard";
 
 import classes from "./Slider.module.scss";
 
@@ -77,8 +77,8 @@ const Slider = ({ title }) => {
   }
 
   return (
-    <section className={classes.slider}>
-      <h3 className={classes.sliderHeader}>{title}</h3>
+    <section className={classes["slider"]}>
+      <h3>{title}</h3>
       <Swiper
         slidesPerView={slideCount}
         spaceBetween={5}
@@ -91,7 +91,7 @@ const Slider = ({ title }) => {
       >
         {bestsItems.map((item) => (
           <SwiperSlide>
-            <ItemCardBig
+            <ItemCard
               name={item.name}
               price={item.price}
               url={item.url}
