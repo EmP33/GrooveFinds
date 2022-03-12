@@ -10,10 +10,16 @@ import {
   IoEllipsisHorizontal,
 } from "react-icons/io5";
 
+import { useDispatch } from "react-redux";
+import { modalActions } from "../../../store/modalSlice";
+
 const ItemCardBig = ({ name, price, url, id }) => {
   const dynamicLink = `/${id}`;
+  const dispatch = useDispatch();
 
-  const toggleDetailsHandler = () => {};
+  const toggleDetailsHandler = () => {
+    dispatch(modalActions.toggleShowDetails());
+  };
 
   return (
     <React.Fragment>

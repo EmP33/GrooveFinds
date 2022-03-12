@@ -16,10 +16,11 @@ import ProductDetail from "../ProductDetail/ProductDetail";
 const Home = () => {
   const { outerWidth } = window;
   const showMenu = useSelector((state) => state.modal.showMenu);
+  const showDetails = useSelector((state) => state.modal.showDetails);
 
   return (
     <>
-      <ProductDetail />
+      {showDetails && <ProductDetail />}
       <Menu showModal={showMenu} />
       <PageWidthPlaceholder />
       <Slider title={"Zobacz nasze Bestsellery"} />

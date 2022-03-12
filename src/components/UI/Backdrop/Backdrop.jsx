@@ -5,7 +5,6 @@ import ReactDOM from "react-dom";
 import "./Backdrop.scss";
 
 const Backdrop = ({ isActive }) => {
-  console.log(isActive);
   return (
     <React.Fragment>
       {ReactDOM.createPortal(
