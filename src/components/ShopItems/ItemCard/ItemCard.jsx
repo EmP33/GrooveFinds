@@ -32,10 +32,8 @@ const ItemCardBig = ({ name, price, url, id }) => {
             <button>
               <IoHeartOutline />
             </button>
-            <button>
-              <button onClick={toggleDetailsHandler}>
-                <IoEllipsisHorizontal />
-              </button>
+            <button onClick={toggleDetailsHandler}>
+              <IoEllipsisHorizontal />
             </button>
           </div>
           <img src={url} alt={name} className={classes["card-image"]} />
@@ -46,7 +44,7 @@ const ItemCardBig = ({ name, price, url, id }) => {
         <span className={classes["discount-price"]}>2399,95 zł</span>{" "}
         <span className={classes["discount-badge"]}>-25%</span>
       </div> */}
-          <h3>{name}</h3>
+          <h3 onClick={toggleDetailsHandler}>{name}</h3>
         </div>
       </div>
     </React.Fragment>

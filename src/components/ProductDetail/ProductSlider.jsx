@@ -21,6 +21,7 @@ const ProductSlider = () => {
         style={{
           "--swiper-navigation-color": "#fff",
           "--swiper-pagination-color": "#fff",
+          width: "100%",
         }}
         loop={true}
         spaceBetween={10}
