@@ -20,8 +20,6 @@ const App = () => {
     dispatch(productActions.setProducts(data));
   };
 
-  console.log(products);
-
   useEffect(() => {
     fetchProducts();
   }, []);

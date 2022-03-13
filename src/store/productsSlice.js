@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   products: [],
+  showDetails: false,
   currentProduct: "",
 };
 
@@ -18,6 +19,10 @@ const productSlice = createSlice({
     addFavorite(state, action) {},
     setProducts(state, action) {
       state.products = action.payload;
+    },
+    toggleShowDetails(state, action) {
+      state.currentProduct = action.payload;
+      state.showDetails = !state.showDetails;
     },
   },
 });

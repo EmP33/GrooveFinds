@@ -12,7 +12,7 @@ import {
 } from "react-icons/io5";
 
 import { useDispatch, useSelector } from "react-redux";
-import { modalActions } from "../../../store/modalSlice";
+import { productActions } from "../../../store/productsSlice";
 
 const ItemCard = ({ product }) => {
   // const dynamicLink = `/${id}`;
@@ -22,7 +22,7 @@ const ItemCard = ({ product }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleDetailsHandler = () => {
-    dispatch(modalActions.toggleShowDetails());
+    dispatch(productActions.toggleShowDetails(product));
   };
 
   useEffect(() => {

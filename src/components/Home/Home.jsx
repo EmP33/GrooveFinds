@@ -16,7 +16,7 @@ import ProductDetail from "../ProductDetail/ProductDetail";
 const Home = () => {
   const { outerWidth } = window;
   const showMenu = useSelector((state) => state.modal.showMenu);
-  const showDetails = useSelector((state) => state.modal.showDetails);
+  const showDetails = useSelector((state) => state.products.showDetails);
 
   return (
     <>

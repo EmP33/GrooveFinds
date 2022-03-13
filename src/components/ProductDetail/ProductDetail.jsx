@@ -14,26 +14,22 @@ import Review from "./Review";
 
 import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../../store/productsSlice";
-import { modalActions } from "../../store/modalSlice";
 
 import ProductSlider from "./ProductSlider";
 
 import Modal from "@mui/material/Modal";
 
-const ProductDetail = ({ productID }) => {
+const ProductDetail = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.currentProduct);
-  const showDetails = useSelector((state) => state.modal.showDetails);
-
-  const toggleModalHandler = () => {
-    dispatch(modalActions.toggleShowDetails());
-  };
-
-  useEffect(() => {
-    dispatch(productActions.getProduct(productID));
-  }, [productID, dispatch]);
+  const showDetails = useSelector((state) => state.products.showDetails);
 
   console.log(product);
+
+  const toggleModalHandler = () => {
+    dispatch(productActions.toggleShowDetails());
+  };
+
   return ReactDOM.createPortal(
     <React.Fragment>
       <Modal
@@ -52,7 +48,7 @@ const ProductDetail = ({ productID }) => {
           </button>
 
           <div className={classes["details-images"]}>
-            <ProductSlider />
+            <ProductSlider images={product.assets} />
           </div>
           <div className={classes["details-shipping"]}>
             <p>
@@ -69,7 +65,7 @@ const ProductDetail = ({ productID }) => {
           </div>
 
           <div className={classes["details-header"]}>
-            <h1> Mini PC Lenovo Tiny m710Q 8GB 240SSD</h1>
+            <h1>{product.name}</h1>
             <div className={classes["details-rate"]}>
               <IoStar />
               <IoStar />
@@ -77,7 +73,7 @@ const ProductDetail = ({ productID }) => {
               <IoStar />
               <IoStar />
             </div>{" "}
-            <h3>199,95 zł</h3>
+            <h3>{product.price.raw} zł</h3>
           </div>
 
           <div className={classes["details-actions"]}>
@@ -92,14 +88,7 @@ const ProductDetail = ({ productID }) => {
           </button>
           <div className={classes["details-desc"]}>
             <h4>Opis</h4>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptates quam veritatis cupiditate a dolorum delectus quibusdam
-              explicabo porro officiis saepe. Voluptatibus laborum saepe
-              repudiandae sunt, ratione nam nihil obcaecati illo praesentium
-              quod facere maxime eum doloribus blanditiis! impedit sit!
-              lorem1000
-            </p>
+            <p dangerouslySetInnerHTML={{ __html: product.description }}></p>
           </div>
           <button className={classes["details-report"]}>
             Zgłoś problem z produktem
