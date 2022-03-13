@@ -64,8 +64,10 @@ export default function UserMenu() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    dispatch(userActions.toggleFormModal());
-
+    setAnchorEl(null);
+  };
+  const openFormHandler = (type) => {
+    dispatch(userActions.toggleFormModal(type));
     setAnchorEl(null);
   };
 
@@ -88,10 +90,10 @@ export default function UserMenu() {
           Moje konto
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={() => openFormHandler("login")} disableRipple>
           Zaloguj się
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={() => openFormHandler("register")} disableRipple>
           Stwórz konto
         </MenuItem>
       </StyledMenu>

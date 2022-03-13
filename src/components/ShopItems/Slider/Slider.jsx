@@ -23,6 +23,8 @@ const Slider = ({ title }) => {
     slideCount = 3;
   } else if (window.outerWidth <= 1000) {
     slideCount = 4;
+  } else if (window.outerWidth <= 1400) {
+    slideCount = 5;
   }
 
   return (

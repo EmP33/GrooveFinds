@@ -38,7 +38,7 @@ const ProductDetail = () => {
     setIsFavorite((prevState) => !prevState);
   };
 
-  return ReactDOM.createPortal(
+  return (
     <React.Fragment>
       <Modal
         open={showDetails}
@@ -113,8 +113,7 @@ const ProductDetail = () => {
           </button>
         </div>
       </Modal>
-    </React.Fragment>,
-    document.querySelector("#modals-root")
+    </React.Fragment>
   );
 };
 
