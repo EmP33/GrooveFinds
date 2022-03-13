@@ -26,13 +26,8 @@ const ShopBlock = ({ title }) => {
         className={classes.swiper}
       >
         {products.map((item) => (
-          <SwiperSlide>
-            <ItemCard
-              name={item.name}
-              price={item.price}
-              url={item.url}
-              key={item.id}
-            />
+          <SwiperSlide key={item.id}>
+            <ItemCard product={item} />
           </SwiperSlide>
         ))}
       </Swiper>

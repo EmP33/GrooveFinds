@@ -4,11 +4,18 @@ import classes from "./Footer.module.scss";
 import logo from "../../assets/logo.png";
 
 const Footer = () => {
+  const scrollToUpPageHandler = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <footer className={classes.footer}>
-      <a href="#" className={classes["footer__button"]}>
+      <button
+        className={classes["footer__button"]}
+        onClick={scrollToUpPageHandler}
+      >
         Powrót na górę strony
-      </a>
+      </button>
       <section className={classes["footer-content"]}>
         <div className={classes["footer-content__follow"]}>
           <h5>Obserwuj nas</h5>

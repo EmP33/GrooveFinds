@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import classes from "./ItemCard.module.scss";
 
@@ -8,18 +8,26 @@ import {
   IoCartOutline,
   IoHeartOutline,
   IoEllipsisHorizontal,
+  IoHeart,
 } from "react-icons/io5";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../../store/modalSlice";
 
-const ItemCardBig = ({ name, price, url, id }) => {
-  const dynamicLink = `/${id}`;
+const ItemCard = ({ product }) => {
+  // const dynamicLink = `/${id}`;
   const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.products.products);
+
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleDetailsHandler = () => {
     dispatch(modalActions.toggleShowDetails());
   };
+
+  useEffect(() => {
+    setIsFavorite();
+  }, []);
 
   return (
     <React.Fragment>
@@ -29,26 +37,28 @@ const ItemCardBig = ({ name, price, url, id }) => {
             <button>
               <IoCartOutline />
             </button>
-            <button>
-              <IoHeartOutline />
-            </button>
+            <button>{isFavorite ? <IoHeart /> : <IoHeartOutline />}</button>
             <button onClick={toggleDetailsHandler}>
               <IoEllipsisHorizontal />
             </button>
           </div>
-          <img src={url} alt={name} className={classes["card-image"]} />
+          <img
+            src={product.image.url}
+            alt={product.name}
+            className={classes["card-image"]}
+          />
         </div>
         <div className={classes["card-content"]}>
-          <span className={classes.price}>{price} zł</span>
+          <span className={classes.price}>{product.price.raw} zł</span>
           {/* <div className={classes["discount-wrapper"]}>
         <span className={classes["discount-price"]}>2399,95 zł</span>{" "}
         <span className={classes["discount-badge"]}>-25%</span>
       </div> */}
-          <h3 onClick={toggleDetailsHandler}>{name}</h3>
+          <h3 onClick={toggleDetailsHandler}>{product.name}</h3>
         </div>
       </div>
     </React.Fragment>
   );
 };
 
-export default ItemCardBig;
+export default ItemCard;

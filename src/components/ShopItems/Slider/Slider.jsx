@@ -12,7 +12,7 @@ import classes from "./Slider.module.scss";
 import { useSelector } from "react-redux";
 
 const Slider = ({ title }) => {
-  const bestItems = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.products.products);
 
   let slideCount = 6;
   if (window.outerWidth <= 600) {
@@ -36,15 +36,9 @@ const Slider = ({ title }) => {
         modules={[Pagination]}
         className={classes.swiper}
       >
-        {bestItems.map((item) => (
-          <SwiperSlide>
-            <ItemCard
-              name={item.name}
-              price={item.price}
-              url={item.url}
-              key={item.id}
-              id={item.id}
-            />
+        {products.map((item) => (
+          <SwiperSlide key={item.id}>
+            <ItemCard product={item} />
           </SwiperSlide>
         ))}
       </Swiper>
