@@ -8,7 +8,7 @@ const Layout = (props) => {
   return (
     <React.Fragment>
       <Navbar />
-      <main className={classes.main}>{props.children}</main>
+      {props.children}
       <Footer />
     </React.Fragment>
   );

@@ -53,6 +53,15 @@
         color: var(--color-grey-2);
         grid-row: 2/3;
       }
+
+      &-logo {
+        width: 17rem;
+        border: 1px solid var(--color-white);
+
+        &:hover {
+          border: var(--border-details);
+        }
+      }
     }
 
     &__list {

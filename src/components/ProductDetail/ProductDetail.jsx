@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 import classes from "./ProductDetail.module.scss";
@@ -7,7 +7,9 @@ import {
   IoStar,
   IoCartOutline,
   IoHeartOutline,
+  IoHeart,
   IoClose,
+  IoCheckmarkOutline,
 } from "react-icons/io5";
 
 import Review from "./Review";
@@ -24,10 +26,18 @@ const ProductDetail = () => {
   const product = useSelector((state) => state.products.currentProduct);
   const showDetails = useSelector((state) => state.products.showDetails);
 
-  console.log(product);
+  const [isInCart, setIsInCart] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleModalHandler = () => {
     dispatch(productActions.toggleShowDetails());
+  };
+
+  const setIsInCartHandler = () => {
+    setIsInCart((prevState) => !prevState);
+  };
+  const toggleIsFavoriteHandler = () => {
+    setIsFavorite((prevState) => !prevState);
   };
 
   return ReactDOM.createPortal(
@@ -78,12 +88,22 @@ const ProductDetail = () => {
 
           <div className={classes["details-actions"]}>
             <button className={classes["details-actions--btn-buy"]}>Kup</button>
-            <button className={classes["details-actions--btn-cart"]}>
-              <IoCartOutline />
+            <button
+              className={classes["details-actions--btn-cart"]}
+              onClick={setIsInCartHandler}
+            >
+              {!isInCart ? <IoCartOutline /> : <IoCheckmarkOutline />}
             </button>
           </div>
-          <button className={classes["details-btn-wishlist"]}>
-            <IoHeartOutline className={classes["btn-wishlist__icon"]} />
+          <button
+            className={classes["details-btn-wishlist"]}
+            onClick={toggleIsFavoriteHandler}
+          >
+            {!isFavorite ? (
+              <IoHeartOutline className={classes["btn-wishlist__icon"]} />
+            ) : (
+              <IoHeart className={classes["btn-wishlist__icon"]} />
+            )}{" "}
             Dodaj do listy życzeń
           </button>
           <div className={classes["details-desc"]}>

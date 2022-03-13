@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   products: [],
+  categories: [],
   showDetails: false,
+  isLoading: true,
   currentProduct: "",
 };
 
@@ -10,19 +12,18 @@ const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    getProduct(state, action) {
-      const product = state.products.find(
-        (product) => product.id === action.payload
-      );
-      state.currentProduct = product;
-    },
-    addFavorite(state, action) {},
     setProducts(state, action) {
       state.products = action.payload;
+    },
+    setCategories(state, action) {
+      state.categories = action.payload;
     },
     toggleShowDetails(state, action) {
       state.currentProduct = action.payload;
       state.showDetails = !state.showDetails;
+    },
+    setIsLoading(state, action) {
+      state.isLoading = action.payload;
     },
   },
 });

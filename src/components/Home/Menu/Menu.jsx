@@ -3,12 +3,15 @@ import ReactDOM from "react-dom";
 
 import "./menu.scss";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../../store/modalSlice";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 
+import { Link } from "react-router-dom";
+
 const Menu = ({ showModal }) => {
   const dispatch = useDispatch();
+  const categories = useSelector((state) => state.products.categories);
 
   const hideModalHandler = useCallback(() => {
     dispatch(modalActions.toggleShowMenu());
@@ -23,14 +26,11 @@ const Menu = ({ showModal }) => {
             <h3>Przeglądaj kategorie</h3>
             <button onClick={hideModalHandler}>&times;</button>
             <ul>
-              <li>Dom i ogród</li>
-              <li>Elektronika</li>
-              <li>Zabawki</li>
-              <li>Zegarki</li>
-              <li>On</li>
-              <li>Ona</li>
-              <li>Biżuteria</li>
-              <li>Gry wideo</li>
+              {categories.map((category) => (
+                <Link to={`/${category.slug}`} key={category.id}>
+                  <li onClick={hideModalHandler}>{category.name}</li>
+                </Link>
+              ))}
             </ul>
             <h3>Pomoc i ustawienia</h3>
           </menu>

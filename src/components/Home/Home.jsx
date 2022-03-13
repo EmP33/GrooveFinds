@@ -19,7 +19,7 @@ const Home = () => {
   const showDetails = useSelector((state) => state.products.showDetails);
 
   return (
-    <>
+    <main className={classes.main}>
       {showDetails && <ProductDetail />}
       <Menu showModal={showMenu} />
       <PageWidthPlaceholder />
@@ -40,7 +40,7 @@ const Home = () => {
         <ShopBlock title={"Zabawki"} />
       </section>
       {/* <WishList /> */}
-    </>
+    </main>
   );
 };
 

@@ -23,13 +23,14 @@ import {
   OutlinedInput,
 } from "@material-ui/core";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/modalSlice";
 
 const names = ["Wszystkie Kategorie", "Dom", "Elektronika"];
 
 const Navbar = () => {
-  const [category, setCategory] = useState(names[0]);
+  const categories = useSelector((state) => state.products.categories);
+  const [category, setCategory] = useState("wszystkie-kategorie");
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
@@ -55,9 +56,9 @@ const Navbar = () => {
               input={<OutlinedInput />}
               inputProps={{ "aria-label": "Without label" }}
             >
-              {names.map((name) => (
-                <MenuItem key={name} value={name}>
-                  {name}
+              {categories.map((cat) => (
+                <MenuItem key={cat.id} value={cat.slug}>
+                  {cat.name}
                 </MenuItem>
               ))}
             </Select>

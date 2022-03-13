@@ -2,6 +2,8 @@ import React from "react";
 
 import classes from "./ShopBlock.module.scss";
 import ItemCard from "../ItemCard/ItemCard";
+import ItemPlaceholder from "../../UI/Placeholders/ItemPlaceholder";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import "swiper/css";
@@ -11,6 +13,7 @@ import { useSelector } from "react-redux";
 
 const ShopBlock = ({ title }) => {
   const products = useSelector((state) => state.products.products);
+  const isLoading = useSelector((state) => state.products.isLoading);
 
   return (
     <div className={classes["shop-block"]}>
@@ -27,7 +30,8 @@ const ShopBlock = ({ title }) => {
       >
         {products.map((item) => (
           <SwiperSlide key={item.id}>
-            <ItemCard product={item} />
+            {isLoading && <ItemPlaceholder />}
+            {!isLoading && <ItemCard product={item} />}
           </SwiperSlide>
         ))}
       </Swiper>

@@ -45,14 +45,23 @@
     font-size: 1.4rem;
     padding: 0 0.2rem 0 0.2rem;
 
+    & a {
+      text-decoration: none;
+      color: #000;
+
+      &:active,
+      &:visited {
+        color: #000;
+      }
+    }
+
     & li {
       cursor: pointer;
       border-bottom: 2px solid #fff;
       padding: 0.5rem 2rem 0.5rem 2rem;
-      margin: 1rem;
+      margin: 0.75rem;
 
-      &:hover,
-      &:active {
+      &:hover {
         border-bottom: 2px solid var(--color-thertiary);
         color: var(--color-primary);
         background-color: var(--color-grey-light-3);

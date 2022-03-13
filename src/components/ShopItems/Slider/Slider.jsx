@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import ItemCard from "../ItemCard/ItemCard";
+import ItemPlaceholder from "../../UI/Placeholders/ItemPlaceholder";
 
 import classes from "./Slider.module.scss";
 
@@ -13,6 +14,7 @@ import { useSelector } from "react-redux";
 
 const Slider = ({ title }) => {
   const products = useSelector((state) => state.products.products);
+  const isLoading = useSelector((state) => state.products.isLoading);
 
   let slideCount = 6;
   if (window.outerWidth <= 600) {
@@ -38,7 +40,8 @@ const Slider = ({ title }) => {
       >
         {products.map((item) => (
           <SwiperSlide key={item.id}>
-            <ItemCard product={item} />
+            {isLoading && <ItemPlaceholder />}
+            {!isLoading && <ItemCard product={item} />}
           </SwiperSlide>
         ))}
       </Swiper>

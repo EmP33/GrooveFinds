@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main";
 import CartPage from "./pages/CartPage";
+import ProductsPage from "./pages/ProductsPage";
 
 // COMMERCE
 import { commerce } from "./lib/commerce";
@@ -20,15 +21,29 @@ const App = () => {
     dispatch(productActions.setProducts(data));
   };
 
+  const fetchCategories = async () => {
+    const { data } = await commerce.categories.list();
+    dispatch(productActions.setCategories(data));
+  };
+
   useEffect(() => {
+    dispatch(productActions.setIsLoading(true));
     fetchProducts();
+    fetchCategories();
   }, []);
+
+  if (products.length > 0) {
+    setTimeout(() => {
+      dispatch(productActions.setIsLoading(false));
+    }, 1000);
+  }
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/cart" element={<CartPage />} />{" "}
+        <Route path="/:categoryID" element={<ProductsPage />} />
       </Routes>
     </Router>
   );

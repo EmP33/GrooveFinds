@@ -55,7 +55,7 @@ const Cart = () => {
       <div className={classes.cart}>
         <section className={classes["order-section"]}>
           <div className={classes["order-section__header"]}>
-            <Link to="/">
+            <Link to="/" className={classes["order-section__header-logo"]}>
               <img src={logo} alt="Logo" />
             </Link>
             <h2>Twoje zamówienia</h2>
