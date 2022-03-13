@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import classes from "./ItemCard.module.scss";
 
-import { Link } from "react-router-dom";
-
 import {
   IoCartOutline,
   IoHeartOutline,
@@ -12,13 +10,11 @@ import {
   IoCheckmarkOutline,
 } from "react-icons/io5";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { productActions } from "../../../store/productsSlice";
 
 const ItemCard = ({ product }) => {
-  // const dynamicLink = `/${id}`;
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.products.products);
 
   const [isFavorite, setIsFavorite] = useState(false);
   const [isInCart, setIsInCart] = useState(false);
@@ -63,12 +59,12 @@ const ItemCard = ({ product }) => {
         </div>
         <div className={classes["card-content"]}>
           <span className={classes.price}>{product.price.raw} zł</span>
-          <div className={classes["discount-wrapper"]}>
+          {/* <div className={classes["discount-wrapper"]}>
             <span className={classes["discount-price"]}>
               {(product.price.raw * 1.1).toFixed(2)} zł
             </span>{" "}
             <span className={classes["discount-badge"]}>-10%</span>
-          </div>
+          </div> */}
           <h3 onClick={toggleDetailsHandler}>{product.name}</h3>
         </div>
       </div>
@@ -76,4 +72,4 @@ const ItemCard = ({ product }) => {
   );
 };
 
-export default ItemCard;
+export default React.memo(ItemCard);

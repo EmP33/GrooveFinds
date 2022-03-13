@@ -48,8 +48,6 @@ const bestsItems = [
 ];
 
 const Cart = () => {
-  console.log("CART PAGE");
-
   return (
     <CartBackdrop>
       <div className={classes.cart}>

@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import ReactDOM from "react-dom";
-
 import "./menu.scss";
 
 import { useDispatch, useSelector } from "react-redux";

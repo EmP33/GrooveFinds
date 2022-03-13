@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-
 import classes from "./ProductDetail.module.scss";
 
 import {
@@ -12,11 +11,10 @@ import {
   IoCheckmarkOutline,
 } from "react-icons/io5";
 
-import Review from "./Review";
-
 import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../../store/productsSlice";
 
+import Review from "./Review";
 import ProductSlider from "./ProductSlider";
 
 import Modal from "@mui/material/Modal";
@@ -120,4 +118,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default React.memo(ProductDetail);

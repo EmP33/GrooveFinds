@@ -9,10 +9,10 @@ import { Link } from "react-router-dom";
 import { ImSearch } from "react-icons/im";
 import {
   IoCartOutline,
-  IoChatbubblesOutline,
   IoHeartOutline,
   IoPersonOutline,
   IoMenu,
+  IoChatboxEllipsesOutline,
 } from "react-icons/io5";
 
 import {
@@ -26,7 +26,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/modalSlice";
 
-const names = ["Wszystkie Kategorie", "Dom", "Elektronika"];
+import UserMenu from "../Modals/UserMenu/UserMenu";
 
 const Navbar = () => {
   const categories = useSelector((state) => state.products.categories);
@@ -39,6 +39,7 @@ const Navbar = () => {
   const hideModalHandler = () => {
     dispatch(modalActions.toggleShowMenu());
   };
+
   return (
     <React.Fragment>
       <header className={classes.header}>
@@ -79,8 +80,8 @@ const Navbar = () => {
           </Link>
         </div>
         <div className={classes["chat-wrapper"]}>
-          <span>4</span>
-          <IoChatbubblesOutline className={classes.chatIcon} />
+          {/* <span>4</span> */}
+          <IoChatboxEllipsesOutline className={classes.chatIcon} />
         </div>
       </header>
 
@@ -101,10 +102,11 @@ const Navbar = () => {
             <IoHeartOutline className={classes["button-icon"]} />
             Lista życzeń
           </button>
-          <button className={classes.userButton}>
+          {/* <button className={classes.userButton}>
             <IoPersonOutline className={classes["button-icon"]} />
             Konto
-          </button>
+          </button> */}
+          {<UserMenu />}
         </div>
       </nav>
     </React.Fragment>

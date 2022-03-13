@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import classes from "./ShopBlock.module.scss";
 import ItemCard from "../ItemCard/ItemCard";

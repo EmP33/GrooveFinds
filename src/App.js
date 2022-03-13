@@ -42,7 +42,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/cart" element={<CartPage />} />{" "}
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/:categoryID" element={<ProductsPage />} />
       </Routes>
     </Router>

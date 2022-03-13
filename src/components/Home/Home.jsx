@@ -1,8 +1,7 @@
 import React from "react";
+import classes from "./Home.module.scss";
 
 import { useSelector } from "react-redux";
-
-import classes from "./Home.module.scss";
 
 import CategoryPlaceholder from "../UI/Placeholders/CategoryPlaceholder";
 import PageWidthPlaceholder from "../UI/Placeholders/PageWidthPlaceholder";
@@ -10,7 +9,6 @@ import Menu from "./Menu/Menu";
 import Slider from "../ShopItems/Slider/Slider";
 import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
 import ProductDetail from "../ProductDetail/ProductDetail";
-
 // import WishList from "../Modals/WishList/WishList";
 
 const Home = () => {
