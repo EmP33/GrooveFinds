@@ -16,11 +16,15 @@ const Menu = ({ showModal }) => {
     dispatch(modalActions.toggleShowMenu());
   }, [dispatch]);
 
+  const toggleShowWishlist = () => {
+    dispatch(modalActions.toggleShowWishlist());
+  };
+
   return (
     <React.Fragment>
       {ReactDOM.createPortal(
         <React.Fragment>
-          <Backdrop isActive={showModal} />
+          <Backdrop isActive={showModal} onHideModal={hideModalHandler} />
           <menu className={showModal ? "menu menu-active" : "menu"}>
             <h3>Przeglądaj kategorie</h3>
             <button onClick={hideModalHandler}>&times;</button>
@@ -32,6 +36,10 @@ const Menu = ({ showModal }) => {
               ))}
             </ul>
             <h3>Pomoc i ustawienia</h3>
+            <ul>
+              <li>Centrum Pomocy</li>
+              <li onClick={toggleShowWishlist}>Lista życzeń</li>
+            </ul>
           </menu>
         </React.Fragment>,
         document.querySelector("#menu-root")

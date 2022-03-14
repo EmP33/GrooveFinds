@@ -1,56 +1,56 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import CartItem from "../../Cart/CartItem/CartItem";
-
 import classes from "./WishList.module.scss";
 
-import { IoPersonOutline } from "react-icons/io5";
+import ItemCard from "../../ShopItems/ItemCard/ItemCard";
 
-const bestsItems = [
-  {
-    name: "Computer1",
-    price: "129.95",
-    id: "p1",
-    url: "https://a.allegroimg.com/original/116e82/71826d194940902a6fa56a6884bc/Komputer-do-Gier-Intel-i5-GTX-1050Ti-8GB-Win-10-Kod-producenta-GZi51050Ti",
-  },
-  {
-    name: "Zegarek2",
-    price: "1229.95",
-    id: "p2",
-    url: "https://ustyle.pl/wp-content/uploads/2019/01/1113.jpg",
-  },
-  {
-    name: "Garnek3",
-    price: "59.95",
-    id: "p3",
-    url: "https://florina.pl/pol_pl_Garnek-emaliowany-Emalia-Polska-Pleszew-gladki-bez-pokrywki-16-cm-2-5-l-czerwony-552_1.jpg",
-  },
-];
+import Modal from "@mui/material/Modal";
+
+import { IoClose } from "react-icons/io5";
+
+import { useDispatch, useSelector } from "react-redux";
+import { modalActions } from "../../../store/modalSlice";
 
 const WishList = () => {
-  console.log("WISH COMPONENT");
+  const dispatch = useDispatch();
+  const showWishlist = useSelector((state) => state.modal.showWishlist);
+  const wishlistProducts = useSelector((state) => state.products.products);
 
-  return (
-    <React.Fragment>
-      {ReactDOM.createPortal(
-        <div className={classes.wishList}>
-          <h2>Lista życzeń</h2>
-          <section className={classes.userSection}>
-            <div className={classes.userIconDiv}>
-              <IoPersonOutline className={classes.userIcon} />
-            </div>
-            <h3>Jan Kowalski</h3>
-          </section>
-          <section className={classes.itemsSection}>
-            {bestsItems.map((item) => (
-              <CartItem item={item} key={item.id} />
-            ))}
-          </section>
-        </div>,
-        document.querySelector("#modals-root")
-      )}
-    </React.Fragment>
+  const toggleWishlistHandler = () => {
+    dispatch(modalActions.toggleShowWishlist());
+  };
+
+  return ReactDOM.createPortal(
+    <Modal
+      open={showWishlist}
+      onClose={toggleWishlistHandler}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      style={{ overflow: "auto" }}
+    >
+      <div className={classes["wishlist"]}>
+        <button
+          className={classes["wishlist__close-btn"]}
+          onClick={toggleWishlistHandler}
+        >
+          <IoClose />
+        </button>
+        <section className={classes["wishlist__user"]}>
+          <div className={classes["wishlist__user-avatar"]}>J</div>
+          <h3>Jan Kowalski</h3>
+        </section>
+        <section className={classes["wishlist__products"]}>
+          <h1>Lista życzeń</h1>
+          <ul className={classes["wishlist__products-list"]}>
+            {wishlistProducts &&
+              wishlistProducts.map((product) => <ItemCard product={product} />)}
+            {!wishlistProducts && <h5>Nic tu nie ma :(</h5>}
+          </ul>
+        </section>
+      </div>
+    </Modal>,
+    document.querySelector("#modals-root")
   );
 };
 

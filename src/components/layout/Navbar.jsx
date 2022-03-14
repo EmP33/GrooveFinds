@@ -10,7 +10,6 @@ import { ImSearch } from "react-icons/im";
 import {
   IoCartOutline,
   IoHeartOutline,
-  IoPersonOutline,
   IoMenu,
   IoChatboxEllipsesOutline,
 } from "react-icons/io5";
@@ -38,6 +37,9 @@ const Navbar = () => {
   };
   const hideModalHandler = () => {
     dispatch(modalActions.toggleShowMenu());
+  };
+  const toggleShowWishlist = () => {
+    dispatch(modalActions.toggleShowWishlist());
   };
 
   return (
@@ -92,13 +94,13 @@ const Navbar = () => {
           </button>
         </div>
         <div className={classes["navigation-actions"]}>
-          <button>Centrum Pomocy</button>
+          <button className={classes["button-help"]}>Centrum Pomocy</button>
 
           <select className={classes["country-selector"]}>
             <option value="pl">Polski / PLN</option>
           </select>
 
-          <button className={classes.wishButton}>
+          <button className={classes.wishButton} onClick={toggleShowWishlist}>
             <IoHeartOutline className={classes["button-icon"]} />
             Lista życzeń
           </button>

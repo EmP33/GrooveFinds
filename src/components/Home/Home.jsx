@@ -9,31 +9,23 @@ import Menu from "./Menu/Menu";
 import Slider from "../ShopItems/Slider/Slider";
 import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
 import ProductDetail from "../ProductDetail/ProductDetail";
-import Login from "../Login/Login";
-// import WishList from "../Modals/WishList/WishList";
 
-import { useDispatch } from "react-redux";
-import { userActions } from "../../store/userSlice";
+import { Routes, Route } from "react-router-dom";
 
 const Home = () => {
-  const dispatch = useDispatch();
-
   const { outerWidth } = window;
   const showMenu = useSelector((state) => state.modal.showMenu);
   const showDetails = useSelector((state) => state.products.showDetails);
-  const isOpenModal = useSelector((state) => state.user.isOpenModal);
-
-  const showLoginFormHandler = () => {
-    dispatch(userActions.toggleFormModal());
-  };
 
   return (
     <main className={classes.main}>
+      {/* <Routes>
+        <Route path={`/product`} element={<ProductDetail />} />
+      </Routes> */}
       {showDetails && <ProductDetail />}
-      {isOpenModal && <Login />}
       <Menu showModal={showMenu} />
-      <PageWidthPlaceholder />
 
+      <PageWidthPlaceholder />
       <Slider title={"Zobacz nasze Bestsellery"} />
       <section className={classes["categories-section"]}>
         <ShopBlock title={"Zabawki"} />
@@ -50,7 +42,6 @@ const Home = () => {
         ) : null}
         <ShopBlock title={"Zabawki"} />
       </section>
-      {/* <WishList /> */}
     </main>
   );
 };

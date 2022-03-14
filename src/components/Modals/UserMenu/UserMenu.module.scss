@@ -21,6 +21,10 @@
   outline: none;
   justify-content: center;
 
+  @media only screen and (max-width: 31.25em) {
+    font-weight: bold;
+  }
+
   &:hover {
     border: 1px solid var(--color-white);
     color: rgba(255, 255, 255, 0.8);

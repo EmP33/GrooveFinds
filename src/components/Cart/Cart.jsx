@@ -5,7 +5,7 @@ import classes from "./Cart.module.scss";
 import CartItem from "./CartItem/CartItem";
 import CartBackdrop from "./CartBackdrop";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 const bestsItems = [
@@ -48,6 +48,8 @@ const bestsItems = [
 ];
 
 const Cart = () => {
+  const navigate = useNavigate();
+
   return (
     <CartBackdrop>
       <div className={classes.cart}>
@@ -65,10 +67,10 @@ const Cart = () => {
             ))}
           </div>
           <div className={classes["order-section__footer"]}>
-            <Link to="/">
+            <button onClick={() => navigate(-1)}>
               <BsArrowLeft className={classes["backIcon"]} />
               Powrót do sklepu
-            </Link>
+            </button>
           </div>
         </section>
         <section className={classes["payments-section"]}>

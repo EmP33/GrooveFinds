@@ -18,8 +18,6 @@ const Login = () => {
     dispatch(userActions.toggleFormType(type));
   };
 
-  console.log(formType);
-
   const toggleModalHandler = () => {
     dispatch(userActions.toggleFormModal());
   };

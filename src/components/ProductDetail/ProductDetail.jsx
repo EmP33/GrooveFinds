@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from "react";
+
 import classes from "./ProductDetail.module.scss";
 
 import {
@@ -101,7 +101,7 @@ const ProductDetail = () => {
               <IoHeartOutline className={classes["btn-wishlist__icon"]} />
             ) : (
               <IoHeart className={classes["btn-wishlist__icon"]} />
-            )}{" "}
+            )}
             Dodaj do listy życzeń
           </button>
           <div className={classes["details-desc"]}>
