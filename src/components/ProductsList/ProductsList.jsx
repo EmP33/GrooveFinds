@@ -2,7 +2,6 @@ import React from "react";
 
 import classes from "./ProductsList.module.scss";
 
-import Menu from "../Home/Menu/Menu";
 import ItemCard from "../ShopItems/ItemCard/ItemCard";
 
 import { useParams, Outlet } from "react-router-dom";
@@ -18,12 +17,10 @@ const ProductsList = () => {
       (product) => product.slug === params.categoryID
     )
   );
-  const showMenu = useSelector((state) => state.modal.showMenu);
 
   return (
     <main className={classes.main}>
       <Outlet />
-      <Menu showModal={showMenu} />
       <article className={classes["products"]}>
         <h1>{category?.name}</h1>
         <section className={classes["products-list"]}>

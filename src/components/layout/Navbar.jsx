@@ -92,7 +92,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className={classes["navigation-actions"]}>
-          <Link to={``} className={classes["button-help"]}>
+          <Link to={`/help`} className={classes["button-help"]}>
             Centrum Pomocy
           </Link>
           <select className={classes["country-selector"]}>

@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import Modal from "@mui/material/Modal";
 
 const Login = () => {
-  console.log("LOGIN COMPONENT");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const formType = useSelector((state) => state.user.formType);

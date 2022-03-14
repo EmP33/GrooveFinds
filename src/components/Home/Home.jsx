@@ -1,11 +1,8 @@
 import React from "react";
 import classes from "./Home.module.scss";
 
-import { useSelector } from "react-redux";
-
 import CategoryPlaceholder from "../UI/Placeholders/CategoryPlaceholder";
 import PageWidthPlaceholder from "../UI/Placeholders/PageWidthPlaceholder";
-import Menu from "./Menu/Menu";
 import Slider from "../ShopItems/Slider/Slider";
 import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
 
@@ -13,11 +10,9 @@ import { Outlet } from "react-router-dom";
 
 const Home = () => {
   const { outerWidth } = window;
-  const showMenu = useSelector((state) => state.modal.showMenu);
 
   return (
     <main className={classes.main}>
-      <Menu showModal={showMenu} />
       <Outlet />
       <PageWidthPlaceholder />
       <Slider title={"Zobacz nasze Bestsellery"} />

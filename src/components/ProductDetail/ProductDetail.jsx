@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 import classes from "./ProductDetail.module.scss";
 
@@ -22,11 +22,14 @@ import Modal from "@mui/material/Modal";
 const ProductDetail = () => {
   const params = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const product = useSelector((state) =>
     state?.products?.products.find((product) => product.id === params.productID)
   );
   const [isInCart, setIsInCart] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+
+  console.log(location, navigate, params);
 
   const toggleModalHandler = () => {
     navigate(-1);

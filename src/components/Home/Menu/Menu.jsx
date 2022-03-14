@@ -27,14 +27,16 @@ const Menu = ({ showModal }) => {
             <button onClick={hideModalHandler}>&times;</button>
             <ul>
               {categories.map((category) => (
-                <Link to={`/${category.slug}`} key={category.id}>
+                <Link to={`/category/${category.slug}`} key={category.id}>
                   <li onClick={hideModalHandler}>{category.name}</li>
                 </Link>
               ))}
             </ul>
             <h3>Pomoc i ustawienia</h3>
             <ul>
-              <li onClick={hideModalHandler}>Centrum Pomocy</li>
+              <Link to={`/help`}>
+                <li onClick={hideModalHandler}>Centrum Pomocy</li>
+              </Link>
               <Link to={`${location.pathname}/wishlist`}>
                 <li onClick={hideModalHandler}>Lista życzeń</li>
               </Link>
