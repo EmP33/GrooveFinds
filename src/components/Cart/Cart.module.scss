@@ -27,18 +27,15 @@
     @media only screen and (max-width: 62.5em) {
       border-radius: 2.5rem 2.5rem 0 0;
     }
+    @media only screen and (max-width: 37.5em) {
+      padding: 0.5rem;
+    }
     &__header {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, max-content);
       grid-template-rows: repeat(2, 1fr);
       align-items: center;
-
-      & > img {
-        border: 1px solid var(--color-white);
-        &:hover {
-          border: 1px solid var(--color-grey-2);
-        }
-      }
+      justify-content: space-between;
 
       & > h2 {
         font-size: 2rem;
@@ -55,7 +52,7 @@
       }
 
       &-logo {
-        width: 17rem;
+        max-width: 25rem;
         border: 1px solid var(--color-white);
 
         &:hover {
@@ -132,7 +129,8 @@
     }
 
     @media only screen and (max-width: 62.5em) {
-      border-radius: 0 0 2.5rem 2.5rem;
+      border-radius: 0;
+      width: 100%;
       padding: 0 2rem 2rem;
     }
 

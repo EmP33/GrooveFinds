@@ -12,13 +12,15 @@ const CartItem = ({ item }) => {
         <p>{item.name}</p>
       </div>
       <div className={classes.itemCounter}>
-        <button>
-          <HiOutlineMinusSm />
-        </button>
-        <span>1</span>
-        <button>
-          <HiOutlinePlusSm />
-        </button>
+        <span>
+          <button>
+            <HiOutlineMinusSm />
+          </button>
+          <span>1</span>
+          <button>
+            <HiOutlinePlusSm />
+          </button>
+        </span>
       </div>
       <span className={classes.itemPrice}>{item.price} zł</span>
       <div className={classes.itemRemoveDiv}>
