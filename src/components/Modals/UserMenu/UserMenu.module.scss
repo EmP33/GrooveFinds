@@ -41,3 +41,9 @@
     }
   }
 }
+
+.menu-link,
+.menu-link:visited {
+  text-decoration: none;
+  color: var(--color-grey-4);
+}

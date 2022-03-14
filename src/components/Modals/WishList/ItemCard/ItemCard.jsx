@@ -12,7 +12,10 @@ import {
 
 import { Link } from "react-router-dom";
 
+import { useLocation } from "react-router-dom";
+
 const ItemCard = ({ product }) => {
+  const location = useLocation();
   const [isFavorite, setIsFavorite] = useState(false);
   const [isInCart, setIsInCart] = useState(false);
 
@@ -38,7 +41,7 @@ const ItemCard = ({ product }) => {
             <button onClick={toggleIsFavorite}>
               {isFavorite ? <IoHeart /> : <IoHeartOutline />}
             </button>
-            <Link to={`product/${product.id}`}>
+            <Link to={`${location.pathname}/${product.id}`}>
               <IoEllipsisHorizontal />
             </Link>
           </div>
@@ -58,7 +61,7 @@ const ItemCard = ({ product }) => {
             </span>{" "}
             <span className={classes["discount-badge"]}>-10%</span>
           </div>
-          <Link to={`product/${product.id}`}>
+          <Link to={`${location.pathname}/${product.id}`}>
             <h3>{product.name}</h3>
           </Link>
         </div>

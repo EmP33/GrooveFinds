@@ -7,11 +7,14 @@ import { IoLogoFacebook, IoLogoGoogle, IoClose } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/userSlice";
 
+import { useNavigate } from "react-router-dom";
+
 import Modal from "@mui/material/Modal";
 
 const Login = () => {
+  console.log("LOGIN COMPONENT");
   const dispatch = useDispatch();
-  const showModal = useSelector((state) => state.user.isOpenModal);
+  const navigate = useNavigate();
   const formType = useSelector((state) => state.user.formType);
 
   const toggleFormHandler = (type) => {
@@ -19,13 +22,13 @@ const Login = () => {
   };
 
   const toggleModalHandler = () => {
-    dispatch(userActions.toggleFormModal());
+    navigate(-1);
   };
 
   return ReactDOM.createPortal(
     <React.Fragment>
       <Modal
-        open={showModal}
+        open={true}
         onClose={toggleModalHandler}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

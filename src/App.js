@@ -1,10 +1,17 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import Main from "./pages/Main";
 import CartPage from "./pages/CartPage";
 import ProductsPage from "./pages/ProductsPage";
 import HelpPage from "./pages/HelpPage";
+
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 
 // COMMERCE
 import { commerce } from "./lib/commerce";
@@ -42,11 +49,15 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home/*" element={<Main />}>
+          <Route path={`product/:productID`} element={<ProductDetail />} />
+        </Route>
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/:categoryID" element={<ProductsPage />} />
+        <Route path="/:categoryID/*" element={<ProductsPage />}>
+          <Route path={`product/:productID`} element={<ProductDetail />} />
+        </Route>
         <Route path="/help" element={<HelpPage />} />
-        <Route path="/help" element={<ProductsPage />} />
       </Routes>
     </Router>
   );

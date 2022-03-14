@@ -6,19 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../../store/modalSlice";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Menu = ({ showModal }) => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const categories = useSelector((state) => state.products.categories);
 
   const hideModalHandler = useCallback(() => {
     dispatch(modalActions.toggleShowMenu());
   }, [dispatch]);
-
-  const toggleShowWishlist = () => {
-    dispatch(modalActions.toggleShowWishlist());
-  };
 
   return (
     <React.Fragment>
@@ -37,8 +34,10 @@ const Menu = ({ showModal }) => {
             </ul>
             <h3>Pomoc i ustawienia</h3>
             <ul>
-              <li>Centrum Pomocy</li>
-              <li onClick={toggleShowWishlist}>Lista życzeń</li>
+              <li onClick={hideModalHandler}>Centrum Pomocy</li>
+              <Link to={`${location.pathname}/wishlist`}>
+                <li onClick={hideModalHandler}>Lista życzeń</li>
+              </Link>
             </ul>
           </menu>
         </React.Fragment>,

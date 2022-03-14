@@ -6,9 +6,9 @@ import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 const CartItem = ({ item }) => {
   return (
     <div className={classes.item}>
-      <img src={item.url} alt="Icon" />
+      {<img src={item.assets[0].url} alt="Icon" />}
       <div className={classes.itemName}>
-        <h5>Komputery</h5>
+        <h5>{item.categories[0].name}</h5>
         <p>{item.name}</p>
       </div>
       <div className={classes.itemCounter}>
@@ -22,7 +22,7 @@ const CartItem = ({ item }) => {
           </button>
         </span>
       </div>
-      <span className={classes.itemPrice}>{item.price} zł</span>
+      <span className={classes.itemPrice}>{item.price.raw} zł</span>
       <div className={classes.itemRemoveDiv}>
         <button className={classes.itemRemoveButton}>&times;</button>
       </div>

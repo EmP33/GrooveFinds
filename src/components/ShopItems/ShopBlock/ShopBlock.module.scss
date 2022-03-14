@@ -17,9 +17,15 @@
   }
 
   .swiper {
-    border: 1px solid var(--color-white);
     width: 35rem;
     height: 30rem;
+
+    @media only screen and (max-width: 100em) {
+      width: 30rem;
+    }
+    @media only screen and (max-width: 87.5em) {
+      width: 27rem;
+    }
 
     @media only screen and (max-width: 37.5em) {
       width: 30rem;

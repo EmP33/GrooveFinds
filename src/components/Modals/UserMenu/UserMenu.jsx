@@ -1,6 +1,5 @@
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
@@ -11,6 +10,8 @@ import classes from "./UserMenu.module.scss";
 
 import { userActions } from "../../../store/userSlice";
 import { useDispatch } from "react-redux";
+
+import { Link, useLocation } from "react-router-dom";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -56,6 +57,7 @@ const StyledMenu = styled((props) => (
 }));
 
 export default function UserMenu() {
+  const location = useLocation();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const dispatch = useDispatch();
@@ -67,7 +69,7 @@ export default function UserMenu() {
     setAnchorEl(null);
   };
   const openFormHandler = (type) => {
-    dispatch(userActions.toggleFormModal(type));
+    dispatch(userActions.toggleFormType(type));
     setAnchorEl(null);
   };
 
@@ -90,12 +92,22 @@ export default function UserMenu() {
           Moje konto
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={() => openFormHandler("login")} disableRipple>
-          Zaloguj się
-        </MenuItem>
-        <MenuItem onClick={() => openFormHandler("register")} disableRipple>
-          Stwórz konto
-        </MenuItem>
+        <Link
+          className={classes["menu-link"]}
+          to={`${location.pathname}/registration`}
+        >
+          <MenuItem onClick={() => openFormHandler("login")} disableRipple>
+            Zaloguj się
+          </MenuItem>
+        </Link>
+        <Link
+          className={classes["menu-link"]}
+          to={`${location.pathname}/registration`}
+        >
+          <MenuItem onClick={() => openFormHandler("register")} disableRipple>
+            Stwórz konto
+          </MenuItem>
+        </Link>
       </StyledMenu>
     </div>
   );

@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   showMenu: false,
-  showWishlist: false,
 };
 
 const modalSlice = createSlice({
@@ -11,9 +10,6 @@ const modalSlice = createSlice({
   reducers: {
     toggleShowMenu(state) {
       state.showMenu = !state.showMenu;
-    },
-    toggleShowWishlist(state) {
-      state.showWishlist = !state.showWishlist;
     },
   },
 });

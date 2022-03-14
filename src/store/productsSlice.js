@@ -3,9 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   products: [],
   categories: [],
-  showDetails: false,
   isLoading: true,
-  currentProduct: "",
 };
 
 const productSlice = createSlice({
@@ -17,10 +15,6 @@ const productSlice = createSlice({
     },
     setCategories(state, action) {
       state.categories = action.payload;
-    },
-    toggleShowDetails(state, action) {
-      state.currentProduct = action.payload;
-      state.showDetails = !state.showDetails;
     },
     setIsLoading(state, action) {
       state.isLoading = action.payload;

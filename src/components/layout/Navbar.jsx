@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 
 import classes from "./Navbar.module.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { ImSearch } from "react-icons/im";
 import {
@@ -28,6 +28,7 @@ import { modalActions } from "../../store/modalSlice";
 import UserMenu from "../Modals/UserMenu/UserMenu";
 
 const Navbar = () => {
+  const location = useLocation();
   const categories = useSelector((state) => state.products.categories);
   const [category, setCategory] = useState("wszystkie-kategorie");
   const dispatch = useDispatch();
@@ -37,9 +38,6 @@ const Navbar = () => {
   };
   const hideModalHandler = () => {
     dispatch(modalActions.toggleShowMenu());
-  };
-  const toggleShowWishlist = () => {
-    dispatch(modalActions.toggleShowWishlist());
   };
 
   return (
@@ -94,16 +92,19 @@ const Navbar = () => {
           </button>
         </div>
         <div className={classes["navigation-actions"]}>
-          <button className={classes["button-help"]}>Centrum Pomocy</button>
-
+          <Link to={``} className={classes["button-help"]}>
+            Centrum Pomocy
+          </Link>
           <select className={classes["country-selector"]}>
             <option value="pl">Polski / PLN</option>
           </select>
-
-          <button className={classes.wishButton} onClick={toggleShowWishlist}>
+          <Link
+            to={`${location.pathname}/wishlist`}
+            className={classes.wishButton}
+          >
             <IoHeartOutline className={classes["button-icon"]} />
             Lista życzeń
-          </button>
+          </Link>
           {/* <button className={classes.userButton}>
             <IoPersonOutline className={classes["button-icon"]} />
             Konto

@@ -8,23 +8,17 @@ import PageWidthPlaceholder from "../UI/Placeholders/PageWidthPlaceholder";
 import Menu from "./Menu/Menu";
 import Slider from "../ShopItems/Slider/Slider";
 import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
-import ProductDetail from "../ProductDetail/ProductDetail";
 
-import { Routes, Route } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const Home = () => {
   const { outerWidth } = window;
   const showMenu = useSelector((state) => state.modal.showMenu);
-  const showDetails = useSelector((state) => state.products.showDetails);
 
   return (
     <main className={classes.main}>
-      {/* <Routes>
-        <Route path={`/product`} element={<ProductDetail />} />
-      </Routes> */}
-      {showDetails && <ProductDetail />}
       <Menu showModal={showMenu} />
-
+      <Outlet />
       <PageWidthPlaceholder />
       <Slider title={"Zobacz nasze Bestsellery"} />
       <section className={classes["categories-section"]}>
