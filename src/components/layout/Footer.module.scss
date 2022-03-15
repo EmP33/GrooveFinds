@@ -26,6 +26,10 @@
     display: flex;
     justify-content: space-between;
 
+    @media only screen and (max-width: 31.25em) {
+      padding: 0.5rem;
+    }
+
     &__follow {
       margin: 1rem;
       & > h5 {

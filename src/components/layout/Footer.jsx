@@ -32,13 +32,16 @@ const Footer = () => {
           </ul>
         </div>
         <div className={classes["footer-content__payments"]}>
-          <h5>Metody płatności</h5>
+          <h5>Pomoc</h5>
           <ul>
             <li>
               <a href="#">Metody płatności</a>
             </li>
             <li>
-              <a href="#">Przelewy24</a>
+              <a href="#">Dostawa</a>
+            </li>
+            <li>
+              <a href="#">Regulamin strony</a>
             </li>
           </ul>
         </div>

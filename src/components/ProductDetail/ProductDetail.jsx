@@ -11,8 +11,10 @@ import {
   IoClose,
   IoCheckmarkOutline,
 } from "react-icons/io5";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addCartData } from "../../store/userSlice";
 
 import Review from "./Review";
 import ProductSlider from "./ProductSlider";
@@ -20,23 +22,33 @@ import ProductSlider from "./ProductSlider";
 import Modal from "@mui/material/Modal";
 
 const ProductDetail = () => {
+  const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
+  const dispatch = useDispatch();
   const product = useSelector((state) =>
     state?.products?.products.find((product) => product.id === params.productID)
   );
-  const [isInCart, setIsInCart] = useState(false);
+  const cart = useSelector((state) => state.user.cart);
+  const sendingStatus = useSelector((state) => state.user.sendingStatus);
+
+  const isInCart = cart.line_items
+    .map((item) => item.product_id === product.id)
+    .includes(true);
+
   const [isFavorite, setIsFavorite] = useState(false);
 
-  console.log(location, navigate, params);
-
   const toggleModalHandler = () => {
-    navigate(-1);
+    navigate(
+      location.pathname.slice(
+        0,
+        location.pathname.length - params["*"].length - 1
+      )
+    );
   };
 
   const setIsInCartHandler = () => {
-    setIsInCart((prevState) => !prevState);
+    dispatch(addCartData(product.id));
   };
   const toggleIsFavoriteHandler = () => {
     setIsFavorite((prevState) => !prevState);
@@ -97,7 +109,11 @@ const ProductDetail = () => {
                 className={classes["details-actions--btn-cart"]}
                 onClick={setIsInCartHandler}
               >
-                {!isInCart ? <IoCartOutline /> : <IoCheckmarkOutline />}
+                {sendingStatus && (
+                  <AiOutlineLoading3Quarters className={classes.spinning} />
+                )}
+                {isInCart && !sendingStatus && <IoCheckmarkOutline />}
+                {!isInCart && !sendingStatus && <IoCartOutline />}
               </button>
             </div>
             <button

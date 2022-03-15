@@ -11,15 +11,25 @@ import { IoClose } from "react-icons/io5";
 
 import { useSelector } from "react-redux";
 
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
 const WishList = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  let link = `/`;
+  if (location.pathname.includes("/home")) {
+    link = `/home`;
+  } else if (location.pathname.includes("category/")) {
+    link = location.pathname.slice(0, location.pathname.length - 9);
+  } else if (location.pathname.includes("help/")) {
+    link = location.pathname.slice(0, location.pathname.length - 9);
+  }
 
   const wishlistProducts = useSelector((state) => state.products.products);
 
   const toggleWishlistHandler = () => {
-    navigate(-1);
+    navigate(link);
   };
 
   return ReactDOM.createPortal(

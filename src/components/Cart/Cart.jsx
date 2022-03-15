@@ -3,6 +3,7 @@ import React from "react";
 import classes from "./Cart.module.scss";
 
 import CartItem from "./CartItem/CartItem";
+import EmptyCart from "./EmptyCart/EmptyCart";
 import CartBackdrop from "./CartBackdrop";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,28 +13,26 @@ import { useSelector } from "react-redux";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const cartProducts = useSelector((state) => state.products.products);
-
-  console.log(cartProducts);
+  const cart = useSelector((state) => state.user.cart);
 
   return (
     <CartBackdrop>
       <div className={classes.cart}>
         <section className={classes["order-section"]}>
           <div className={classes["order-section__header"]}>
-            <Link to="/" className={classes["order-section__header-logo"]}>
+            <Link to="/home" className={classes["order-section__header-logo"]}>
               <img src={logo} alt="Logo" />
             </Link>
             <h2>Twoje zamówienia</h2>
-            <span>3 rzeczy</span>
+            <span>{cart.total_items ? cart.total_items : 0} rzeczy</span>
           </div>
           <div className={classes["order-section__list"]}>
-            {cartProducts.map((item) => (
-              <CartItem item={item} />
-            ))}
+            {cart["line_items"] &&
+              cart["line_items"].map((item) => <CartItem item={item} />)}
+            {!cart["line_items"]?.length && <EmptyCart />}
           </div>
           <div className={classes["order-section__footer"]}>
-            <button onClick={() => navigate(-1)}>
+            <button onClick={() => navigate("/home")}>
               <BsArrowLeft className={classes["backIcon"]} />
               Powrót do sklepu
             </button>
@@ -42,8 +41,12 @@ const Cart = () => {
         <section className={classes["payments-section"]}>
           <div className={classes["payments-section__results"]}>
             <h3 className={classes["results-header"]}>Podsumowanie</h3>
-            <span className={classes["results-qty"]}>3 rzeczy</span>
-            <span className={classes["results-price"]}>3899,85 zł</span>
+            <span className={classes["results-qty"]}>
+              {cart.total_items ? cart.total_items : 0} rzeczy
+            </span>
+            <span className={classes["results-price"]}>
+              {cart.subtotal ? cart.subtotal.raw : 0} zł
+            </span>
           </div>
           <div className={classes["payments-section__gift"]}>
             <h5>Kod podarunkowy</h5>
@@ -54,7 +57,7 @@ const Cart = () => {
           </div>
           <div className={classes["payments-section__summary"]}>
             <h6>Cena całkowita</h6>
-            <span>3899,85 zł</span>
+            <span>{cart.subtotal ? cart.subtotal.raw : 0} zł</span>
             <button>Przejdź do płatności</button>
           </div>
         </section>

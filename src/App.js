@@ -10,6 +10,8 @@ import Main from "./pages/Main";
 import CartPage from "./pages/CartPage";
 import ProductsPage from "./pages/ProductsPage";
 import HelpPage from "./pages/HelpPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import LoadingPage from "./pages/LoadingPage";
 
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 
@@ -19,10 +21,14 @@ import { commerce } from "./lib/commerce";
 // REDUX STORE
 import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "./store/productsSlice";
+import { userActions } from "./store/userSlice";
+
+let isLoadingApp = true;
 
 const App = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
+  const cart = useSelector((state) => state.user.cart);
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -34,16 +40,23 @@ const App = () => {
     dispatch(productActions.setCategories(data));
   };
 
+  const fetchCart = async () => {
+    dispatch(userActions.setCart(await commerce.cart.retrieve()));
+  };
+
   useEffect(() => {
-    dispatch(productActions.setIsLoading(true));
     fetchProducts();
     fetchCategories();
+    fetchCart();
   }, []);
 
   if (products.length > 0) {
-    setTimeout(() => {
-      dispatch(productActions.setIsLoading(false));
-    }, 1000);
+    dispatch(productActions.setIsLoading(false));
+    isLoadingApp = false;
+  }
+
+  if (isLoadingApp) {
+    return <LoadingPage />;
   }
 
   return (
@@ -58,6 +71,7 @@ const App = () => {
           <Route path={`product/:productID`} element={<ProductDetail />} />
         </Route>
         <Route path="/help/*" element={<HelpPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

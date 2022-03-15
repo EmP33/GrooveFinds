@@ -17,10 +17,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCartData } from "../../../store/userSlice";
 
 const ItemCard = ({ product }) => {
+  const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
   const cart = useSelector((state) => state.user.cart);
   const sendingStatus = useSelector((state) => state.user.sendingStatus);
-  const dispatch = useDispatch();
 
   const isInCart = cart.line_items
     .map((item) => item.product_id === product.id)
@@ -29,6 +29,7 @@ const ItemCard = ({ product }) => {
   const toggleIsFavorite = () => {
     setIsFavorite((prevState) => !prevState);
   };
+
   const addCartDataHandler = () => {
     dispatch(addCartData(product.id, 1));
   };

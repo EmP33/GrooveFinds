@@ -1,0 +1,131 @@
+.main {
+  margin: 2.5rem auto;
+  position: relative;
+  width: 95%;
+  max-width: 100%;
+  background: var(--color-white);
+  font-size: 1.1rem;
+  padding: 2rem;
+
+  @media only screen and (max-width: 50em) {
+    padding: 0.5rem;
+  }
+
+  &-header {
+    display: grid;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    grid-template-rows: repeat(2, max-content);
+
+    @media only screen and (max-width: 37.5em) {
+      width: 80%;
+    }
+    @media only screen and (max-width: 25em) {
+      width: 100%;
+    }
+    & h1 {
+      font-size: 2rem;
+      margin: 0;
+      color: var(--color-grey-4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    &__search {
+      width: 100%;
+      position: relative;
+
+      .search-bar {
+        width: 100%;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+      }
+      .search-button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        color: var(--color-grey-4);
+        height: 100%;
+      }
+    }
+  }
+
+  &-help {
+    display: grid;
+    width: 85%;
+    margin: 2rem auto;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    column-gap: 3rem;
+    row-gap: 5rem;
+
+    @media only screen and (max-width: 62.5em) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media only screen and (max-width: 50em) {
+      column-gap: 2rem;
+      row-gap: 3rem;
+      width: 95%;
+    }
+    @media only screen and (max-width: 31.25em) {
+      grid-template-columns: 1fr;
+      font-size: 1.4rem;
+    }
+
+    &__block {
+      border: 1px solid var(--color-grey-4);
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      height: 15rem;
+      padding: 2rem;
+      border-radius: 0.5rem;
+
+      @media only screen and (max-width: 50em) {
+        padding: 1rem;
+      }
+      @media only screen and (max-width: 31.25em) {
+        column-gap: 1rem;
+      }
+
+      .block-icon {
+        width: 100%;
+        height: 50%;
+        color: var(--color-grey-4);
+      }
+
+      & > div {
+        padding: 0 1rem;
+
+        & > h2 {
+          margin: 0;
+          color: var(--color-grey-4);
+        }
+        & > ul {
+          list-style: none;
+          padding: 0;
+          margin: 0.5rem 0;
+
+          & > li {
+            margin: 0.5rem 0;
+            color: var(--color-grey-2);
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

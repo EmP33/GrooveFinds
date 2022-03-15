@@ -30,8 +30,18 @@ import UserMenu from "../Modals/UserMenu/UserMenu";
 const Navbar = () => {
   const location = useLocation();
   const categories = useSelector((state) => state.products.categories);
+  const cart = useSelector((state) => state.user.cart);
+  const sendingStatus = useSelector((state) => state.user.sendingStatus);
   const [category, setCategory] = useState("wszystkie-kategorie");
   const dispatch = useDispatch();
+
+  let cartIconClass = `cart-wrapper`;
+
+  if (sendingStatus) {
+    cartIconClass = `activeCartWrapper`;
+  } else {
+    cartIconClass = "cart-wrapper";
+  }
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -73,14 +83,13 @@ const Navbar = () => {
             <ImSearch className={classes.searchIcon} />
           </button>
         </section>
-        <div className={classes["cart-wrapper"]}>
+        <div className={cartIconClass}>
           <Link to="/cart">
-            <span>4</span>
-            <IoCartOutline className={classes.cartIcon} />
+            {cart.total_items ? <span>{cart.total_items}</span> : ""}
+            <IoCartOutline className={"cartIcon"} />
           </Link>
         </div>
         <div className={classes["chat-wrapper"]}>
-          {/* <span>4</span> */}
           <IoChatboxEllipsesOutline className={classes.chatIcon} />
         </div>
       </header>
@@ -105,10 +114,6 @@ const Navbar = () => {
             <IoHeartOutline className={classes["button-icon"]} />
             Lista życzeń
           </Link>
-          {/* <button className={classes.userButton}>
-            <IoPersonOutline className={classes["button-icon"]} />
-            Konto
-          </button> */}
           {<UserMenu />}
         </div>
       </nav>

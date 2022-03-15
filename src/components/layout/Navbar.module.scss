@@ -175,35 +175,6 @@
     }
   }
 
-  .cart-wrapper {
-    position: relative;
-    cursor: pointer;
-    & span {
-      width: 1.3rem;
-      height: 1.3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-white);
-      position: absolute;
-      right: -5px;
-      top: -5px;
-      background-color: var(--color-secondary);
-      padding: 0.2rem;
-      border-radius: 50%;
-    }
-
-    .cartIcon {
-      width: 3rem;
-      height: 3rem;
-      color: var(--color-primary);
-      border-radius: 2px;
-    }
-    @media only screen and (max-width: 37.5em) {
-      grid-column: -2/-3;
-    }
-  }
-
   .chat-wrapper {
     position: relative;
     cursor: pointer;
