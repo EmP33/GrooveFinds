@@ -12,9 +12,9 @@
   &-header {
     background: var(--color-grey-4);
     color: #fff;
+
     & > h1 {
       font-size: 2.5rem;
-
       margin: 0;
       padding: 1rem;
     }
@@ -30,6 +30,14 @@
 
     form {
       display: flex;
+      align-items: center;
+
+      @media only screen and (max-width: 25em) {
+        display: grid;
+        margin: 0 auto;
+        grid-template-rows: repeat(2, 1fr);
+      }
+
       & > button {
         padding: 0.5rem 2rem;
         background: var(--color-grey-1);
@@ -37,6 +45,11 @@
         border: none;
         cursor: pointer;
         font-weight: bold;
+
+        @media only screen and (max-width: 25em) {
+          padding: 0.5rem 0;
+          width: 95%;
+        }
 
         &:hover {
           opacity: 0.9;
@@ -49,9 +62,31 @@
       align-items: center;
       font-size: 1rem;
 
+      @media only screen and (max-width: 31.25em) {
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(3, max-content);
+      }
+      .select-price {
+        width: 10rem;
+        height: 3rem;
+        background-color: var(--color-grey-3);
+      }
+      .select-label {
+        color: var(--color-grey-4);
+        font-weight: bold;
+      }
+
+      .priceDivider {
+        margin-left: 1rem;
+      }
+
       & > h5 {
-        margin: 0;
+        margin: 0 2rem;
         font-size: 1.2rem;
+        @media only screen and (max-width: 31.25em) {
+          display: none;
+        }
       }
 
       & > section {
@@ -61,6 +96,8 @@
           width: 4rem;
           height: 2rem;
           margin: 0 0.5rem;
+          border: none;
+          background: var(--color-grey-3);
         }
       }
     }

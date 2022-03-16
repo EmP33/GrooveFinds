@@ -15,7 +15,7 @@ const CartItem = ({ item }) => {
   const [updateStatus, setUpdateStatus] = useState(false);
   // const updateStatus = useSelector((state) => state.user.updateStatus);
 
-  const itemClass = `${removeStatus ? "item-active" : "item"}`;
+  const itemClass = `${removeStatus || updateStatus ? "item-active" : "item"}`;
 
   const removeItemHandler = () => {
     setRemoveStatus(true);

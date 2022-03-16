@@ -4,6 +4,10 @@
   border-radius: 1rem;
   background-color: var(--color-grey-2);
   animation: changeColor 2s infinite;
+
+  @media only screen and (max-width: 62.5em) and (min-width: 50em) {
+    display: none;
+  }
 }
 
 @keyframes changeColor {
