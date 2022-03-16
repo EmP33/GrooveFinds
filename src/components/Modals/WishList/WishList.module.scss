@@ -11,7 +11,8 @@
   color: #000;
   text-align: center;
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 1fr;
+  // grid-template-columns: max-content 1fr;
   padding: 1rem;
 
   @media only screen and (max-width: 81.25em) {

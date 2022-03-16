@@ -5,6 +5,7 @@ import { commerce } from "../lib/commerce";
 const initialState = {
   formType: "",
   cart: [],
+  wishlist: [],
   sendingStatus: false,
   updateStatus: false,
 };
@@ -24,6 +25,12 @@ const userSlice = createSlice({
     },
     changeUpdateStatus(state) {
       state.updateStatus = !state.updateStatus;
+    },
+    addItemToWishlist(state, action) {
+      state.wishlist = [...state.wishlist, ...action.payload];
+    },
+    removeItemFromWishlist(state, action) {
+      state.wishlist = state.wishlist.filter((item) => item !== action.payload);
     },
   },
 });
@@ -46,10 +53,7 @@ export const updateCartData = (productId, quantity) => {
       const { cart } = await commerce.cart.update(productId, { quantity });
       dispatch(userActions.setCart(cart));
     };
-
-    dispatch(userActions.changeUpdateStatus());
     await sendRequest();
-    dispatch(userActions.changeUpdateStatus());
   };
 };
 
@@ -59,10 +63,7 @@ export const removeFromCartData = (productId) => {
       const { cart } = await commerce.cart.remove(productId);
       dispatch(userActions.setCart(cart));
     };
-
-    dispatch(userActions.changeSendingStatus());
     await sendRequest();
-    dispatch(userActions.changeSendingStatus());
   };
 };
 

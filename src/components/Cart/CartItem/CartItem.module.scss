@@ -1,14 +1,4 @@
-.item {
-  width: 100%;
-  height: 12rem;
-  border-bottom: 1px solid #646464;
-  display: grid;
-  position: relative;
-  align-items: center;
-  grid-template-columns: max-content repeat(2, 1fr) max-content;
-  grid-template-rows: repeat(2, 1fr);
-  align-items: center;
-
+%item-placeholder {
   &:first-child {
     border-top: 1px solid #646464;
   }
@@ -38,12 +28,7 @@
     grid-column: 2/4;
 
     & h5 {
-      font-size: 1.5rem;
-      color: #6b6b6b;
-      margin: 0 0 0.5rem 0;
-    }
-    & p {
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: #6b6b6b;
       margin: 0 0 0.5rem 0;
     }
@@ -129,7 +114,7 @@
       color: #6b6b6b;
       background: none;
       border: none;
-      font-size: 4rem;
+      font-size: 2rem;
       border: 1px solid var(--color-white);
       width: 3rem;
       height: 3rem;
@@ -141,4 +126,32 @@
       }
     }
   }
+}
+
+.item {
+  width: 100%;
+  height: 12rem;
+  border-bottom: 1px solid #646464;
+  display: grid;
+  position: relative;
+  align-items: center;
+  grid-template-columns: max-content repeat(2, 1fr) max-content;
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+
+  @extend %item-placeholder;
+}
+.item-active {
+  width: 100%;
+  height: 12rem;
+  border-bottom: 1px solid #646464;
+  display: grid;
+  position: relative;
+  align-items: center;
+  grid-template-columns: max-content repeat(2, 1fr) max-content;
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+  opacity: 0.6;
+
+  @extend %item-placeholder;
 }

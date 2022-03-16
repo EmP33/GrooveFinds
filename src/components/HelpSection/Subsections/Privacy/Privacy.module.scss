@@ -1,0 +1,36 @@
+.privacy {
+  width: 95%;
+  margin: 3rem auto;
+  padding: 1rem;
+  background: var(--color-white);
+
+  & > h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  & > div {
+    font-size: 1rem;
+    width: 60%;
+    color: var(--color-grey-4);
+    margin: 3rem auto;
+
+    @media only screen and (max-width: 62.5em) {
+      font-size: 1.3rem;
+      width: 70%;
+    }
+    @media only screen and (max-width: 37.5em) {
+      font-size: 1.3rem;
+      width: 90%;
+    }
+    @media only screen and (max-width: 25em) {
+      font-size: 1.3rem;
+      width: 95%;
+    }
+    & > ol > li {
+      margin: 1rem 0;
+      & > ol > li {
+        margin: 1rem 0;
+      }
+    }
+  }
+}

@@ -3,6 +3,8 @@ import React from "react";
 import classes from "./Footer.module.scss";
 import logo from "../../assets/logo.png";
 
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   const scrollToUpPageHandler = () => {
     window.scrollTo(0, 0);
@@ -35,13 +37,19 @@ const Footer = () => {
           <h5>Pomoc</h5>
           <ul>
             <li>
-              <a href="#">Metody płatności</a>
+              <Link to="/help/payments" onClick={scrollToUpPageHandler}>
+                Metody płatności
+              </Link>
             </li>
             <li>
-              <a href="#">Dostawa</a>
+              <Link to="/help/shipping" onClick={scrollToUpPageHandler}>
+                Dostawa
+              </Link>
             </li>
             <li>
-              <a href="#">Regulamin strony</a>
+              <Link to="/help/regulations" onClick={scrollToUpPageHandler}>
+                Regulamin strony
+              </Link>
             </li>
           </ul>
         </div>

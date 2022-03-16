@@ -14,44 +14,62 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addCartData } from "../../../store/userSlice";
+import { addCartData, userActions } from "../../../store/userSlice";
 
 const ItemCard = ({ product }) => {
   const dispatch = useDispatch();
-  const [isFavorite, setIsFavorite] = useState(false);
+
   const cart = useSelector((state) => state.user.cart);
   const sendingStatus = useSelector((state) => state.user.sendingStatus);
+  const wishlist = useSelector((state) => state.user.wishlist);
 
   const isInCart = cart.line_items
     .map((item) => item.product_id === product.id)
     .includes(true);
 
-  const toggleIsFavorite = () => {
-    setIsFavorite((prevState) => !prevState);
+  const addFavoriteHandler = () => {
+    if (wishlist.includes(product.id)) {
+      // Removing from localstorage functionality
+      localStorage.setItem(
+        "wishlist",
+        JSON.stringify(wishlist.filter((item) => item !== product.id))
+      );
+      dispatch(userActions.removeItemFromWishlist(product.id));
+      return;
+    }
+    // Add to localstorage functionality
+    localStorage.setItem("wishlist", JSON.stringify([...wishlist, product.id]));
+    dispatch(userActions.addItemToWishlist([product.id]));
   };
 
   const addCartDataHandler = () => {
     dispatch(addCartData(product.id, 1));
   };
 
-  useEffect(() => {
-    setIsFavorite();
-  }, []);
-
   return (
     <React.Fragment>
       <div className={classes["card"]}>
         <div className={classes["card-container"]}>
           <div className={classes["card-backdrop"]}>
-            <button onClick={addCartDataHandler}>
-              {sendingStatus && (
-                <AiOutlineLoading3Quarters className="spinning" />
-              )}
-              {isInCart && !sendingStatus && <IoCheckmarkOutline />}
-              {!isInCart && !sendingStatus && <IoCartOutline />}
-            </button>
-            <button onClick={toggleIsFavorite}>
-              {isFavorite ? <IoHeart /> : <IoHeartOutline />}
+            {sendingStatus ? (
+              <button onClick={addCartDataHandler} disabled>
+                {sendingStatus && (
+                  <AiOutlineLoading3Quarters className="spinning" />
+                )}
+                {isInCart && !sendingStatus && <IoCheckmarkOutline />}
+                {!isInCart && !sendingStatus && <IoCartOutline />}
+              </button>
+            ) : (
+              <button onClick={addCartDataHandler}>
+                {sendingStatus && (
+                  <AiOutlineLoading3Quarters className="spinning" />
+                )}
+                {isInCart && !sendingStatus && <IoCheckmarkOutline />}
+                {!isInCart && !sendingStatus && <IoCartOutline />}
+              </button>
+            )}
+            <button onClick={addFavoriteHandler}>
+              {wishlist.includes(product.id) ? <IoHeart /> : <IoHeartOutline />}
             </button>
             <Link to={`product/${product.id}`}>
               <IoEllipsisHorizontal />

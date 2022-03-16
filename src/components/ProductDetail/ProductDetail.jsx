@@ -14,7 +14,7 @@ import {
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { useSelector, useDispatch } from "react-redux";
-import { addCartData } from "../../store/userSlice";
+import { addCartData, userActions } from "../../store/userSlice";
 
 import Review from "./Review";
 import ProductSlider from "./ProductSlider";
@@ -31,12 +31,11 @@ const ProductDetail = () => {
   );
   const cart = useSelector((state) => state.user.cart);
   const sendingStatus = useSelector((state) => state.user.sendingStatus);
+  const wishlist = useSelector((state) => state.user.wishlist);
 
   const isInCart = cart.line_items
     .map((item) => item.product_id === product.id)
     .includes(true);
-
-  const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleModalHandler = () => {
     navigate(
@@ -51,7 +50,18 @@ const ProductDetail = () => {
     dispatch(addCartData(product.id));
   };
   const toggleIsFavoriteHandler = () => {
-    setIsFavorite((prevState) => !prevState);
+    if (wishlist.includes(product.id)) {
+      // Removing from localstorage functionality
+      localStorage.setItem(
+        "wishlist",
+        JSON.stringify(wishlist.filter((item) => item !== product.id))
+      );
+      dispatch(userActions.removeItemFromWishlist(product.id));
+      return;
+    }
+    // Add to localstorage functionality
+    localStorage.setItem("wishlist", JSON.stringify([...wishlist, product.id]));
+    dispatch(userActions.addItemToWishlist([product.id]));
   };
 
   if (product) {
@@ -120,7 +130,7 @@ const ProductDetail = () => {
               className={classes["details-btn-wishlist"]}
               onClick={toggleIsFavoriteHandler}
             >
-              {!isFavorite ? (
+              {!wishlist.includes(product.id) ? (
                 <IoHeartOutline className={classes["btn-wishlist__icon"]} />
               ) : (
                 <IoHeart className={classes["btn-wishlist__icon"]} />

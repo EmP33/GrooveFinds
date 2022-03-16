@@ -13,7 +13,6 @@ import {
   IoMenu,
   IoChatboxEllipsesOutline,
 } from "react-icons/io5";
-
 import {
   TextField,
   FormControl,
@@ -21,6 +20,7 @@ import {
   MenuItem,
   OutlinedInput,
 } from "@material-ui/core";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/modalSlice";
@@ -34,14 +34,6 @@ const Navbar = () => {
   const sendingStatus = useSelector((state) => state.user.sendingStatus);
   const [category, setCategory] = useState("wszystkie-kategorie");
   const dispatch = useDispatch();
-
-  let cartIconClass = `cart-wrapper`;
-
-  if (sendingStatus) {
-    cartIconClass = `activeCartWrapper`;
-  } else {
-    cartIconClass = "cart-wrapper";
-  }
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -83,14 +75,26 @@ const Navbar = () => {
             <ImSearch className={classes.searchIcon} />
           </button>
         </section>
-        <div className={cartIconClass}>
+        <div className={classes["cart-wrapper"]}>
           <Link to="/cart">
-            {cart.total_items ? <span>{cart.total_items}</span> : ""}
-            <IoCartOutline className={"cartIcon"} />
+            {cart.total_items && !sendingStatus ? (
+              <span>{cart.total_items}</span>
+            ) : (
+              ""
+            )}
+            {sendingStatus && (
+              <span>
+                <AiOutlineLoading3Quarters className="spinning" />
+              </span>
+            )}
+
+            <IoCartOutline className={classes["cartIcon"]} />
           </Link>
         </div>
         <div className={classes["chat-wrapper"]}>
-          <IoChatboxEllipsesOutline className={classes.chatIcon} />
+          <Link to="/help/contact">
+            <IoChatboxEllipsesOutline className={classes.chatIcon} />
+          </Link>
         </div>
       </header>
 

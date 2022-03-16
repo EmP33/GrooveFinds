@@ -1,56 +1,101 @@
-import React from "react";
-
+import React, { useState } from "react";
 import classes from "./CartItem.module.scss";
+import CSSModules from "react-css-modules";
+
 import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 import { IoCloseOutline } from "react-icons/io5";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { useDispatch, useSelector } from "react-redux";
 import { updateCartData, removeFromCartData } from "../../../store/userSlice";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
-  const sendingStatus = useSelector((state) => state.user.sendingStatus);
-  const updateStatus = useSelector((state) => state.user.updateStatus);
+  const [removeStatus, setRemoveStatus] = useState(false);
+  const [updateStatus, setUpdateStatus] = useState(false);
+  // const updateStatus = useSelector((state) => state.user.updateStatus);
+
+  const itemClass = `${removeStatus ? "item-active" : "item"}`;
+
+  const removeItemHandler = () => {
+    setRemoveStatus(true);
+    dispatch(removeFromCartData(item.id));
+    return setTimeout(() => {
+      setRemoveStatus(false);
+    }, 1250);
+  };
+  const changeQtyHandler = (value) => {
+    setUpdateStatus(true);
+    dispatch(updateCartData(item.id, value));
+    return setTimeout(() => {
+      setUpdateStatus(false);
+    }, 1250);
+  };
 
   return (
-    <div className={classes.item}>
+    <div styleName={itemClass}>
       {<img src={item.image.url} alt="Icon" />}
-      <div className={classes.itemName}>
-        {/* <h5>{item.categories[0].name}</h5> */}
-        <p>{item.name}</p>
+      <div styleName={"itemName"}>
+        <h5>{item.name}</h5>
       </div>
-      <div className={classes.itemCounter}>
+      <div styleName={"itemCounter"}>
         <span>
-          <button
-            onClick={() => dispatch(updateCartData(item.id, item.quantity - 1))}
-          >
-            <HiOutlineMinusSm />
-          </button>
+          {" "}
+          {/* Conditional render on button element to prevent span clicks */}
+          {updateStatus ? (
+            <button
+              onClick={() => changeQtyHandler(item.quantity - 1)}
+              disabled
+            >
+              <HiOutlineMinusSm />
+            </button>
+          ) : (
+            <button onClick={() => changeQtyHandler(item.quantity - 1)}>
+              <HiOutlineMinusSm />
+            </button>
+          )}
           {!updateStatus && <span>{item.quantity}</span>}
           {updateStatus && (
-            <span className={classes.slide}>{item.quantity}</span>
+            <span>
+              <AiOutlineLoading3Quarters className="spinning" />
+            </span>
+          )}{" "}
+          {/* Conditional render on button element to prevent span clicks */}
+          {updateStatus ? (
+            <button
+              onClick={() => changeQtyHandler(item.quantity + 1)}
+              disabled
+            >
+              <HiOutlinePlusSm />
+            </button>
+          ) : (
+            <button onClick={() => changeQtyHandler(item.quantity + 1)}>
+              <HiOutlinePlusSm />
+            </button>
           )}
-          <button
-            onClick={() => dispatch(updateCartData(item.id, item.quantity + 1))}
-          >
-            <HiOutlinePlusSm />
-          </button>
         </span>
       </div>
-      <span className={classes.itemPrice}>{item.price.raw} zł</span>
-      <div className={classes.itemRemoveDiv}>
-        <button
-          className={classes.itemRemoveButton}
-          onClick={() => {
-            dispatch(removeFromCartData(item.id));
-          }}
-        >
-          {!sendingStatus && <IoCloseOutline />}
-          {sendingStatus && <HiOutlineMinusSm className={"spinning"} />}
-        </button>
+      <span styleName={"itemPrice"}>{item.price.raw} zł</span>
+      <div styleName={"itemRemoveDiv"}>
+        {/* Conditional render on button element to prevent span clicks */}
+        {removeStatus ? (
+          <button
+            styleName={"itemRemoveButton"}
+            onClick={removeItemHandler}
+            disabled
+          >
+            {!removeStatus && <IoCloseOutline />}
+            {removeStatus && <IoCloseOutline className={"spinning"} />}
+          </button>
+        ) : (
+          <button styleName={"itemRemoveButton"} onClick={removeItemHandler}>
+            {!removeStatus && <IoCloseOutline />}
+            {removeStatus && <IoCloseOutline className={"spinning"} />}
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
-export default CartItem;
+export default CSSModules(CartItem, classes);

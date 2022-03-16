@@ -9,9 +9,15 @@ import {
   IoClipboardOutline,
 } from "react-icons/io5";
 
+import { Link } from "react-router-dom";
+
 import { Outlet } from "react-router-dom";
 
 const HelpSection = () => {
+  const scrollToUpPageHandler = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
       <Outlet />
@@ -33,11 +39,11 @@ const HelpSection = () => {
           <div className={classes["main-help__block"]}>
             <IoPersonOutline className={classes["block-icon"]} />
             <div>
-              <h2>Konto</h2>
+              <h2>Użytkownicy</h2>
               <ul>
-                <li>Rejestracja i aktywacja</li>
-                <li>Logowanie i hasło</li>
-                <li>Dane i ustawienia konta</li>
+                <Link to="/help/privacy" onClick={scrollToUpPageHandler}>
+                  <li>Polityka prywatności</li>
+                </Link>
               </ul>
             </div>
           </div>
@@ -46,8 +52,12 @@ const HelpSection = () => {
             <div>
               <h2>Dostawa i płatności</h2>
               <ul>
-                <li>Sposoby płatności</li>
-                <li>Czas i opcje dostawy</li>
+                <Link to="/help/payments" onClick={scrollToUpPageHandler}>
+                  <li>Sposoby płatności</li>
+                </Link>
+                <Link to="/help/shipping" onClick={scrollToUpPageHandler}>
+                  <li>Realizacja zamówień i dostawa</li>
+                </Link>
               </ul>
             </div>
           </div>
@@ -56,8 +66,12 @@ const HelpSection = () => {
             <div>
               <h2>Regulamin i kontakt</h2>
               <ul>
-                <li>Regulamin strony</li>
-                <li>Kontakt</li>
+                <Link to="/help/regulations" onClick={scrollToUpPageHandler}>
+                  <li>Regulamin strony</li>
+                </Link>
+                <Link to="/help/contact" onClick={scrollToUpPageHandler}>
+                  <li>Kontakt</li>
+                </Link>
               </ul>
             </div>
           </div>

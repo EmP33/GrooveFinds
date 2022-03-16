@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import classes from "./WishList.module.scss";
@@ -16,6 +16,8 @@ import { useNavigate, Outlet, useLocation } from "react-router-dom";
 const WishList = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const products = useSelector((state) => state.products.products);
+  const wishlist = useSelector((state) => state.user.wishlist);
 
   let link = `/`;
   if (location.pathname.includes("/home")) {
@@ -26,7 +28,12 @@ const WishList = () => {
     link = location.pathname.slice(0, location.pathname.length - 9);
   }
 
-  const wishlistProducts = useSelector((state) => state.products.products);
+  let wishProducts = [];
+  if (JSON.parse(localStorage.getItem("wishlist"))) {
+    wishProducts = JSON.parse(localStorage.getItem("wishlist")).map((id) =>
+      products.find((product) => product.id === id)
+    );
+  }
 
   const toggleWishlistHandler = () => {
     navigate(link);
@@ -49,18 +56,17 @@ const WishList = () => {
           >
             <IoClose />
           </button>
-          <section className={classes["wishlist__user"]}>
+          {/* <section className={classes["wishlist__user"]}>
             <div className={classes["wishlist__user-avatar"]}>J</div>
             <h3>Jan Kowalski</h3>
-          </section>
+          </section> */}
           <section className={classes["wishlist__products"]}>
             <h1>Lista życzeń</h1>
             <ul className={classes["wishlist__products-list"]}>
-              {wishlistProducts &&
-                wishlistProducts.map((product) => (
-                  <ItemCard product={product} />
-                ))}
-              {!wishlistProducts && <h5>Nic tu nie ma :(</h5>}
+              {wishlist.length
+                ? wishProducts.map((product) => <ItemCard product={product} />)
+                : ""}
+              {!wishlist.length && <h5>Nic tu nie ma :(</h5>}
             </ul>
           </section>
         </div>
