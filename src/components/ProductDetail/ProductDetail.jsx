@@ -11,7 +11,7 @@ import {
   IoClose,
   IoCheckmarkOutline,
 } from "react-icons/io5";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { RiLoader3Fill } from "react-icons/ri";
 
 import { useSelector, useDispatch } from "react-redux";
 import { addCartData, userActions } from "../../store/userSlice";
@@ -120,7 +120,7 @@ const ProductDetail = () => {
                 onClick={setIsInCartHandler}
               >
                 {sendingStatus && (
-                  <AiOutlineLoading3Quarters className={classes.spinning} />
+                  <RiLoader3Fill className={classes.spinning} />
                 )}
                 {isInCart && !sendingStatus && <IoCheckmarkOutline />}
                 {!isInCart && !sendingStatus && <IoCartOutline />}

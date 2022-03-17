@@ -24,16 +24,6 @@ const HelpSection = () => {
       <main className={classes["main"]}>
         <section className={classes["main-header"]}>
           <h1>Centrum Pomocy GrooveFinds</h1>
-          <div className={classes["main-header__search"]}>
-            <TextField
-              label={"Szukaj w centrum pomocy"}
-              className={classes["search-bar"]}
-              variant="outlined"
-            />
-            <button className={classes["search-button"]}>
-              <ImSearch className={classes["search-icon"]} />
-            </button>
-          </div>
         </section>
         <section className={classes["main-help"]}>
           <div className={classes["main-help__block"]}>

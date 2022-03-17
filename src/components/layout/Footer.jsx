@@ -59,8 +59,8 @@ const Footer = () => {
       </div>
       <section className={classes["footer-copy"]}>
         <div className={classes["footer-copy__actions"]}>
-          <button>Warunki użytkowania i sprzedaży</button>
-          <button>Informacje o prywatności</button>
+          <Link to="/help/shipping" onClick={scrollToUpPageHandler}>Realizacja zamówień</Link>
+          <Link to="/help/privacy" onClick={scrollToUpPageHandler}>Informacje o prywatności</Link>
         </div>
         <p>&copy; 2022 GrooveFinds.com</p>
       </section>

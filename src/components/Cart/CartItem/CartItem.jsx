@@ -4,9 +4,9 @@ import CSSModules from "react-css-modules";
 
 import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 import { IoCloseOutline } from "react-icons/io5";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { RiLoader3Fill } from "react-icons/ri";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateCartData, removeFromCartData } from "../../../store/userSlice";
 
 const CartItem = ({ item }) => {
@@ -57,7 +57,7 @@ const CartItem = ({ item }) => {
           {!updateStatus && <span>{item.quantity}</span>}
           {updateStatus && (
             <span>
-              <AiOutlineLoading3Quarters className="spinning" />
+              <RiLoader3Fill className="spinning" />
             </span>
           )}{" "}
           {/* Conditional render on button element to prevent span clicks */}

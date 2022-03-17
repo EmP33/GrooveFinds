@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import classes from "./ItemCard.module.scss";
 
@@ -9,7 +9,7 @@ import {
   IoHeart,
   IoCheckmarkOutline,
 } from "react-icons/io5";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { RiLoader3Fill } from "react-icons/ri";
 
 import { Link } from "react-router-dom";
 
@@ -53,17 +53,13 @@ const ItemCard = ({ product }) => {
             {/* Conditional render on button element to prevent spam clicks */}
             {sendingStatus ? (
               <button onClick={addCartDataHandler} disabled>
-                {sendingStatus && (
-                  <AiOutlineLoading3Quarters className="spinning" />
-                )}
+                {sendingStatus && <RiLoader3Fill className="spinning" />}
                 {isInCart && !sendingStatus && <IoCheckmarkOutline />}
                 {!isInCart && !sendingStatus && <IoCartOutline />}
               </button>
             ) : (
               <button onClick={addCartDataHandler}>
-                {sendingStatus && (
-                  <AiOutlineLoading3Quarters className="spinning" />
-                )}
+                {sendingStatus && <RiLoader3Fill className="spinning" />}
                 {isInCart && !sendingStatus && <IoCheckmarkOutline />}
                 {!isInCart && !sendingStatus && <IoCartOutline />}
               </button>

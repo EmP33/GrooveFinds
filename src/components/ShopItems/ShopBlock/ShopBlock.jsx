@@ -11,13 +11,22 @@ import "swiper/css/pagination";
 
 import { useSelector } from "react-redux";
 
-const ShopBlock = ({ title }) => {
+const ShopBlock = ({ category }) => {
   const products = useSelector((state) => state.products.products);
   const isLoading = useSelector((state) => state.products.isLoading);
 
+  let categoryProducts = [];
+  if (category.slug === "wszystkie-kategorie") {
+    categoryProducts = products;
+  } else {
+    categoryProducts = products.filter((product) =>
+      product.categories.find((cat) => cat.slug === category.slug)
+    );
+  }
+
   return (
     <div className={classes["shop-block"]}>
-      <h4>{title}</h4>
+      <h4>{category.name}</h4>
       <Swiper
         slidesPerView={2}
         spaceBetween={0}
@@ -28,15 +37,21 @@ const ShopBlock = ({ title }) => {
         modules={[Pagination]}
         className={classes.swiper}
       >
-        {products.map((item) => (
-          <SwiperSlide key={item.id}>
-            {isLoading && <ItemPlaceholder />}
-            {!isLoading && <ItemCard product={item} />}
+        {categoryProducts.length ? (
+          categoryProducts.map((item) => (
+            <SwiperSlide key={item.id}>
+              {isLoading && <ItemPlaceholder />}
+              {!isLoading && <ItemCard product={item} />}
+            </SwiperSlide>
+          ))
+        ) : (
+          <SwiperSlide>
+            <ItemPlaceholder />
           </SwiperSlide>
-        ))}
+        )}
       </Swiper>
     </div>
   );
 };
 
-export default ShopBlock;
+export default React.memo(ShopBlock);

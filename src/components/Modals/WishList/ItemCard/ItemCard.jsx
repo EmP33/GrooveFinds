@@ -9,7 +9,7 @@ import {
   IoHeart,
   IoCheckmarkOutline,
 } from "react-icons/io5";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { RiLoader3Fill } from "react-icons/ri";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -54,17 +54,13 @@ const ItemCard = ({ product }) => {
             {/* Conditional render button to prevent spam clicks */}
             {sendingStatus ? (
               <button onClick={addCartDataHandler} disabled>
-                {sendingStatus && (
-                  <AiOutlineLoading3Quarters className="spinning" />
-                )}
+                {sendingStatus && <RiLoader3Fill className="spinning" />}
                 {isInCart && !sendingStatus && <IoCheckmarkOutline />}
                 {!isInCart && !sendingStatus && <IoCartOutline />}
               </button>
             ) : (
               <button onClick={addCartDataHandler}>
-                {sendingStatus && (
-                  <AiOutlineLoading3Quarters className="spinning" />
-                )}
+                {sendingStatus && <RiLoader3Fill className="spinning" />}
                 {isInCart && !sendingStatus && <IoCheckmarkOutline />}
                 {!isInCart && !sendingStatus && <IoCartOutline />}
               </button>

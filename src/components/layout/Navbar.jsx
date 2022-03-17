@@ -20,12 +20,13 @@ import {
   MenuItem,
   OutlinedInput,
 } from "@material-ui/core";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
+import { RiLoader3Fill } from "react-icons/ri";
 
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/modalSlice";
 
-import UserMenu from "../Modals/UserMenu/UserMenu";
+// import UserMenu from "../Modals/UserMenu/UserMenu";
 
 const Navbar = () => {
   const location = useLocation();
@@ -106,7 +107,7 @@ const Navbar = () => {
             )}
             {sendingStatus && (
               <span>
-                <AiOutlineLoading3Quarters className="spinning" />
+                <RiLoader3Fill className="spinning" />
               </span>
             )}
 
@@ -140,7 +141,7 @@ const Navbar = () => {
             <IoHeartOutline className={classes["button-icon"]} />
             Lista życzeń
           </Link>
-          {<UserMenu />}
+          {/* {<UserMenu />} */}
         </div>
       </nav>
     </React.Fragment>
