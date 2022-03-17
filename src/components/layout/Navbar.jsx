@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 
 import classes from "./Navbar.module.scss";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { ImSearch } from "react-icons/im";
 import {
@@ -29,17 +29,33 @@ import UserMenu from "../Modals/UserMenu/UserMenu";
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const categories = useSelector((state) => state.products.categories);
   const cart = useSelector((state) => state.user.cart);
   const sendingStatus = useSelector((state) => state.user.sendingStatus);
-  const [category, setCategory] = useState("wszystkie-kategorie");
-  const dispatch = useDispatch();
+  const [category, setCategory] = useState(
+    categories[categories.length - 1].slug
+  );
+  const [searchInput, setSearchInput] = useState("");
 
-  const handleChange = (event) => {
+  console.log();
+
+  const changeCategoryHandler = (event) => {
     setCategory(event.target.value);
+  };
+  const changeInputHandler = (e) => {
+    setSearchInput(e.target.value);
   };
   const hideModalHandler = () => {
     dispatch(modalActions.toggleShowMenu());
+  };
+
+  const submitSearchHandler = (e) => {
+    e.preventDefault();
+    console.log(category, searchInput);
+    navigate(`/search/${category}/${searchInput}`);
   };
 
   return (
@@ -50,12 +66,16 @@ const Navbar = () => {
             <img src={logo} alt="GrooveFinds" />
           </Link>
         </div>
-        <section className={classes["header-search"]}>
+
+        <form
+          className={classes["header-search"]}
+          onSubmit={submitSearchHandler}
+        >
           <FormControl size="small" className={classes.select}>
             <Select
               displayEmpty
               value={category}
-              onChange={handleChange}
+              onChange={changeCategoryHandler}
               input={<OutlinedInput />}
               inputProps={{ "aria-label": "Without label" }}
             >
@@ -70,11 +90,13 @@ const Navbar = () => {
             size="small"
             className={classes["search-bar"]}
             variant="outlined"
+            onChange={changeInputHandler}
           />
-          <button className={classes.button}>
+          <button className={classes.button} type="submit">
             <ImSearch className={classes.searchIcon} />
           </button>
-        </section>
+        </form>
+
         <div className={classes["cart-wrapper"]}>
           <Link to="/cart">
             {cart.total_items && !sendingStatus ? (

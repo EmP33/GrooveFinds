@@ -17,7 +17,7 @@ import ShippingPage from "./pages/ShippingPage";
 import PaymentsPage from "./pages/PaymentsPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPage from "./pages/PrivacyPage";
-import WishList from "./components/Modals/WishList/WishList";
+import SearchingPage from "./pages/SearchingPage";
 
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 
@@ -85,6 +85,16 @@ const App = () => {
         <Route path="/category/:categoryID/*" element={<ProductsPage />}>
           <Route path={`product/:productID`} element={<ProductDetail />} />
         </Route>
+        <Route
+          path="/search/:categoryID/:searchInput/*"
+          element={<SearchingPage />}
+        >
+          <Route path={`product/:productID`} element={<ProductDetail />} />
+        </Route>
+        <Route
+          path="/search/:categoryID"
+          element={<Navigate to="/category/wszystkie-kategorie" />}
+        ></Route>
         <Route path="/help/*" element={<HelpPage />}>
           <Route path={`privacy`} element={<PrivacyPage />} />
           <Route path={`shipping`} element={<ShippingPage />} />

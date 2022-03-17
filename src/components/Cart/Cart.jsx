@@ -28,7 +28,9 @@ const Cart = () => {
           </div>
           <div className={classes["order-section__list"]}>
             {cart["line_items"] &&
-              cart["line_items"].map((item) => <CartItem item={item} />)}
+              cart["line_items"].map((item) => (
+                <CartItem item={item} key={item.id} />
+              ))}
             {!cart["line_items"]?.length && <EmptyCart />}
           </div>
           <div className={classes["order-section__footer"]}>

@@ -23,6 +23,7 @@ const ProductsList = () => {
   const priceFrom = useRef();
   const priceTo = useRef();
 
+  const [price, setPrice] = useState("");
   const category = useSelector((state) =>
     state.products.categories.find(
       (product) => product.slug === params.categoryID
@@ -35,8 +36,12 @@ const ProductsList = () => {
   const firstPrice = +queryParams.get("price_from");
   const secondPrice = +queryParams.get("price_to");
 
-  const categoryProducts = products.filter(
-    (product) => product.categories[0].slug === params.categoryID
+  // const categoryProducts = products.filter(
+  //   (product) => product.categories[0].slug === params.categoryID
+  // );
+
+  const categoryProducts = products.filter((product) =>
+    product.categories.find((category) => category.slug === params.categoryID)
   );
 
   // Filter logic
@@ -67,22 +72,72 @@ const ProductsList = () => {
     }
   }
 
-  const [price, setPrice] = useState("");
+  // Search Input Logic
+  let searchedProducts = [];
+  if (params.searchInput && params.categoryID === "wszystkie-kategorie") {
+    searchedProducts = products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(params.searchInput.toLowerCase()) ||
+        product.description
+          .toLowerCase()
+          .includes(params.searchInput.toLowerCase())
+    );
+    if (firstPrice || secondPrice) {
+      if (secondPrice === 0) {
+        searchedProducts = searchedProducts.filter(
+          (product) => product.price.raw >= firstPrice
+        );
+      } else {
+        searchedProducts = searchedProducts.filter(
+          (product) =>
+            product.price.raw >= firstPrice && product.price.raw <= secondPrice
+        );
+      }
+    }
+  } else if (params.searchInput) {
+    searchedProducts = categoryProducts.filter(
+      (product) =>
+        product.name.toLowerCase().includes(params.searchInput.toLowerCase()) ||
+        product.description
+          .toLowerCase()
+          .includes(params.searchInput.toLowerCase())
+    );
+    if (firstPrice || secondPrice) {
+      if (secondPrice === 0) {
+        searchedProducts = searchedProducts.filter(
+          (product) => product.price.raw >= firstPrice
+        );
+      } else {
+        searchedProducts = searchedProducts.filter(
+          (product) =>
+            product.price.raw >= firstPrice && product.price.raw <= secondPrice
+        );
+      }
+    }
+  }
 
   const submitPriceHandler = (e) => {
     e.preventDefault();
-    if (!priceFrom.current.value || !priceTo.current.value) {
-      // Error handling
-      return;
-    }
-    if (priceFrom.current.value > priceTo.current.value) {
-      // Error handling
-      return;
-    }
 
-    navigate(
-      `?price_to=${priceTo.current.value}&price_from=${priceFrom.current.value}`
-    );
+    if (!priceFrom.current.value && !priceTo.current.value) {
+      // Error handling
+      navigate(`?`);
+    }
+    if (!priceTo.current.value) {
+      navigate(`?&price_from=${priceFrom.current.value}`);
+    }
+    if (!priceFrom.current.value) {
+      navigate(`?price_to=${priceTo.current.value}`);
+    }
+    if (priceFrom.current.value && priceTo.current.value) {
+      if (priceFrom.current.value > priceTo.current.value) {
+        // Error handling
+        return;
+      }
+      navigate(
+        `?price_to=${priceTo.current.value}&price_from=${priceFrom.current.value}`
+      );
+    }
   };
 
   const handleChange = (event) => {
@@ -110,14 +165,16 @@ const ProductsList = () => {
     }
   };
 
-  console.log(categoryProducts.length);
-
   return (
     <main className={classes.main}>
       <Outlet />
       <article className={classes["products"]}>
         <div className={classes["products-header"]}>
-          <h1>{category?.name}</h1>
+          <h1>
+            {params.searchInput
+              ? `Wyniki wyszukiwania dla: ${params.searchInput}`
+              : category?.name}
+          </h1>
           <div className={classes["products-filters"]}>
             <form onSubmit={submitPriceHandler}>
               <div className={classes["products-filters__price"]}>
@@ -152,7 +209,7 @@ const ProductsList = () => {
                     id="min"
                     min={0}
                     ref={priceFrom}
-                    placeholder="OD"
+                    placeholder="Od"
                   />
                   <span>-</span>
                   <input
@@ -160,7 +217,7 @@ const ProductsList = () => {
                     id="max"
                     min={0}
                     ref={priceTo}
-                    placeholder="DO"
+                    placeholder="Do"
                   />
                 </section>
               </div>
@@ -169,9 +226,17 @@ const ProductsList = () => {
           </div>
         </div>
         <section className={classes["products-list"]}>
-          {firstPrice || secondPrice ? (
+          {params.searchInput ? (
+            searchedProducts.length ? (
+              searchedProducts.map((item) => (
+                <ItemCard product={item} key={item.id} />
+              ))
+            ) : (
+              <Nothing />
+            )
+          ) : firstPrice || secondPrice ? (
             !filteredProducts.length ? (
-              <Nothing text={"Nie ma żadnych produktów w tym przedziale"} />
+              <Nothing />
             ) : (
               filteredProducts.map((item) => (
                 <ItemCard product={item} key={item.id} />
@@ -184,11 +249,10 @@ const ProductsList = () => {
               <ItemCard product={item} key={item.id} />
             ))
           )}
+
           {!firstPrice && !secondPrice
             ? !categoryProducts.length &&
-              params.categoryID !== "wszystkie-kategorie" && (
-                <Nothing text={"Nie ma żadnych produktów w tej kategorii"} />
-              )
+              params.categoryID !== "wszystkie-kategorie" && <Nothing />
             : ""}
         </section>
       </article>

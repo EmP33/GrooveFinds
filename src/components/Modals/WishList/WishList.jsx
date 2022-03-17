@@ -26,6 +26,8 @@ const WishList = () => {
     link = location.pathname.slice(0, location.pathname.length - 9);
   } else if (location.pathname.includes("help/")) {
     link = location.pathname.slice(0, location.pathname.length - 9);
+  } else if (location.pathname.includes("search/")) {
+    link = location.pathname.slice(0, location.pathname.length - 9);
   }
 
   let wishProducts = [];
@@ -64,7 +66,9 @@ const WishList = () => {
             <h1>Lista życzeń</h1>
             <ul className={classes["wishlist__products-list"]}>
               {wishlist.length
-                ? wishProducts.map((product) => <ItemCard product={product} />)
+                ? wishProducts.map((product) => (
+                    <ItemCard product={product} key={product.id} />
+                  ))
                 : ""}
               {!wishlist.length && <h5>Nic tu nie ma :(</h5>}
             </ul>
