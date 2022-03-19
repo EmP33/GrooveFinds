@@ -115,16 +115,27 @@ const ProductDetail = () => {
               <button className={classes["details-actions--btn-buy"]}>
                 Kup
               </button>
-              <button
-                className={classes["details-actions--btn-cart"]}
-                onClick={setIsInCartHandler}
-              >
-                {sendingStatus && (
-                  <RiLoader3Fill className={classes.spinning} />
-                )}
-                {isInCart && !sendingStatus && <IoCheckmarkOutline />}
-                {!isInCart && !sendingStatus && <IoCartOutline />}
-              </button>
+              {sendingStatus && (
+                <button
+                  className={classes["details-actions--btn-cart"]}
+                  onClick={setIsInCartHandler}
+                  disabled
+                >
+                  <RiLoader3Fill className={classes.spinning} disabled />
+                </button>
+              )}
+              {!sendingStatus && (
+                <button
+                  className={classes["details-actions--btn-cart"]}
+                  onClick={setIsInCartHandler}
+                >
+                  {sendingStatus && (
+                    <RiLoader3Fill className={classes.spinning} disabled />
+                  )}
+                  {isInCart && !sendingStatus && <IoCheckmarkOutline />}
+                  {!isInCart && !sendingStatus && <IoCartOutline />}
+                </button>
+              )}
             </div>
             <button
               className={classes["details-btn-wishlist"]}

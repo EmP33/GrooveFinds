@@ -1,13 +1,14 @@
 import React from "react";
-
 import classes from "./Cart.module.scss";
+import logo from "../../assets/logo.png";
 
 import CartItem from "./CartItem/CartItem";
 import EmptyCart from "./EmptyCart/EmptyCart";
 import CartBackdrop from "./CartBackdrop";
+
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
+
+import { Link, useNavigate, Outlet } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
@@ -17,6 +18,7 @@ const Cart = () => {
 
   return (
     <CartBackdrop>
+      <Outlet />
       <div className={classes.cart}>
         <section className={classes["order-section"]}>
           <div className={classes["order-section__header"]}>
@@ -27,7 +29,7 @@ const Cart = () => {
             <span>{cart.total_items ? cart.total_items : 0} rzeczy</span>
           </div>
           <div className={classes["order-section__list"]}>
-            {cart["line_items"] &&
+            {cart["line_items"]?.length &&
               cart["line_items"].map((item) => (
                 <CartItem item={item} key={item.id} />
               ))}

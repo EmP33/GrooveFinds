@@ -145,6 +145,8 @@
       grid-template-columns: repeat(2, max-content);
     }
     @media only screen and (max-width: 25em) {
+      column-gap: 0;
+      width: 100%;
       grid-template-columns: repeat(1, max-content);
     }
   }

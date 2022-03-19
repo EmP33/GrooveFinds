@@ -81,12 +81,12 @@ const ItemCard = ({ product }) => {
         </div>
         <div className={classes["card-content"]}>
           <span className={classes.price}>{product.price.raw} zł</span>
-          <div className={classes["discount-wrapper"]}>
+          {/* <div className={classes["discount-wrapper"]}>
             <span className={classes["discount-price"]}>
               {(product.price.raw * 1.1).toFixed(2)} zł
             </span>{" "}
             <span className={classes["discount-badge"]}>-10%</span>
-          </div>
+          </div> */}
           <Link to={`product/${product.id}`}>
             <h3>{product.name}</h3>
           </Link>

@@ -108,6 +108,7 @@
 
   &__products {
     padding: 2rem;
+    display: grid;
 
     @media only screen and (max-width: 25em) {
       padding: 1rem;
@@ -131,12 +132,6 @@
       max-height: 27rem;
       overflow: auto;
 
-      & h5 {
-        font-size: 2.5rem;
-        color: var(--color-grey-2);
-        margin: 3rem 0 0 0;
-      }
-
       @media only screen and (max-width: 106.25em) {
         grid-template-columns: repeat(3, max-content);
       }
@@ -144,16 +139,27 @@
         grid-template-columns: repeat(3, max-content);
       }
       @media only screen and (max-width: 50em) {
+        width: 500%;
         max-height: 80vh;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
       }
       @media only screen and (max-width: 43.75em) {
         grid-template-columns: repeat(2, max-content);
       }
       @media only screen and (max-width: 37.5em) {
-        max-height: 50vh;
+        max-height: 75vh;
       }
       @media only screen and (max-width: 25em) {
         grid-template-columns: max-content;
+      }
+
+      & h5 {
+        font-size: 2.5rem;
+        color: var(--color-grey-2);
+        margin: 0;
       }
     }
   }

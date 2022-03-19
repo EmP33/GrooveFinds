@@ -8,6 +8,7 @@ import { RiLoader3Fill } from "react-icons/ri";
 
 import { useDispatch } from "react-redux";
 import { updateCartData, removeFromCartData } from "../../../store/userSlice";
+import { Link } from "react-router-dom";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const CartItem = ({ item }) => {
     <div styleName={itemClass}>
       {<img src={item.image.url} alt="Icon" />}
       <div styleName={"itemName"}>
-        <h5>{item.name}</h5>
+        <Link to={`/cart/${item.product_id}`}>{item.name}</Link>
       </div>
       <div styleName={"itemCounter"}>
         <span>

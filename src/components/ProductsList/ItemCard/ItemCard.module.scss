@@ -6,8 +6,8 @@
   margin: 0 auto;
 
   @media only screen and (max-width: 25em) {
-    width: 27.5rem;
-    height: 12rem;
+    width: 95vw;
+    height: 17.5rem;
     display: grid;
     grid-template-columns: max-content 1fr;
     border-bottom: 1px solid var(--color-grey-4);
@@ -20,8 +20,8 @@
     overflow: hidden;
 
     @media only screen and (max-width: 25em) {
-      width: 10rem;
-      height: 10rem;
+      width: 15rem;
+      height: 15rem;
     }
 
     .card-backdrop {
@@ -34,8 +34,8 @@
       transition: all 0.2s linear;
 
       @media only screen and (max-width: 25em) {
-        width: 10rem;
-        height: 10rem;
+        width: 15rem;
+        height: 15rem;
       }
 
       & > button {
@@ -72,8 +72,8 @@
       padding: 0.5rem;
 
       @media only screen and (max-width: 25em) {
-        width: 10rem;
-        height: 10rem;
+        width: 15rem;
+        height: 15rem;
       }
 
       & > button {
@@ -140,8 +140,8 @@
       object-fit: contain;
 
       @media only screen and (max-width: 25em) {
-        width: 10rem;
-        height: 10rem;
+        width: 15rem;
+        height: 15rem;
         object-fit: contain;
       }
     }
@@ -169,6 +169,9 @@
         font-size: 1rem;
         margin-top: 0.5rem;
         text-align: justify;
+        @media only screen and (max-width: 25em) {
+          font-size: 1.2rem;
+        }
       }
 
       &:hover {
@@ -180,6 +183,10 @@
       display: block;
       font-weight: 600;
       color: var(--color-grey-2);
+
+      @media only screen and (max-width: 25em) {
+        font-size: 2rem;
+      }
     }
 
     .discount-wrapper {

@@ -46,12 +46,13 @@
     }
     @media only screen and (max-width: 31.25em) {
       justify-items: center;
-      grid-template-columns: 1fr;
+      grid-column-gap: 2.5rem;
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .wishButton {
       @media only screen and (max-width: 31.25em) {
-        display: none;
+        font-size: 1.1rem;
       }
     }
 
