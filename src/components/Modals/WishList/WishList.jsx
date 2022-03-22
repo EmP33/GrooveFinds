@@ -13,7 +13,10 @@ import { useSelector } from "react-redux";
 
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
+import { useTranslation } from "react-i18next";
+
 const WishList = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const products = useSelector((state) => state.products.products);
@@ -63,7 +66,7 @@ const WishList = () => {
             <h3>Jan Kowalski</h3>
           </section> */}
           <section className={classes["wishlist__products"]}>
-            <h1>Lista życzeń</h1>
+            <h1>{t("wishlist")}</h1>
             <ul className={classes["wishlist__products-list"]}>
               {wishlist.length
                 ? wishProducts.map((product) => (

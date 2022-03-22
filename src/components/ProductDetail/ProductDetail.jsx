@@ -5,13 +5,13 @@ import classes from "./ProductDetail.module.scss";
 
 import {
   IoStar,
-  IoCartOutline,
   IoHeartOutline,
   IoHeart,
   IoClose,
   IoCheckmarkOutline,
 } from "react-icons/io5";
 import { RiLoader3Fill } from "react-icons/ri";
+import { BsBag } from "react-icons/bs";
 
 import { useSelector, useDispatch } from "react-redux";
 import { addCartData, userActions } from "../../store/userSlice";
@@ -21,7 +21,10 @@ import ProductSlider from "./ProductSlider";
 
 import Modal from "@mui/material/Modal";
 
+import { useTranslation } from "react-i18next";
+
 const ProductDetail = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
@@ -113,7 +116,7 @@ const ProductDetail = () => {
 
             <div className={classes["details-actions"]}>
               <button className={classes["details-actions--btn-buy"]}>
-                Kup
+                {t("buy")}
               </button>
               {sendingStatus && (
                 <button
@@ -133,7 +136,7 @@ const ProductDetail = () => {
                     <RiLoader3Fill className={classes.spinning} disabled />
                   )}
                   {isInCart && !sendingStatus && <IoCheckmarkOutline />}
-                  {!isInCart && !sendingStatus && <IoCartOutline />}
+                  {!isInCart && !sendingStatus && <BsBag />}
                 </button>
               )}
             </div>
@@ -146,14 +149,14 @@ const ProductDetail = () => {
               ) : (
                 <IoHeart className={classes["btn-wishlist__icon"]} />
               )}
-              Dodaj do listy życzeń
+              {t("add_to_wishlist")}
             </button>
             <div className={classes["details-desc"]}>
-              <h4>Opis</h4>
+              <h4>{t("description")}</h4>
               <p dangerouslySetInnerHTML={{ __html: product.description }}></p>
             </div>
             <button className={classes["details-report"]}>
-              Zgłoś problem z produktem
+              {t("report_problem")}
             </button>
           </div>
         </Modal>

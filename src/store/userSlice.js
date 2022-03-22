@@ -8,6 +8,8 @@ const initialState = {
   wishlist: [],
   sendingStatus: false,
   updateStatus: false,
+  checkout: "",
+  order: "",
 };
 
 const userSlice = createSlice({
@@ -66,6 +68,22 @@ export const removeFromCartData = (productId) => {
     await sendRequest();
   };
 };
+
+// export const handleCaptureCheckout = (checkoutTokenId, newOrder) => {
+//   return async (dispatch) => {
+//     try {
+//       const incomingOrder = await commerce.checkout.capture(
+//         checkoutTokenId,
+//         newOrder
+//       );
+//       setOrder(incomingOrder);
+//       console.log("tutaj");
+//       refreshCart();
+//     } catch (err) {
+//       setErrorMessage(err.data.error.message);
+//     }
+//   };
+// };
 
 export const userActions = userSlice.actions;
 export default userSlice;

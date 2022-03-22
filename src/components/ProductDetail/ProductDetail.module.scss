@@ -165,8 +165,12 @@
       }
     }
     &--btn-cart {
-      font-size: 3.75rem;
+      height: 4rem;
       background: none;
+
+      & svg {
+        font-size: 3rem;
+      }
 
       &:hover {
         border: 1px solid var(--color-grey-4);

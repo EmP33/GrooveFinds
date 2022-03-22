@@ -8,16 +8,18 @@ import ShopBlock from "../ShopItems/ShopBlock/ShopBlock";
 
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const { outerWidth } = window;
+  const { t } = useTranslation();
   const category = useSelector((state) => state.products.categories);
 
   return (
     <main className={classes.main}>
       <Outlet />
       <PageWidthPlaceholder />
-      <Slider title={"Zobacz nasze Bestsellery"} />
+      <Slider title={t("bestsellers")} />
       <section className={classes["categories-section"]}>
         <ShopBlock
           category={category[Math.floor(Math.random() * category.length)]}
@@ -29,7 +31,7 @@ const Home = () => {
           <CategoryPlaceholder />
         ) : null}
       </section>
-      <Slider title={"Okazje"} />
+      <Slider title={t("occasions")} />
       <section className={classes["categories-section"]}>
         <ShopBlock
           category={category[Math.floor(Math.random() * category.length)]}

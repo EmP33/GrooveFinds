@@ -3,13 +3,13 @@ import React from "react";
 import classes from "./ItemCard.module.scss";
 
 import {
-  IoCartOutline,
   IoHeartOutline,
   IoEllipsisHorizontal,
   IoHeart,
   IoCheckmarkOutline,
 } from "react-icons/io5";
 import { RiLoader3Fill } from "react-icons/ri";
+import { BsBag } from "react-icons/bs";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -56,13 +56,13 @@ const ItemCard = ({ product }) => {
               <button onClick={addCartDataHandler} disabled>
                 {sendingStatus && <RiLoader3Fill className="spinning" />}
                 {isInCart && !sendingStatus && <IoCheckmarkOutline />}
-                {!isInCart && !sendingStatus && <IoCartOutline />}
+                {!isInCart && !sendingStatus && <BsBag />}
               </button>
             ) : (
               <button onClick={addCartDataHandler}>
                 {sendingStatus && <RiLoader3Fill className="spinning" />}
                 {isInCart && !sendingStatus && <IoCheckmarkOutline />}
-                {!isInCart && !sendingStatus && <IoCartOutline />}
+                {!isInCart && !sendingStatus && <BsBag />}
               </button>
             )}
             <button onClick={addFavoriteHandler}>

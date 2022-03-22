@@ -11,10 +11,18 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const cart = useSelector((state) => state.user.cart);
+
+  const goToPaymentHandler = () => {
+    if (cart?.total_items) {
+      navigate("/checkout");
+    }
+  };
 
   return (
     <CartBackdrop>
@@ -25,44 +33,43 @@ const Cart = () => {
             <Link to="/home" className={classes["order-section__header-logo"]}>
               <img src={logo} alt="Logo" />
             </Link>
-            <h2>Twoje zamówienia</h2>
-            <span>{cart.total_items ? cart.total_items : 0} rzeczy</span>
+            <h2>{t("your_orders")}</h2>
+            <span>
+              {cart.total_items ? cart.total_items : 0} {t("numb_of_items")}
+            </span>
           </div>
           <div className={classes["order-section__list"]}>
-            {cart["line_items"]?.length &&
+            {cart["line_items"]?.length ? (
               cart["line_items"].map((item) => (
                 <CartItem item={item} key={item.id} />
-              ))}
-            {!cart["line_items"]?.length && <EmptyCart />}
+              ))
+            ) : (
+              <EmptyCart />
+            )}
           </div>
           <div className={classes["order-section__footer"]}>
             <button onClick={() => navigate("/home")}>
               <BsArrowLeft className={classes["backIcon"]} />
-              Powrót do sklepu
+              {t("back_to_shop")}
             </button>
           </div>
         </section>
         <section className={classes["payments-section"]}>
           <div className={classes["payments-section__results"]}>
-            <h3 className={classes["results-header"]}>Podsumowanie</h3>
+            <h3 className={classes["results-header"]}>{t("summary")}</h3>
             <span className={classes["results-qty"]}>
-              {cart.total_items ? cart.total_items : 0} rzeczy
+              {cart.total_items ? cart.total_items : 0} {t("numb_of_items")}
             </span>
             <span className={classes["results-price"]}>
               {cart.subtotal ? cart.subtotal.raw : 0} zł
             </span>
           </div>
-          <div className={classes["payments-section__gift"]}>
-            <h5>Kod podarunkowy</h5>
-            <input type="text" placeholder="Wpisz kod podarunkowy" />
-            <button className={classes["gift-button"]}>
-              <BsArrowRight />
-            </button>
-          </div>
           <div className={classes["payments-section__summary"]}>
-            <h6>Cena całkowita</h6>
+            <h6>{t("total_price")}</h6>
             <span>{cart.subtotal ? cart.subtotal.raw : 0} zł</span>
-            <button>Przejdź do płatności</button>
+            <button disabled={!cart?.total_items} onClick={goToPaymentHandler}>
+              {t("go_to_checkout")}
+            </button>
           </div>
         </section>
       </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./HelpSection.module.scss";
 
-import { TextField } from "@mui/material";
-import { ImSearch } from "react-icons/im";
+import { useTranslation } from "react-i18next";
+
 import {
   IoPersonOutline,
   IoHomeOutline,
@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
 const HelpSection = () => {
+  const { t } = useTranslation();
   const scrollToUpPageHandler = () => {
     window.scrollTo(0, 0);
   };
@@ -23,16 +24,16 @@ const HelpSection = () => {
       <Outlet />
       <main className={classes["main"]}>
         <section className={classes["main-header"]}>
-          <h1>Centrum Pomocy GrooveFinds</h1>
+          <h1>{t("web_help_center")}</h1>
         </section>
         <section className={classes["main-help"]}>
           <div className={classes["main-help__block"]}>
             <IoPersonOutline className={classes["block-icon"]} />
             <div>
-              <h2>Użytkownicy</h2>
+              <h2>{t("users")}</h2>
               <ul>
                 <Link to="/help/privacy" onClick={scrollToUpPageHandler}>
-                  <li>Polityka prywatności</li>
+                  <li>{t("cookie_preferences")}</li>
                 </Link>
               </ul>
             </div>
@@ -40,13 +41,13 @@ const HelpSection = () => {
           <div className={classes["main-help__block"]}>
             <IoHomeOutline className={classes["block-icon"]} />
             <div>
-              <h2>Dostawa i płatności</h2>
+              <h2>{t("delivery_and_payment")}</h2>
               <ul>
                 <Link to="/help/payments" onClick={scrollToUpPageHandler}>
-                  <li>Sposoby płatności</li>
+                  <li>{t("payment_methods")}</li>
                 </Link>
                 <Link to="/help/shipping" onClick={scrollToUpPageHandler}>
-                  <li>Realizacja zamówień i dostawa</li>
+                  <li>{t("order_processing")}</li>
                 </Link>
               </ul>
             </div>
@@ -54,13 +55,13 @@ const HelpSection = () => {
           <div className={classes["main-help__block"]}>
             <IoClipboardOutline className={classes["block-icon"]} />
             <div>
-              <h2>Regulamin i kontakt</h2>
+              <h2>{t("regulations_and_contact")}</h2>
               <ul>
                 <Link to="/help/regulations" onClick={scrollToUpPageHandler}>
-                  <li>Regulamin strony</li>
+                  <li>{t("web_regulations")}</li>
                 </Link>
                 <Link to="/help/contact" onClick={scrollToUpPageHandler}>
-                  <li>Kontakt</li>
+                  <li>{t("contact")}</li>
                 </Link>
               </ul>
             </div>

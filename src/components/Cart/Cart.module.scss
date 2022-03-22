@@ -166,55 +166,6 @@
       }
     }
 
-    &__gift {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      @media only screen and (max-width: 62.5em) {
-        margin-bottom: 1rem;
-      }
-      h5 {
-        font-size: 1.4rem;
-        margin: 0;
-        padding: 2rem 0 2rem 0;
-      }
-      input {
-        width: 80%;
-        height: 3rem;
-        padding: 1rem 0 1rem 0.5rem;
-        font-size: 1.1rem;
-        outline: none;
-        border: 1px solid var(--color-grey-2);
-
-        &::placeholder {
-          color: var(--color-grey-1);
-        }
-      }
-      .gift-button {
-        position: absolute;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        left: 71%;
-        bottom: 0;
-        width: 3rem;
-        height: 3rem;
-        border: none;
-
-        border: 1px solid var(--color-grey-2);
-        background: var(--color-white);
-        font-size: 1.6rem;
-        color: var(--color-grey-2);
-
-        @media only screen and (max-width: 62.5em) {
-          width: 3rem;
-          height: 3rem;
-          left: 75%;
-        }
-      }
-    }
-
     &__summary {
       border-top: 1px solid #646464;
       padding-top: 1rem;
@@ -238,12 +189,18 @@
         background: rgba(61, 61, 61, 1);
         color: var(--color-white);
         font-size: 1.4rem;
+        text-align: center;
         font-weight: bold;
         border: none;
         cursor: pointer;
 
         &:hover {
           background: rgba(61, 61, 61, 0.9);
+        }
+
+        &:disabled {
+          background: rgba(61, 61, 61, 0.5);
+          cursor: no-drop;
         }
       }
     }

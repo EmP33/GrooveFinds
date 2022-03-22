@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import i18next from "i18next";
 import logo from "../../assets/logo.png";
 
 import classes from "./Navbar.module.scss";
@@ -8,11 +8,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { ImSearch } from "react-icons/im";
 import {
-  IoCartOutline,
   IoHeartOutline,
   IoMenu,
   IoChatboxEllipsesOutline,
 } from "react-icons/io5";
+import { BsBag } from "react-icons/bs";
+
 import {
   TextField,
   FormControl,
@@ -20,18 +21,36 @@ import {
   MenuItem,
   OutlinedInput,
 } from "@material-ui/core";
-
 import { RiLoader3Fill } from "react-icons/ri";
+
+import { useTranslation } from "react-i18next";
+import Cookies from "js-cookie";
 
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/modalSlice";
 
 // import UserMenu from "../Modals/UserMenu/UserMenu";
 
+const languages = [
+  {
+    code: "en",
+    name: "English",
+    country_currency: "USD",
+  },
+  {
+    code: "pl",
+    name: "Polski",
+    country_currency: "PLN",
+  },
+];
+
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
+  const currentLanguageCode = Cookies.get("i18next") || "en";
 
   const categories = useSelector((state) => state.products.categories);
   const cart = useSelector((state) => state.user.cart);
@@ -53,9 +72,12 @@ const Navbar = () => {
     dispatch(modalActions.toggleShowMenu());
   };
 
+  const changeLangHandler = (e) => {
+    i18next.changeLanguage(e.target.value);
+  };
+
   const submitSearchHandler = (e) => {
     e.preventDefault();
-    console.log(category, searchInput);
     navigate(`/search/${category}/${searchInput}`);
   };
 
@@ -82,7 +104,7 @@ const Navbar = () => {
             >
               {categories.map((cat) => (
                 <MenuItem key={cat.id} value={cat.slug}>
-                  {cat.name}
+                  {t(`${cat.slug}`)}
                 </MenuItem>
               ))}
             </Select>
@@ -111,7 +133,7 @@ const Navbar = () => {
               </span>
             )}
 
-            <IoCartOutline className={classes["cartIcon"]} />
+            <BsBag className={classes["cartIcon"]} />
           </Link>
         </div>
         <div className={classes["chat-wrapper"]}>
@@ -129,17 +151,28 @@ const Navbar = () => {
         </div>
         <div className={classes["navigation-actions"]}>
           <Link to={`/help`} className={classes["button-help"]}>
-            Centrum Pomocy
+            {t("help_center")}
           </Link>
-          <select className={classes["country-selector"]}>
-            <option value="pl">Polski / PLN</option>
+          <select
+            className={classes["country-selector"]}
+            onChange={changeLangHandler}
+          >
+            {languages.map((lang) => (
+              <option
+                key={lang.code}
+                value={lang.code}
+                selected={lang.code === currentLanguageCode}
+              >
+                {lang.name} / {lang.country_currency}
+              </option>
+            ))}
           </select>
           <Link
             to={`${location.pathname}/wishlist`}
             className={classes.wishButton}
           >
             <IoHeartOutline className={classes["button-icon"]} />
-            Lista życzeń
+            {t("wishlist")}
           </Link>
           {/* {<UserMenu />} */}
         </div>

@@ -8,6 +8,7 @@ import {
 
 import Main from "./pages/Main";
 import CartPage from "./pages/CartPage";
+import PaymentPage from "./pages/PaymentPage";
 import ProductsPage from "./pages/ProductsPage";
 import HelpPage from "./pages/HelpPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -82,6 +83,9 @@ const App = () => {
           <Route path={`product/:productID`} element={<ProductDetail />} />
         </Route>
         <Route path="/cart/*" element={<CartPage />}>
+          <Route path={`:productID`} element={<ProductDetail />} />
+        </Route>
+        <Route path="/checkout/*" element={<PaymentPage />}>
           <Route path={`:productID`} element={<ProductDetail />} />
         </Route>
         <Route path="/category/:categoryID/*" element={<ProductsPage />}>

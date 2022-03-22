@@ -10,10 +10,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const ShopBlock = ({ category }) => {
   const products = useSelector((state) => state.products.products);
   const isLoading = useSelector((state) => state.products.isLoading);
+  const { t } = useTranslation();
 
   let categoryProducts = [];
   if (category.slug === "wszystkie-kategorie") {
@@ -26,7 +28,7 @@ const ShopBlock = ({ category }) => {
 
   return (
     <div className={classes["shop-block"]}>
-      <h4>{category.name}</h4>
+      <h4>{t(category.slug)}</h4>
       <Swiper
         slidesPerView={2}
         spaceBetween={0}

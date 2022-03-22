@@ -152,17 +152,26 @@
 
     .select {
       width: 15rem;
+      margin: 0;
+      padding: 0;
       background-color: var(--color-white);
     }
 
     .search-bar {
       width: 100%;
+      margin: 0;
+      padding: 0;
       background-color: var(--color-white);
     }
 
     button {
       background: none;
       border: none;
+      outline: none;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: grid;
+      place-items: center;
       position: absolute;
       right: 0;
       outline: none;
@@ -181,23 +190,18 @@
     cursor: pointer;
 
     & span {
-      width: 1.3rem;
-      height: 1.3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-white);
+      font-weight: bold;
+      color: var(--color-grey-4);
+      font-size: 1.1rem;
       position: absolute;
-      right: -5px;
-      top: -5px;
-      background-color: var(--color-secondary);
-      padding: 0.2rem;
-      border-radius: 50%;
+      top: 55%;
+      left: 50%;
+      transform: translate(-55%, -50%);
     }
 
     .cartIcon {
-      width: 3rem;
-      height: 3rem;
+      width: 2.5rem;
+      height: 2.5rem;
       color: var(--color-primary);
       border-radius: 2px;
     }
@@ -226,8 +230,8 @@
     }
 
     .chatIcon {
-      width: 3rem;
-      height: 3rem;
+      width: 2.5rem;
+      height: 2.5rem;
       color: var(--color-primary);
       border: 1px solid var(--color-grey-3);
       border-radius: 2px;

@@ -1,0 +1,83 @@
+.review {
+  .result-discount {
+    color: rgb(5, 149, 0);
+    font-weight: bold;
+  }
+  .review-total {
+    @media only screen and (max-width: 62.5em) {
+      display: none;
+    }
+  }
+  &-header {
+    background: var(--color-grey-3);
+    padding: 1rem 1.5rem;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+
+    & > h3 {
+      margin: 0;
+      font-family: var(--font-header);
+    }
+
+    & > button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      border: none;
+      outline: none;
+      background: none;
+
+      .review-header__icon {
+        transform: rotate(180deg);
+      }
+      @media only screen and (min-width: 62.5em) {
+        display: none;
+      }
+    }
+  }
+
+  & .result {
+    padding: 1rem 1rem 0 1rem;
+
+    & > p {
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+
+      @media only screen and (max-width: 75em) {
+        font-size: 1.1rem;
+      }
+      @media only screen and (max-width: 62.5em) {
+        font-size: 1.3rem;
+      }
+      @media only screen and (max-width: 37.5em) {
+        font-size: 1.1rem;
+      }
+    }
+
+    .result-total {
+      border-top: var(--border-details);
+      padding: 0.5rem 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      font-family: var(--font-header);
+
+      @media only screen and (max-width: 75em) {
+        font-size: 1.4rem;
+      }
+      @media only screen and (max-width: 62.5em) {
+        font-size: 1.6rem;
+      }
+      @media only screen and (max-width: 37.5em) {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .products {
+    border-top: var(--border-details);
+    padding: 1rem 0.5rem;
+  }
+}

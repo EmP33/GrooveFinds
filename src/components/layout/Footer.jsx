@@ -4,8 +4,10 @@ import classes from "./Footer.module.scss";
 import logo from "../../assets/logo.png";
 
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const scrollToUpPageHandler = () => {
     window.scrollTo(0, 0);
   };
@@ -16,11 +18,11 @@ const Footer = () => {
         className={classes["footer__button"]}
         onClick={scrollToUpPageHandler}
       >
-        Powrót na górę strony
+        {t("back_to_top")}
       </button>
       <section className={classes["footer-content"]}>
         <div className={classes["footer-content__follow"]}>
-          <h5>Obserwuj nas</h5>
+          <h5>{t("follow_us")}</h5>
           <ul>
             <li>
               <a href="#">YouTube</a>
@@ -34,21 +36,21 @@ const Footer = () => {
           </ul>
         </div>
         <div className={classes["footer-content__payments"]}>
-          <h5>Pomoc</h5>
+          <h5>{t("help")}</h5>
           <ul>
             <li>
               <Link to="/help/payments" onClick={scrollToUpPageHandler}>
-                Metody płatności
+                {t("payment_methods")}
               </Link>
             </li>
             <li>
               <Link to="/help/shipping" onClick={scrollToUpPageHandler}>
-                Dostawa
+                {t("delivery")}
               </Link>
             </li>
             <li>
               <Link to="/help/regulations" onClick={scrollToUpPageHandler}>
-                Regulamin strony
+                {t("web_regulations")}
               </Link>
             </li>
           </ul>
@@ -59,8 +61,12 @@ const Footer = () => {
       </div>
       <section className={classes["footer-copy"]}>
         <div className={classes["footer-copy__actions"]}>
-          <Link to="/help/shipping" onClick={scrollToUpPageHandler}>Realizacja zamówień</Link>
-          <Link to="/help/privacy" onClick={scrollToUpPageHandler}>Informacje o prywatności</Link>
+          <Link to="/help/shipping" onClick={scrollToUpPageHandler}>
+            {t("order_fulfillment")}
+          </Link>
+          <Link to="/help/privacy" onClick={scrollToUpPageHandler}>
+            {t("cookie_preferences")}
+          </Link>
         </div>
         <p>&copy; 2022 GrooveFinds.com</p>
       </section>

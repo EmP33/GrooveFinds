@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-
+import { useTranslation } from "react-i18next";
 import classes from "./ProductsList.module.scss";
 
 import ItemCard from "./ItemCard/ItemCard";
@@ -16,6 +16,7 @@ import { useParams, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const ProductsList = () => {
+  const { t } = useTranslation();
   const params = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -47,7 +48,7 @@ const ProductsList = () => {
   // Filter logic
   let filteredProducts = [];
   if (firstPrice || secondPrice) {
-    if (params.categoryID === "wszystkie-kategorie") {
+    if (params.categoryID === "all-categories") {
       if (secondPrice === 0) {
         filteredProducts = products.filter(
           (product) => product.price.raw >= firstPrice
@@ -74,7 +75,7 @@ const ProductsList = () => {
 
   // Search Input Logic
   let searchedProducts = [];
-  if (params.searchInput && params.categoryID === "wszystkie-kategorie") {
+  if (params.searchInput && params.categoryID === "all-categories") {
     searchedProducts = products.filter(
       (product) =>
         product.name.toLowerCase().includes(params.searchInput.toLowerCase()) ||
@@ -172,20 +173,20 @@ const ProductsList = () => {
         <div className={classes["products-header"]}>
           <h1>
             {params.searchInput
-              ? `Wyniki wyszukiwania dla: ${params.searchInput}`
-              : category?.name}
+              ? `${t("search_results")}: ${params.searchInput}`
+              : t(`${category.slug}`)}
           </h1>
           <div className={classes["products-filters"]}>
             <form onSubmit={submitPriceHandler}>
               <div className={classes["products-filters__price"]}>
-                <h5>Cena</h5>
+                <h5>{t("price")}</h5>
 
                 <FormControl size="small">
                   <InputLabel
                     className={classes["select-label"]}
                     id="demo-simple-select-label"
                   >
-                    Cena
+                    {t("price")}
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -202,14 +203,14 @@ const ProductsList = () => {
                     <MenuItem value={125}>powyżej 125</MenuItem>
                   </Select>
                 </FormControl>
-                <span className={classes.priceDivider}>lub</span>
+                <span className={classes.priceDivider}>{t("or")}</span>
                 <section>
                   <input
                     type="number"
                     id="min"
                     min={0}
                     ref={priceFrom}
-                    placeholder="Od"
+                    placeholder={t("from")}
                   />
                   <span>-</span>
                   <input
@@ -217,11 +218,11 @@ const ProductsList = () => {
                     id="max"
                     min={0}
                     ref={priceTo}
-                    placeholder="Do"
+                    placeholder={t("to")}
                   />
                 </section>
               </div>
-              <button>Filtruj</button>
+              <button>{t("filter")}</button>
             </form>
           </div>
         </div>

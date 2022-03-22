@@ -7,8 +7,10 @@ import { modalActions } from "../../../store/modalSlice";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Menu = ({ showModal }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
   const categories = useSelector((state) => state.products.categories);
@@ -23,22 +25,22 @@ const Menu = ({ showModal }) => {
         <React.Fragment>
           <Backdrop isActive={showModal} onHideModal={hideModalHandler} />
           <menu className={showModal ? "menu menu-active" : "menu"}>
-            <h3>Przeglądaj kategorie</h3>
+            <h3>{t("browse_categories")}</h3>
             <button onClick={hideModalHandler}>&times;</button>
             <ul>
               {categories.map((category) => (
                 <Link to={`/category/${category.slug}`} key={category.id}>
-                  <li onClick={hideModalHandler}>{category.name}</li>
+                  <li onClick={hideModalHandler}>{t(`${category.slug}`)}</li>
                 </Link>
               ))}
             </ul>
-            <h3>Pomoc i ustawienia</h3>
+            <h3>{t("help_and_settings")}</h3>
             <ul>
               <Link to={`/help`}>
-                <li onClick={hideModalHandler}>Centrum Pomocy</li>
+                <li onClick={hideModalHandler}>{t("help_center")}</li>
               </Link>
               <Link to={`${location.pathname}/wishlist`}>
-                <li onClick={hideModalHandler}>Lista życzeń</li>
+                <li onClick={hideModalHandler}>{t("wishlist")}</li>
               </Link>
             </ul>
           </menu>
