@@ -5,7 +5,7 @@ import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import ItemCard from "../ItemCard/ItemCard";
+import ItemCard from "../Item/ItemCard";
 import ItemPlaceholder from "../../UI/Placeholders/ItemPlaceholder";
 
 import classes from "./Slider.module.scss";

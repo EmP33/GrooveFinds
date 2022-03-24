@@ -8,8 +8,10 @@ const initialState = {
   wishlist: [],
   sendingStatus: false,
   updateStatus: false,
-  checkout: "",
-  order: "",
+  checkout: null,
+  shippingData: null,
+  order: null,
+  errorMessage: "",
 };
 
 const userSlice = createSlice({
@@ -22,6 +24,9 @@ const userSlice = createSlice({
     setCart(state, action) {
       state.cart = action.payload;
     },
+    refreshCart(state) {
+      state.cart = [];
+    },
     changeSendingStatus(state) {
       state.sendingStatus = !state.sendingStatus;
     },
@@ -33,6 +38,18 @@ const userSlice = createSlice({
     },
     removeItemFromWishlist(state, action) {
       state.wishlist = state.wishlist.filter((item) => item !== action.payload);
+    },
+    setCheckoutToken(state, action) {
+      state.checkout = action.payload;
+    },
+    setShippingData(state, action) {
+      state.shippingData = action.payload;
+    },
+    setOrder(state, action) {
+      state.order = action.payload;
+    },
+    setErrorMessage(state, action) {
+      state.errorMessage = action.payload;
     },
   },
 });
@@ -69,21 +86,20 @@ export const removeFromCartData = (productId) => {
   };
 };
 
-// export const handleCaptureCheckout = (checkoutTokenId, newOrder) => {
-//   return async (dispatch) => {
-//     try {
-//       const incomingOrder = await commerce.checkout.capture(
-//         checkoutTokenId,
-//         newOrder
-//       );
-//       setOrder(incomingOrder);
-//       console.log("tutaj");
-//       refreshCart();
-//     } catch (err) {
-//       setErrorMessage(err.data.error.message);
-//     }
-//   };
-// };
+export const handleCaptureCheckout = (checkoutTokenId, newOrder) => {
+  return async (dispatch) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(
+        checkoutTokenId,
+        newOrder
+      );
+      dispatch(userActions.setOrder(incomingOrder));
+      dispatch(userActions.refreshCart());
+    } catch (err) {
+      dispatch(userActions.setErrorMessage(err.data.error.message));
+    }
+  };
+};
 
 export const userActions = userSlice.actions;
 export default userSlice;

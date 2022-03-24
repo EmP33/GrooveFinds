@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import classes from "./ProductsList.module.scss";
 
-import ItemCard from "./ItemCard/ItemCard";
+import ItemCard from "../ShopItems/ItemCard/ItemCard";
 import Nothing from "./Nothing/Nothing";
 
 // MUI
@@ -243,7 +243,7 @@ const ProductsList = () => {
                 <ItemCard product={item} key={item.id} />
               ))
             )
-          ) : products.length && params.categoryID === "wszystkie-kategorie" ? (
+          ) : products.length && params.categoryID === "all-categories" ? (
             products.map((item) => <ItemCard product={item} key={item.id} />)
           ) : (
             categoryProducts.map((item) => (
@@ -253,7 +253,7 @@ const ProductsList = () => {
 
           {!firstPrice && !secondPrice
             ? !categoryProducts.length &&
-              params.categoryID !== "wszystkie-kategorie" && <Nothing />
+              params.categoryID !== "all-categories" && <Nothing />
             : ""}
         </section>
       </article>

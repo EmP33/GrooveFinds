@@ -6,7 +6,7 @@ import CartItem from "./CartItem/CartItem";
 import EmptyCart from "./EmptyCart/EmptyCart";
 import CartBackdrop from "./CartBackdrop";
 
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { BsArrowLeft } from "react-icons/bs";
 
 import { Link, useNavigate, Outlet } from "react-router-dom";
 
@@ -61,12 +61,14 @@ const Cart = () => {
               {cart.total_items ? cart.total_items : 0} {t("numb_of_items")}
             </span>
             <span className={classes["results-price"]}>
-              {cart.subtotal ? cart.subtotal.raw : 0} zł
+              {cart.subtotal ? cart.subtotal.formatted_with_code : 0}
             </span>
           </div>
           <div className={classes["payments-section__summary"]}>
             <h6>{t("total_price")}</h6>
-            <span>{cart.subtotal ? cart.subtotal.raw : 0} zł</span>
+            <span>
+              {cart.subtotal ? cart.subtotal.formatted_with_code : 0}{" "}
+            </span>
             <button disabled={!cart?.total_items} onClick={goToPaymentHandler}>
               {t("go_to_checkout")}
             </button>

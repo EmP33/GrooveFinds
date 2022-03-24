@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 
 import classes from "./WishList.module.scss";
 
-import ItemCard from "./ItemCard/ItemCard";
+import ItemCard from "../../ShopItems/ItemCard/ItemCard";
 
 import Modal from "@mui/material/Modal";
 
@@ -73,7 +73,7 @@ const WishList = () => {
                     <ItemCard product={product} key={product.id} />
                   ))
                 : ""}
-              {!wishlist.length && <h5>Nic tu nie ma :(</h5>}
+              {!wishlist.length && <h5>{t("nothing-there")}</h5>}
             </ul>
           </section>
         </div>

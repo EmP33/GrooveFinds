@@ -11,20 +11,26 @@ import {
 import { RiLoader3Fill } from "react-icons/ri";
 import { BsBag } from "react-icons/bs";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addCartData, userActions } from "../../../store/userSlice";
 
 const ItemCard = ({ product }) => {
+  const location = useLocation();
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.user.cart);
-  const sendingStatus = useSelector((state) => state.user.sendingStatus);
-  const wishlist = useSelector((state) => state.user.wishlist);
 
-  const isInCart = cart.line_items
-    .map((item) => item.product_id === product.id)
-    .includes(true);
+  const cart = useSelector((state) => state.user.cart);
+  const wishlist = useSelector((state) => state.user.wishlist);
+  const sendingStatus = useSelector((state) => state.user.sendingStatus);
+  let isInCart = false;
+  let detailsPath = "";
+
+  if (!!cart.line_items) {
+    isInCart = cart.line_items
+      .map((item) => item.product_id === product.id)
+      .includes(true);
+  }
 
   const addFavoriteHandler = () => {
     if (wishlist.includes(product.id)) {
@@ -44,6 +50,12 @@ const ItemCard = ({ product }) => {
   const addCartDataHandler = () => {
     dispatch(addCartData(product.id, 1));
   };
+
+  if (location.pathname.includes("wishlist")) {
+    detailsPath = `${location.pathname}/${product.id}`;
+  } else {
+    detailsPath = `product/${product.id}`;
+  }
 
   return (
     <React.Fragment>
@@ -67,7 +79,7 @@ const ItemCard = ({ product }) => {
             <button onClick={addFavoriteHandler}>
               {wishlist.includes(product.id) ? <IoHeart /> : <IoHeartOutline />}
             </button>
-            <Link to={`product/${product.id}`}>
+            <Link to={detailsPath}>
               <IoEllipsisHorizontal />
             </Link>
           </div>
@@ -81,13 +93,13 @@ const ItemCard = ({ product }) => {
         </div>
         <div className={classes["card-content"]}>
           <span className={classes.price}>{product.price.raw} zł</span>
-          <div className={classes["discount-wrapper"]}>
+          {/* <div className={classes["discount-wrapper"]}>
             <span className={classes["discount-price"]}>
               {(product.price.raw * 1.1).toFixed(2)} zł
             </span>{" "}
             <span className={classes["discount-badge"]}>-10%</span>
-          </div>
-          <Link to={`product/${product.id}`}>
+          </div> */}
+          <Link to={detailsPath}>
             <h3>{product.name}</h3>
           </Link>
         </div>

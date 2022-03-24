@@ -9,17 +9,16 @@ const CustomSelect = ({
   shippingDestination,
   shippingDestinations,
   setShipping,
+  label,
 }) => {
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }}>
-      <InputLabel id="demo-simple-select-helper-label">
-        Shipping Country
-      </InputLabel>
+      <InputLabel id="demo-simple-select-helper-label">{label}</InputLabel>
       <Select
         labelId="demo-simple-select-helper-label"
         id="demo-simple-select-helper"
         value={shippingDestination}
-        label="Shipping Country"
+        label={label}
         onChange={(e) => setShipping(e.target.value)}
       >
         {Object.entries(shippingDestinations)

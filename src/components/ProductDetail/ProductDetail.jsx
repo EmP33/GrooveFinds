@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 import classes from "./ProductDetail.module.scss";
@@ -36,9 +36,13 @@ const ProductDetail = () => {
   const sendingStatus = useSelector((state) => state.user.sendingStatus);
   const wishlist = useSelector((state) => state.user.wishlist);
 
-  const isInCart = cart.line_items
-    .map((item) => item.product_id === product.id)
-    .includes(true);
+  let isInCart = false;
+
+  if (!!cart.line_items) {
+    isInCart = cart.line_items
+      .map((item) => item.product_id === product.id)
+      .includes(true);
+  }
 
   const toggleModalHandler = () => {
     navigate(
@@ -65,6 +69,11 @@ const ProductDetail = () => {
     // Add to localstorage functionality
     localStorage.setItem("wishlist", JSON.stringify([...wishlist, product.id]));
     dispatch(userActions.addItemToWishlist([product.id]));
+  };
+
+  const buyItemHandler = () => {
+    dispatch(addCartData(product.id));
+    navigate("/cart");
   };
 
   if (product) {
@@ -115,7 +124,10 @@ const ProductDetail = () => {
             </div>
 
             <div className={classes["details-actions"]}>
-              <button className={classes["details-actions--btn-buy"]}>
+              <button
+                className={classes["details-actions--btn-buy"]}
+                onClick={buyItemHandler}
+              >
                 {t("buy")}
               </button>
               {sendingStatus && (

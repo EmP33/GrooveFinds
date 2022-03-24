@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styles from "./CardMethod.module.scss";
+import React from "react";
+import styles from "./PaypalMethod.module.scss";
 import CSSModules from "react-css-modules";
 
 import {
@@ -8,21 +8,16 @@ import {
   ElementsConsumer,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { RiLoader3Fill } from "react-icons/ri";
 
 import { useSelector, useDispatch } from "react-redux";
-import { userActions } from "../../../../store/userSlice";
 import { handleCaptureCheckout } from "../../../../store/userSlice";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CardMethod = ({ handleBack, handleNext }) => {
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [loadingPaying, setLoadingPaying] = useState(false);
   const checkoutToken = useSelector((state) => state.user.checkout);
   const shippingData = useSelector((state) => state.user.shippingData);
 
@@ -30,7 +25,6 @@ const CardMethod = ({ handleBack, handleNext }) => {
     event.preventDefault();
 
     if (!stripe || !elements) return;
-    setLoadingPaying(true);
 
     const cardElement = elements.getElement(CardElement);
 
@@ -39,9 +33,10 @@ const CardMethod = ({ handleBack, handleNext }) => {
       card: cardElement,
     });
 
+    console.log(paymentMethod);
+
     if (error) {
       console.log(error);
-      setLoadingPaying(false);
     } else {
       const orderData = {
         line_items: checkoutToken.live.line_items,
@@ -66,22 +61,17 @@ const CardMethod = ({ handleBack, handleNext }) => {
           },
         },
       };
-
       dispatch(handleCaptureCheckout(checkoutToken.id, orderData));
-      setLoadingPaying(false);
+      // onCaptureCheckout(checkoutToken.id, orderData);
       handleNext();
     }
   };
-
   return (
-    <div styleName="card-method">
+    <div styleName="paypal-method">
       <Elements stripe={stripePromise}>
         <ElementsConsumer>
           {({ elements, stripe }) => (
             <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
-              <CardElement />
-              <br />
-              <br />
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <button
                   style={{
@@ -111,12 +101,7 @@ const CardMethod = ({ handleBack, handleNext }) => {
                   }}
                   disabled={!stripe}
                 >
-                  {loadingPaying && <RiLoader3Fill className="spinning" />}
-                  {!loadingPaying && (
-                    <>
-                      {t("pay")} {checkoutToken.live.total.formatted_with_code}
-                    </>
-                  )}
+                  {t("pay")} {checkoutToken.live.total.formatted_with_code}
                 </button>
               </div>
             </form>

@@ -1,37 +1,41 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Payment.module.scss";
 import CSSModules from "react-css-modules";
+import styles from "./Payment.module.scss";
 
 import logo from "../../assets/logo.png";
 
+// COMPONENTS
 import PaymentBackdrop from "./PaymentBackdrop";
 import Review from "./Review/Review";
+import Shipping from "./Shipping/Shipping";
+import PaymentDetail from "./PaymentDetail/PaymentDetail";
+import Loading from "../UI/Loading/Loading";
+import Confirmation from "./Confirmation/Confirmation";
 
+// MUI
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
-import Shipping from "./Shipping/Shipping";
-import PaymentDetail from "./PaymentDetail/PaymentDetail";
-import Loading from "../UI/Loading/Loading";
-
+// ICONS
 import { BsBag } from "react-icons/bs";
 
+// OTHER
 import { commerce } from "../../lib/commerce";
-
 import { Link, useNavigate, Outlet } from "react-router-dom";
-
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { userActions } from "../../store/userSlice";
 import { useTranslation } from "react-i18next";
-
-const steps = ["Shipping address", "Payment details"];
 
 const Cart = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const cart = useSelector((state) => state.user.cart);
-  const [checkoutToken, setCheckoutToken] = useState(null);
-  const [shippingData, setShippingData] = useState({});
+  const checkoutToken = useSelector((state) => state.user.checkout);
+
+  const steps = [t("shipping-address"), t("payment-details")];
+
   const [activeStep, setActiveStep] = useState(0);
   const [loadingNextStep, setLoadingNextStep] = useState(false);
 
@@ -41,7 +45,7 @@ const Cart = () => {
         const token = await commerce.checkout.generateToken(cart.id, {
           type: "cart",
         });
-        setCheckoutToken(token);
+        dispatch(userActions.setCheckoutToken(token));
       } catch (err) {}
     };
 
@@ -64,10 +68,14 @@ const Cart = () => {
       region: data.shippingSubdivision,
     });
 
-    setShippingData(data);
+    dispatch(userActions.setShippingData(data));
     handleNext();
     setLoadingNextStep(false);
   };
+
+  if (!cart.total_items) {
+    navigate("/home", { replace: true });
+  }
 
   if (loadingNextStep || !checkoutToken) {
     return <Loading />;
@@ -80,46 +88,49 @@ const Cart = () => {
         <Link to="/home" styleName="payment-navbar__header-logo">
           <img src={logo} alt="Logo" />
         </Link>
-        <div styleName="cart-wrapper">
-          <Link to="/cart">
-            <span>{cart.total_items}</span>
-            <BsBag styleName="cartIcon" />
-          </Link>
-        </div>
-      </div>
-      <h1 styleName="payment-header">Checkout</h1>
-      <div styleName="payment">
-        <section styleName="content-section">
-          <div styleName="content-section__form-wrapper">
-            <Stepper activeStep={activeStep} styleName="stepper">
-              {steps.map((step) => (
-                <Step key={step}>
-                  <StepLabel styleName="step-label">{step}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-
-            {activeStep === 0 && checkoutToken && !loadingNextStep && (
-              <Shipping
-                checkoutToken={checkoutToken}
-                getShippingData={getShippingDataHandler}
-              />
-            )}
-            {activeStep === 1 && !loadingNextStep && (
-              <PaymentDetail
-                setCheckoutToken={setCheckoutToken}
-                shippingData={shippingData}
-                checkoutToken={checkoutToken}
-                handleBack={handleBack}
-                handleNext={handleNext}
-              />
-            )}
+        {activeStep === 2 ? (
+          ""
+        ) : (
+          <div styleName="cart-wrapper">
+            <Link to="/cart">
+              <span>{cart.total_items}</span>
+              <BsBag styleName="cartIcon" />
+            </Link>
           </div>
-        </section>
-        <section styleName="review-section">
-          <Review checkoutToken={checkoutToken} />
-        </section>
+        )}
       </div>
+      {activeStep === 2 && !loadingNextStep && <Confirmation />}
+      {activeStep !== 2 && (
+        <>
+          <h1 styleName="payment-header">{t("checkout")}</h1>
+          <div styleName="payment">
+            <section styleName="content-section">
+              <div styleName="content-section__form-wrapper">
+                <Stepper activeStep={activeStep} styleName="stepper">
+                  {steps.map((step) => (
+                    <Step key={step}>
+                      <StepLabel styleName="step-label">{step}</StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+
+                {activeStep === 0 && checkoutToken && !loadingNextStep && (
+                  <Shipping getShippingData={getShippingDataHandler} />
+                )}
+                {activeStep === 1 && !loadingNextStep && (
+                  <PaymentDetail
+                    handleBack={handleBack}
+                    handleNext={handleNext}
+                  />
+                )}
+              </div>
+            </section>
+            <section styleName="review-section">
+              {activeStep === 2 ? "" : <Review />}
+            </section>
+          </div>
+        </>
+      )}
     </PaymentBackdrop>
   );
 };

@@ -1,7 +1,8 @@
-import React, { useCallback } from "react";
+import React from "react";
 
 import classes from "./ShopBlock.module.scss";
-import ItemCard from "../ItemCard/ItemCard";
+
+import ItemCard from "../Item/ItemCard";
 import ItemPlaceholder from "../../UI/Placeholders/ItemPlaceholder";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -18,7 +19,7 @@ const ShopBlock = ({ category }) => {
   const { t } = useTranslation();
 
   let categoryProducts = [];
-  if (category.slug === "wszystkie-kategorie") {
+  if (category.slug === "all-categories") {
     categoryProducts = products;
   } else {
     categoryProducts = products.filter((product) =>

@@ -2,27 +2,31 @@ import React, { useState, useRef, useEffect } from "react";
 import CSSModules from "react-css-modules";
 import styles from "./PaymentDetail.module.scss";
 
+// ICONS
 import { BsArrowRight, BsPaypal } from "react-icons/bs";
 import { AiFillCreditCard, AiOutlineCheck } from "react-icons/ai";
 import { RiLoader3Fill } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
 
+// COMPONENTS
 import CardMethod from "./PaymentMethods/CardMethod";
 
+// MUI
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 
+// OTHER
 import { commerce } from "../../../lib/commerce";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../../store/userSlice";
+import PaypalMethod from "./PaymentMethods/PaypalMethod";
 
-const PaymentDetail = ({
-  handleNext,
-  handleBack,
-  checkoutToken,
-  shippingData,
-  setCheckoutToken,
-}) => {
+const PaymentDetail = ({ handleNext, handleBack, setLoadingNextStep }) => {
+  const dispatch = useDispatch();
+  const checkoutToken = useSelector((state) => state.user.checkout);
+  const shippingData = useSelector((state) => state.user.shippingData);
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [loadingGiftCode, setLoadingGiftCode] = useState(false);
   const giftRef = useRef();
@@ -43,13 +47,13 @@ const PaymentDetail = ({
 
     setLoadingGiftCode(false);
     if (checkoutDiscount.valid) {
-      setCheckoutToken(checkoutDiscount);
+      dispatch(userActions.setCheckoutToken(checkoutDiscount));
     }
   };
 
   const cardLabel = (
     <>
-      <AiFillCreditCard /> Credit or debit card
+      <AiFillCreditCard /> {t("credit-or-debit-card")}
     </>
   );
   const paypalLabel = (
@@ -64,7 +68,7 @@ const PaymentDetail = ({
         const token = await commerce.checkout.getToken(checkoutToken.id, {
           type: "cart",
         });
-        setCheckoutToken(token);
+        dispatch(userActions.setCheckoutToken(token));
       } catch (err) {}
     };
 
@@ -73,7 +77,7 @@ const PaymentDetail = ({
 
   return (
     <>
-      <h2>Order Summary</h2>
+      <h2>{t("payment-details")}</h2>
       <div styleName="shipping-data">
         <p>
           {shippingData.name} {shippingData.surname}
@@ -106,7 +110,7 @@ const PaymentDetail = ({
           </div>
         </div>
         <div styleName="payment-options__choice">
-          <h4>CHOOSE PAYMENT METHOD</h4>
+          <h4>{t("choose-payment-method")}</h4>
           <FormControl
             onChange={changePaymentMethodHandler}
             styleName="choice-form"
@@ -116,6 +120,7 @@ const PaymentDetail = ({
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
               styleName="choice-group"
+              defaultValue="card"
             >
               <FormControlLabel
                 value="card"
@@ -134,22 +139,13 @@ const PaymentDetail = ({
         </div>
         <div>
           {paymentMethod === "card" && (
-            <CardMethod
-              handleBack={handleBack}
-              checkoutToken={checkoutToken}
-              shippingData={shippingData}
-              handleNext={handleNext}
-            />
+            <CardMethod handleBack={handleBack} handleNext={handleNext} />
           )}
-          {paymentMethod === "paypal" && <p>Paypal</p>}
+          {paymentMethod === "paypal" && (
+            <PaypalMethod handleBack={handleBack} handleNext={handleNext} />
+          )}
         </div>
       </div>
-      {/* <button styleName="submit-button" onClick={handleBack}>
-        Back
-      </button>
-      <button styleName="submit-button" onClick={handleNext}>
-        Pay
-      </button> */}
     </>
   );
 };

@@ -156,13 +156,10 @@ const Navbar = () => {
           <select
             className={classes["country-selector"]}
             onChange={changeLangHandler}
+            value={currentLanguageCode}
           >
             {languages.map((lang) => (
-              <option
-                key={lang.code}
-                value={lang.code}
-                selected={lang.code === currentLanguageCode}
-              >
+              <option key={lang.code} value={lang.code}>
                 {lang.name} / {lang.country_currency}
               </option>
             ))}

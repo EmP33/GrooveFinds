@@ -1,0 +1,35 @@
+.confirmationWrapper {
+  width: 100%;
+  height: 90vh;
+  position: fixed;
+  display: flex;
+  background-color: var(--color-grey-3);
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmation {
+  padding: 5rem 2rem;
+  width: 40%;
+  background: var(--color-white);
+  display: grid;
+  row-gap: 1rem;
+  place-items: center;
+
+  & svg {
+    font-size: 5rem;
+    color: #388e3c;
+  }
+  & h3 {
+    font-size: 1.2rem;
+  }
+  & button {
+    padding: 1rem 3rem;
+    border: none;
+    background: var(--color-grey-2);
+    color: var(--color-white);
+    font-weight: bold;
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+}
