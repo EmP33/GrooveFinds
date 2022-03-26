@@ -18,6 +18,8 @@ const CartItem = ({ item }) => {
 
   const itemClass = `${removeStatus || updateStatus ? "item-active" : "item"}`;
 
+  console.log(item);
+
   const removeItemHandler = () => {
     setRemoveStatus(true);
     dispatch(removeFromCartData(item.id));
@@ -38,6 +40,12 @@ const CartItem = ({ item }) => {
       {<img src={item.image.url} alt="Icon" />}
       <div styleName={"itemName"}>
         <Link to={`/cart/${item.product_id}`}>{item.name}</Link>
+        {item.selected_options.length !== 0 && (
+          <p>
+            {item.selected_options[0]?.group_name}:{" "}
+            {item.selected_options[0]?.option_name}
+          </p>
+        )}
       </div>
       <div styleName={"itemCounter"}>
         <span>

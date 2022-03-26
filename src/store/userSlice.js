@@ -54,11 +54,18 @@ const userSlice = createSlice({
   },
 });
 
-export const addCartData = (productId, quantity) => {
+export const addCartData = (productId, quantity, options = {}) => {
   return async (dispatch) => {
     const sendRequest = async () => {
-      const { cart } = await commerce.cart.add(productId, quantity);
-      dispatch(userActions.setCart(cart));
+      if (options.undefined !== "") {
+        const { cart } = await commerce.cart.add(productId, quantity, {
+          ...options,
+        });
+        dispatch(userActions.setCart(cart));
+      } else {
+        const { cart } = await commerce.cart.add(productId, quantity);
+        dispatch(userActions.setCart(cart));
+      }
     };
     dispatch(userActions.changeSendingStatus());
     await sendRequest();

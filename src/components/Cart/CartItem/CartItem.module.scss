@@ -37,6 +37,14 @@
         text-decoration: underline;
       }
     }
+
+    & p {
+      margin: 0;
+      font-size: 0.9rem;
+      font-family: var(--font-header);
+      font-weight: bold;
+      color: var(--color-grey-4);
+    }
   }
 
   & .itemCounter {

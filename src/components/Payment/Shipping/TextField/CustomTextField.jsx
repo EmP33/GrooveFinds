@@ -21,7 +21,7 @@ const CustomTextField = ({ name, label, placeholder, inputRef, isInValid }) => {
           variant="outlined"
           inputRef={inputRef}
           helperText={!isInValid ? t("incorrect-entry") : ""}
-          value={name}
+          value={""}
           {...field}
         />
       )}

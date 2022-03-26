@@ -69,5 +69,6 @@
   "credit-or-debit-card": "Karta kredytowa lub debetowa",
   "pay": "Zapłać",
   "back": "Cofnij",
-  "incorrect-entry": "Niepoprawne dane"
+  "incorrect-entry": "Niepoprawne dane",
+  "cart-is-empty": "Twój koszyk jest pusty"
 }

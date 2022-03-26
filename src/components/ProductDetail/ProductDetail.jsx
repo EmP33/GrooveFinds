@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 import classes from "./ProductDetail.module.scss";
@@ -14,9 +14,11 @@ import { RiLoader3Fill } from "react-icons/ri";
 import { BsBag } from "react-icons/bs";
 
 import { useSelector, useDispatch } from "react-redux";
+
 import { addCartData, userActions } from "../../store/userSlice";
 
-import Review from "./Review";
+// import Review from "./Review";
+import Variants from "./Variants";
 import ProductSlider from "./ProductSlider";
 
 import Modal from "@mui/material/Modal";
@@ -35,8 +37,12 @@ const ProductDetail = () => {
   const cart = useSelector((state) => state.user.cart);
   const sendingStatus = useSelector((state) => state.user.sendingStatus);
   const wishlist = useSelector((state) => state.user.wishlist);
+  const [variant, setVariant] = useState("");
+  const variantGroupID = product.variant_groups[0]?.id;
 
   let isInCart = false;
+
+  console.log(product);
 
   if (!!cart.line_items) {
     isInCart = cart.line_items
@@ -54,7 +60,7 @@ const ProductDetail = () => {
   };
 
   const setIsInCartHandler = () => {
-    dispatch(addCartData(product.id));
+    dispatch(addCartData(product.id, 1, { [variantGroupID]: variant }));
   };
   const toggleIsFavoriteHandler = () => {
     if (wishlist.includes(product.id)) {
@@ -71,8 +77,12 @@ const ProductDetail = () => {
     dispatch(userActions.addItemToWishlist([product.id]));
   };
 
+  const changeVariantHandler = (option) => {
+    setVariant(option);
+  };
+
   const buyItemHandler = () => {
-    dispatch(addCartData(product.id));
+    dispatch(addCartData(product.id, 1, { [variantGroupID]: variant }));
     navigate("/cart");
   };
 
@@ -99,28 +109,37 @@ const ProductDetail = () => {
             </div>
             <div className={classes["details-shipping"]}>
               <p>
-                <strong>Wysyłka:</strong> 13.00 zł
+                <strong>Wysyłka:</strong> 20.00 zł
               </p>
               <p className={classes["details-shipping--days"]}>4 dni</p>
             </div>
-            <div className={classes["details-review"]}>
+            {/* <div className={classes["details-review"]}>
               <h4>Opinie klientów</h4>
               <ul className={classes["review-list"]}>
                 <Review />
                 <Review />
               </ul>
-            </div>
+            </div> */}
 
             <div className={classes["details-header"]}>
               <h1>{product.name}</h1>
-              <div className={classes["details-rate"]}>
+              {/* <div className={classes["details-rate"]}>
                 <IoStar />
                 <IoStar />
                 <IoStar />
                 <IoStar />
                 <IoStar />
-              </div>{" "}
-              <h3>{product.price.raw} zł</h3>
+              </div> */}
+              <h3>{product.price.formatted_with_code}</h3>
+              {!!product.variant_groups.length && (
+                <div className={classes["details-variants"]}>
+                  <Variants
+                    onChangeVariant={changeVariantHandler}
+                    label={product.variant_groups[0].name}
+                    options={product.variant_groups[0].options}
+                  />
+                </div>
+              )}
             </div>
 
             <div className={classes["details-actions"]}>

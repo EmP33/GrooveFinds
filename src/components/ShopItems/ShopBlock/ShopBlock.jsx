@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "./ShopBlock.module.scss";
 
-import ItemCard from "../Item/ItemCard";
+import ItemCard from "../ItemCard/ItemCard";
 import ItemPlaceholder from "../../UI/Placeholders/ItemPlaceholder";
 
 import { Swiper, SwiperSlide } from "swiper/react";

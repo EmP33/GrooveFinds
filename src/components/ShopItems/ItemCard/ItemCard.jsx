@@ -23,6 +23,7 @@ const ItemCard = ({ product }) => {
   const cart = useSelector((state) => state.user.cart);
   const wishlist = useSelector((state) => state.user.wishlist);
   const sendingStatus = useSelector((state) => state.user.sendingStatus);
+  const variantGroupID = product.variant_groups[0]?.id;
   let isInCart = false;
   let detailsPath = "";
 
@@ -48,7 +49,15 @@ const ItemCard = ({ product }) => {
   };
 
   const addCartDataHandler = () => {
-    dispatch(addCartData(product.id, 1));
+    if (product.variant_groups.length !== 0) {
+      dispatch(
+        addCartData(product.id, 1, {
+          [variantGroupID]: product.variant_groups[0]?.options[0].id,
+        })
+      );
+    } else {
+      dispatch(addCartData(product.id, 1));
+    }
   };
 
   if (location.pathname.includes("wishlist")) {
@@ -92,7 +101,9 @@ const ItemCard = ({ product }) => {
           }
         </div>
         <div className={classes["card-content"]}>
-          <span className={classes.price}>{product.price.raw} zł</span>
+          <span className={classes.price}>
+            {product.price.formatted_with_code}{" "}
+          </span>
           {/* <div className={classes["discount-wrapper"]}>
             <span className={classes["discount-price"]}>
               {(product.price.raw * 1.1).toFixed(2)} zł
