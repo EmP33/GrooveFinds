@@ -1,6 +1,7 @@
 import React from "react";
-
 import classes from "./ItemCard.module.scss";
+import CSSModules from "react-css-modules";
+// import styles from "./ItemCard.module.scss";
 
 import {
   IoHeartOutline,
@@ -68,9 +69,13 @@ const ItemCard = ({ product }) => {
 
   return (
     <React.Fragment>
-      <div className={classes["card"]}>
-        <div className={classes["card-container"]}>
-          <div className={classes["card-backdrop"]}>
+      <div
+        styleName={
+          location.pathname.includes("category") ? "card-list" : "card"
+        }
+      >
+        <div styleName="card-container">
+          <div styleName="card-backdrop">
             {/* Conditional render on button element to prevent spam clicks */}
             {sendingStatus ? (
               <button onClick={addCartDataHandler} disabled>
@@ -96,19 +101,17 @@ const ItemCard = ({ product }) => {
             <img
               src={product.image.url}
               alt={product.name}
-              className={classes["card-image"]}
+              styleName="card-image"
             />
           }
         </div>
-        <div className={classes["card-content"]}>
-          <span className={classes.price}>
-            {product.price.formatted_with_code}{" "}
-          </span>
-          {/* <div className={classes["discount-wrapper"]}>
-            <span className={classes["discount-price"]}>
+        <div styleName="card-content">
+          <span styleName="price">{product.price.formatted_with_code} </span>
+          {/* <div styleName={classes["discount-wrapper"]}>
+            <span styleName={classes["discount-price"]}>
               {(product.price.raw * 1.1).toFixed(2)} zł
             </span>{" "}
-            <span className={classes["discount-badge"]}>-10%</span>
+            <span styleName={classes["discount-badge"]}>-10%</span>
           </div> */}
           <Link to={detailsPath}>
             <h3>{product.name}</h3>
@@ -119,4 +122,4 @@ const ItemCard = ({ product }) => {
   );
 };
 
-export default React.memo(ItemCard);
+export default CSSModules(ItemCard, classes);
