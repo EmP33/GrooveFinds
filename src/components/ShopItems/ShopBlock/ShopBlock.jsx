@@ -15,7 +15,6 @@ import { useTranslation } from "react-i18next";
 
 const ShopBlock = ({ category }) => {
   const products = useSelector((state) => state.products.products);
-  const isLoading = useSelector((state) => state.products.isLoading);
   const { t } = useTranslation();
 
   let categoryProducts = [];
@@ -43,8 +42,7 @@ const ShopBlock = ({ category }) => {
         {categoryProducts.length ? (
           categoryProducts.map((item) => (
             <SwiperSlide key={item.id}>
-              {isLoading && <ItemPlaceholder />}
-              {!isLoading && <ItemCard product={item} />}
+              <ItemCard product={item} />
             </SwiperSlide>
           ))
         ) : (

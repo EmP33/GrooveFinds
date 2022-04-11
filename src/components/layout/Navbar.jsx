@@ -29,8 +29,6 @@ import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "../../store/modalSlice";
 
-// import UserMenu from "../Modals/UserMenu/UserMenu";
-
 const languages = [
   {
     code: "en",
@@ -60,8 +58,6 @@ const Navbar = () => {
   );
   const [searchInput, setSearchInput] = useState("");
 
-  console.log();
-
   const changeCategoryHandler = (event) => {
     setCategory(event.target.value);
   };
@@ -78,7 +74,10 @@ const Navbar = () => {
 
   const submitSearchHandler = (e) => {
     e.preventDefault();
-    navigate(`/search/${category}/${searchInput}`);
+
+    if (searchInput) {
+      navigate(`/search/${category}/${searchInput}`);
+    }
   };
 
   return (
@@ -171,7 +170,6 @@ const Navbar = () => {
             <IoHeartOutline className={classes["button-icon"]} />
             {t("wishlist")}
           </Link>
-          {/* {<UserMenu />} */}
         </div>
       </nav>
     </React.Fragment>

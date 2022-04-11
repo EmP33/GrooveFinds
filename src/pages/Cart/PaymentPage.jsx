@@ -1,6 +1,6 @@
 import React from "react";
 
-import Payment from "../components/Payment/Payment";
+import Payment from "../../components/Payment/Payment";
 
 const PaymentPage = () => {
   return <Payment />;

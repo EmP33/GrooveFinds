@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   products: [],
   categories: [],
-  isLoading: true,
 };
 
 const productSlice = createSlice({
@@ -15,9 +14,6 @@ const productSlice = createSlice({
     },
     setCategories(state, action) {
       state.categories = action.payload;
-    },
-    setIsLoading(state, action) {
-      state.isLoading = action.payload;
     },
   },
 });

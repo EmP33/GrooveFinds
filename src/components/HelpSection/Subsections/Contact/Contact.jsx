@@ -76,7 +76,6 @@ const Contact = () => {
                   type="email"
                   id="email"
                   name="email"
-                  // required
                   placeholder="Wprowadź e-mail"
                   ref={emailRef}
                 />

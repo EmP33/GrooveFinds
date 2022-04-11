@@ -50,7 +50,7 @@ const Cart = () => {
     };
 
     generateToken();
-  }, [cart]);
+  }, [cart, dispatch]);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);

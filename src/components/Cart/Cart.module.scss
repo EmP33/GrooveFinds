@@ -23,6 +23,7 @@
     padding: 1rem 2rem 2rem 2rem;
     background-color: var(--color-white);
     border-radius: 2.5rem 0 0 2.5rem;
+    display: grid;
 
     @media only screen and (max-width: 62.5em) {
       border-radius: 2.5rem 2.5rem 0 0;

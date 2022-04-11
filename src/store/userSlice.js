@@ -7,7 +7,7 @@ const initialState = {
   cart: [],
   wishlist: [],
   sendingStatus: false,
-  updateStatus: false,
+
   checkout: null,
   shippingData: null,
   order: null,
@@ -29,9 +29,6 @@ const userSlice = createSlice({
     },
     changeSendingStatus(state) {
       state.sendingStatus = !state.sendingStatus;
-    },
-    changeUpdateStatus(state) {
-      state.updateStatus = !state.updateStatus;
     },
     addItemToWishlist(state, action) {
       state.wishlist = [...state.wishlist, ...action.payload];

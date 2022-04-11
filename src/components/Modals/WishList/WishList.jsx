@@ -61,10 +61,6 @@ const WishList = () => {
           >
             <IoClose />
           </button>
-          {/* <section className={classes["wishlist__user"]}>
-            <div className={classes["wishlist__user-avatar"]}>J</div>
-            <h3>Jan Kowalski</h3>
-          </section> */}
           <section className={classes["wishlist__products"]}>
             <h1>{t("wishlist")}</h1>
             <ul className={classes["wishlist__products-list"]}>

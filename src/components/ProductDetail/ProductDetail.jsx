@@ -4,7 +4,6 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import classes from "./ProductDetail.module.scss";
 
 import {
-  IoStar,
   IoHeartOutline,
   IoHeart,
   IoClose,
@@ -41,8 +40,6 @@ const ProductDetail = () => {
   const variantGroupID = product.variant_groups[0]?.id;
 
   let isInCart = false;
-
-  console.log(product);
 
   if (!!cart.line_items) {
     isInCart = cart.line_items

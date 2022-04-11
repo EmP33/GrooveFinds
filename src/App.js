@@ -6,47 +6,47 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Main from "./pages/Main";
-import CartPage from "./pages/CartPage";
-import PaymentPage from "./pages/PaymentPage";
-import ProductsPage from "./pages/ProductsPage";
-import HelpPage from "./pages/HelpPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import LoadingPage from "./pages/LoadingPage";
-import RegulationsPage from "./pages/RegulationsPage";
-import ShippingPage from "./pages/ShippingPage";
-import PaymentsPage from "./pages/PaymentsPage";
-import ContactPage from "./pages/ContactPage";
-import PrivacyPage from "./pages/PrivacyPage";
-import SearchingPage from "./pages/SearchingPage";
-
-import ProductDetail from "./components/ProductDetail/ProductDetail";
+import {
+  Main,
+  CartPage,
+  PaymentPage,
+  ProductsPage,
+  HelpPage,
+  NotFoundPage,
+  LoadingPage,
+  RegulationsPage,
+  ShippingPage,
+  PaymentsPage,
+  ContactPage,
+  PrivacyPage,
+  SearchingPage,
+  ProductDetailPage,
+} from "./pages";
 
 // COMMERCE
 import { commerce } from "./lib/commerce";
 
 // REDUX STORE
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { productActions } from "./store/productsSlice";
 import { userActions } from "./store/userSlice";
 
-let isLoadingApp = true;
+import useHttp from "./hooks/use-http";
+import { getAllProducts, getAllCategories } from "./lib/api";
 
 const App = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products.products);
-  // const cart = useSelector((state) => state.user.cart);
-  // const wishlist = useSelector((state) => state.user.wishlist);
 
-  const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
-    dispatch(productActions.setProducts(data));
-  };
-
-  const fetchCategories = async () => {
-    const { data } = await commerce.categories.list();
-    dispatch(productActions.setCategories(data));
-  };
+  const {
+    data: products,
+    sendRequest: sendProductRequest,
+    status: productStatus,
+  } = useHttp(getAllProducts, true);
+  const {
+    data: categories,
+    sendRequest: sendCategoryRequest,
+    status: categoryStatus,
+  } = useHttp(getAllCategories, true);
 
   const fetchCart = async () => {
     dispatch(userActions.setCart(await commerce.cart.retrieve()));
@@ -60,42 +60,39 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
-    fetchCategories();
+    sendProductRequest();
+    sendCategoryRequest();
     fetchCart();
     fetchWishlist();
   }, []);
 
-  if (products.length > 0) {
-    dispatch(productActions.setIsLoading(false));
-    isLoadingApp = false;
-  }
-
-  if (isLoadingApp) {
+  if (productStatus === "pending" || categoryStatus === "pending") {
     return <LoadingPage />;
   }
+  dispatch(productActions.setProducts(products));
+  dispatch(productActions.setCategories(categories));
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home/*" element={<Main />}>
-          <Route path={`product/:productID`} element={<ProductDetail />} />
+          <Route path={`product/:productID`} element={<ProductDetailPage />} />
         </Route>
         <Route path="/cart/*" element={<CartPage />}>
-          <Route path={`:productID`} element={<ProductDetail />} />
+          <Route path={`:productID`} element={<ProductDetailPage />} />
         </Route>
         <Route path="/checkout/*" element={<PaymentPage />}>
-          <Route path={`:productID`} element={<ProductDetail />} />
+          <Route path={`:productID`} element={<ProductDetailPage />} />
         </Route>
         <Route path="/category/:categoryID/*" element={<ProductsPage />}>
-          <Route path={`product/:productID`} element={<ProductDetail />} />
+          <Route path={`product/:productID`} element={<ProductDetailPage />} />
         </Route>
         <Route
           path="/search/:categoryID/:searchInput/*"
           element={<SearchingPage />}
         >
-          <Route path={`product/:productID`} element={<ProductDetail />} />
+          <Route path={`product/:productID`} element={<ProductDetailPage />} />
         </Route>
         <Route
           path="/search/:categoryID"

@@ -37,10 +37,6 @@ const ProductsList = () => {
   const firstPrice = +queryParams.get("price_from");
   const secondPrice = +queryParams.get("price_to");
 
-  // const categoryProducts = products.filter(
-  //   (product) => product.categories[0].slug === params.categoryID
-  // );
-
   const categoryProducts = products.filter((product) =>
     product.categories.find((category) => category.slug === params.categoryID)
   );

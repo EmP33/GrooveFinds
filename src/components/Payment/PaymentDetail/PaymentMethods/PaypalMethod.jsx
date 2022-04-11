@@ -33,8 +33,6 @@ const CardMethod = ({ handleBack, handleNext }) => {
       card: cardElement,
     });
 
-    console.log(paymentMethod);
-
     if (error) {
       console.log(error);
     } else {
@@ -62,7 +60,7 @@ const CardMethod = ({ handleBack, handleNext }) => {
         },
       };
       dispatch(handleCaptureCheckout(checkoutToken.id, orderData));
-      // onCaptureCheckout(checkoutToken.id, orderData);
+
       handleNext();
     }
   };

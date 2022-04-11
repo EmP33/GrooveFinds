@@ -18,8 +18,6 @@ const CartItem = ({ item }) => {
 
   const itemClass = `${removeStatus || updateStatus ? "item-active" : "item"}`;
 
-  console.log(item);
-
   const removeItemHandler = () => {
     setRemoveStatus(true);
     dispatch(removeFromCartData(item.id));

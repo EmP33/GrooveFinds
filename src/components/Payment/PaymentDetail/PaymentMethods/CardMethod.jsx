@@ -11,15 +11,13 @@ import { loadStripe } from "@stripe/stripe-js";
 import { RiLoader3Fill } from "react-icons/ri";
 
 import { useSelector, useDispatch } from "react-redux";
-import { userActions } from "../../../../store/userSlice";
+
 import { handleCaptureCheckout } from "../../../../store/userSlice";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CardMethod = ({ handleBack, handleNext }) => {
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [loadingPaying, setLoadingPaying] = useState(false);
@@ -40,7 +38,6 @@ const CardMethod = ({ handleBack, handleNext }) => {
     });
 
     if (error) {
-      console.log(error);
       setLoadingPaying(false);
     } else {
       const orderData = {
