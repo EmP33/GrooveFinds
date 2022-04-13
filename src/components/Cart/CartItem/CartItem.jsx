@@ -14,7 +14,6 @@ const CartItem = ({ item }) => {
   const dispatch = useDispatch();
   const [removeStatus, setRemoveStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
-  // const updateStatus = useSelector((state) => state.user.updateStatus);
 
   const itemClass = `${removeStatus || updateStatus ? "item-active" : "item"}`;
 
