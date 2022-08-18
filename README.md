@@ -1,26 +1,37 @@
-# GrooveFinds ecommerce site
-GrooveFinds is advance e-commerce app created from scratch by me.
-**What technologies do I used in this project?**
 
- - react
- - sass
- - redux
- - commercejs
- - swiper
- - stripe
- - mui
- - i18next
- - react-router
- - emailjs 
+![Logo](https://res.cloudinary.com/dtbemnmn4/image/upload/v1660845870/github/logo_pk4zt7.png)
 
-**What you can do in this store?**
-1. You can add product to cart and to wishlist. 
-2. Products also are categorized, You can also filter products in categories page. 
-3. You can search for a products in search bar and search for products in specific category.
-4. You can switch languages between polish and english
-5. You can email to support by contact page
-6. You can order things by completing all steps in checkout section and you will received confirmation email.
+GrooveFinds is advance e commerce app created from scratch by me.
 
-**Sections**
-To go throught payment section type: 424242424242 in all card fieldes.
-You can also check gift code: *EB510934BA*
+
+## Tech Stack
+
+**Client:** React, Redux, SCSS, MUI, Swiper
+
+**Server:** Commercejs, Stripe
+
+## Color Reference
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| --color-primary | ![#1b262c](https://via.placeholder.com/10/1b262c?text=+) #1b262c |
+| --color-secondary| ![#0f4c75](https://via.placeholder.com/10/0f4c75?text=+) #0f4c75 |
+|  --color-thertiary | ![#3282b8](https://via.placeholder.com/10/3282b8?text=+) #3282b8 |
+
+
+
+## Screenshots
+
+![App Screenshot](https://res.cloudinary.com/dtbemnmn4/image/upload/v1660845871/github/1_dm3qo3.png)
+![App Screenshot](https://res.cloudinary.com/dtbemnmn4/image/upload/v1660845871/github/2_jiwhya.png)
+![App Screenshot](https://res.cloudinary.com/dtbemnmn4/image/upload/v1660845871/github/3_g5uvlm.png)
+![App Screenshot](https://res.cloudinary.com/dtbemnmn4/image/upload/v1660845871/github/4_m07q1u.png)
+![App Screenshot](https://res.cloudinary.com/dtbemnmn4/image/upload/v1660845871/github/5_j7uccr.png)
+![App Screenshot](https://res.cloudinary.com/dtbemnmn4/image/upload/v1660845870/github/6_nwcyxm.png)
+![App Screenshot](https://res.cloudinary.com/dtbemnmn4/image/upload/v1660845870/github/7_nub8of.png)
+
+
+## Authors
+
+- [@EmP33](https://github.com/EmP33)
+
